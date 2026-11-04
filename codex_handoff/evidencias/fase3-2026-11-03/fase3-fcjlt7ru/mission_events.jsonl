@@ -1,0 +1,44 @@
+{"time": 1793744045.5570552, "kind": "heartbeat", "type": 10, "armed": false, "mode": 16}
+{"time": 1793744046.2860596, "kind": "status", "text": "Barometer 1 calibration complete"}
+{"time": 1793744046.2862637, "kind": "status", "text": "Barometer 2 calibration complete"}
+{"time": 1793744046.3018157, "kind": "status", "text": "Beginning INS calibration. Do not move vehicle"}
+{"time": 1793744046.9270437, "kind": "status", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"time": 1793744046.9274323, "kind": "status", "text": "ArduPilot Ready"}
+{"time": 1793744046.927716, "kind": "status", "text": "RCInput: decoding UDP (Pulses)"}
+{"time": 1793744046.9279523, "kind": "status", "text": "AHRS: DCM active"}
+{"time": 1793744048.945454, "kind": "status", "text": "EKF3 IMU0 initialised"}
+{"time": 1793744048.9457562, "kind": "status", "text": "EKF3 IMU1 initialised"}
+{"time": 1793744050.543292, "kind": "status", "text": "EKF3 IMU0 tilt alignment complete"}
+{"time": 1793744050.5435, "kind": "status", "text": "EKF3 IMU1 tilt alignment complete"}
+{"time": 1793744050.6251516, "kind": "status", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"time": 1793744050.62551, "kind": "status", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"time": 1793744050.6258388, "kind": "status", "text": "AHRS: EKF3 active"}
+{"time": 1793744054.2289286, "kind": "status", "text": "GPS 1: probing for u-blox at 230400 baud"}
+{"time": 1793744054.2465186, "kind": "status", "text": "GPS 1: detected u-blox"}
+{"time": 1793744054.427223, "kind": "status", "text": "Set HOME to -35.36326 149.1652 at 584.00m"}
+{"time": 1793744054.6090565, "kind": "gps_ready", "fix_type": 6}
+{"time": 1793744055.6063015, "kind": "start_position", "position": [-35.363261, 149.1652299]}
+{"time": 1793744064.43007, "kind": "status", "text": "EKF3 IMU0 origin set"}
+{"time": 1793744064.4302635, "kind": "status", "text": "EKF3 IMU1 origin set"}
+{"time": 1793744064.5061698, "kind": "status", "text": "Field Elevation Set: 584m"}
+{"time": 1793744086.6508021, "kind": "status", "text": "EKF3 IMU0 is using GPS"}
+{"time": 1793744086.651063, "kind": "status", "text": "EKF3 IMU1 is using GPS"}
+{"time": 1793744095.6138508, "kind": "warmup_complete"}
+{"time": 1793744095.713312, "kind": "mission_uploaded", "count": 4}
+{"time": 1793744095.7137306, "kind": "status", "text": "Flight plan received"}
+{"time": 1793744095.7538028, "kind": "arm_ack", "result": 0}
+{"time": 1793744095.7733374, "kind": "status", "text": "Throttle armed"}
+{"time": 1793744096.631153, "kind": "auto_started"}
+{"time": 1793744096.6485565, "kind": "status", "text": "Mission: 1 WP"}
+{"time": 1793744103.6525455, "kind": "mission_item_reached", "seq": 1, "position": [-35.3631634, 149.1652406]}
+{"time": 1793744103.6529198, "kind": "status", "text": "Reached waypoint #1"}
+{"time": 1793744103.653197, "kind": "status", "text": "Mission: 2 WP"}
+{"time": 1793744107.693876, "kind": "mission_item_reached", "seq": 2, "position": [-35.3631657, 149.165338]}
+{"time": 1793744107.694069, "kind": "status", "text": "Reached waypoint #2"}
+{"time": 1793744107.6943293, "kind": "status", "text": "Mission: 3 WP"}
+{"time": 1793744117.5328853, "kind": "mission_item_reached", "seq": 3, "position": [-35.3632607, 149.1652293]}
+{"time": 1793744117.533129, "kind": "mission_complete", "duration_s": 20.9, "reached": [1, 2, 3], "position": [-35.3632607, 149.1652293], "distance_home_m": 0.07}
+{"time": 1793744117.5335348, "kind": "status", "text": "Reached waypoint #3"}
+{"time": 1793744117.5337048, "kind": "status", "text": "Mission Complete"}
+{"time": 1793744117.5737813, "kind": "status", "text": "Throttle disarmed"}
+{"time": 1793744117.6143754, "kind": "safe_end", "mode": "HOLD", "armed": false}

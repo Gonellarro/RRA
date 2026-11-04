@@ -1,0 +1,34 @@
+{"time": 1793743899.8495364, "kind": "heartbeat", "type": 10, "armed": false, "mode": 16}
+{"time": 1793743900.584085, "kind": "status", "text": "Barometer 1 calibration complete"}
+{"time": 1793743900.584276, "kind": "status", "text": "Barometer 2 calibration complete"}
+{"time": 1793743900.5995667, "kind": "status", "text": "Beginning INS calibration. Do not move vehicle"}
+{"time": 1793743901.2185957, "kind": "status", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"time": 1793743901.2188637, "kind": "status", "text": "ArduPilot Ready"}
+{"time": 1793743901.2190707, "kind": "status", "text": "RCInput: decoding UDP (Pulses)"}
+{"time": 1793743901.2191718, "kind": "status", "text": "AHRS: DCM active"}
+{"time": 1793743903.2424297, "kind": "status", "text": "EKF3 IMU0 initialised"}
+{"time": 1793743903.2427962, "kind": "status", "text": "EKF3 IMU1 initialised"}
+{"time": 1793743904.8404303, "kind": "status", "text": "EKF3 IMU0 tilt alignment complete"}
+{"time": 1793743904.840711, "kind": "status", "text": "EKF3 IMU1 tilt alignment complete"}
+{"time": 1793743904.9221625, "kind": "status", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"time": 1793743904.9224753, "kind": "status", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"time": 1793743904.9228544, "kind": "status", "text": "AHRS: EKF3 active"}
+{"time": 1793743908.5213675, "kind": "status", "text": "GPS 1: probing for u-blox at 230400 baud"}
+{"time": 1793743908.5386007, "kind": "status", "text": "GPS 1: detected u-blox"}
+{"time": 1793743908.7195728, "kind": "status", "text": "Set HOME to -35.36326 149.1652 at 584.00m"}
+{"time": 1793743908.9011471, "kind": "gps_ready", "fix_type": 6}
+{"time": 1793743909.90419, "kind": "start_position", "position": [-35.363261, 149.1652299]}
+{"time": 1793743918.72326, "kind": "status", "text": "EKF3 IMU0 origin set"}
+{"time": 1793743918.7235236, "kind": "status", "text": "EKF3 IMU1 origin set"}
+{"time": 1793743918.804702, "kind": "status", "text": "Field Elevation Set: 584m"}
+{"time": 1793743930.906115, "kind": "warmup_complete"}
+{"time": 1793743931.005487, "kind": "mission_uploaded", "count": 4}
+{"time": 1793743931.0058753, "kind": "status", "text": "Flight plan received"}
+{"time": 1793743931.0461028, "kind": "arm_ack", "result": 0}
+{"time": 1793743931.0659864, "kind": "status", "text": "Throttle armed"}
+{"time": 1793743931.9246569, "kind": "status", "text": "Flight mode change failed"}
+{"time": 1793743932.0412393, "kind": "status", "text": "EKF variance"}
+{"time": 1793743940.762074, "kind": "status", "text": "EKF3 IMU0 is using GPS"}
+{"time": 1793743940.762308, "kind": "status", "text": "EKF3 IMU1 is using GPS"}
+{"time": 1793743941.7474391, "kind": "status", "text": "EKF failsafe cleared"}
+{"time": 1793743951.9056208, "kind": "error", "error": "TimeoutError('Agotado el plazo de la operaci\u00f3n MAVLink')", "last_position": [-35.3632611, 149.16523], "armed": true}

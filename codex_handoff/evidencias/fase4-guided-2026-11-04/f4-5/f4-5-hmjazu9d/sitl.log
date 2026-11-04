@@ -1,0 +1,12 @@
+Home: -35.363261 149.165230 alt=584.000000m hdg=0.000000
+Starting sketch 'Rover'
+Starting SITL input
+Using Irlock at port : 9005
+UDP connection 127.0.0.1:14690
+Loaded defaults from /mnt/c/RRA/codex_handoff/evidencias/fase4-guided-2026-11-04/f4-5/f4-5-hmjazu9d/defaults-sitl-only.parm
+bind port 5762 for SERIAL1
+SERIAL1 on TCP port 5762
+UDP connection 127.0.0.1:14692
+validate_structures:538: Validating structures
+Waiting for internal clock bits to be set (current=0x00)
+New connection on SERIAL1

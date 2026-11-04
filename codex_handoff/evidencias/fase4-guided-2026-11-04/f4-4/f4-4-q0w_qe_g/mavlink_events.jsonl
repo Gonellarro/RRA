@@ -1,0 +1,203 @@
+{"wall_time": 1793776798.8409822, "monotonic": 160.231266109, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776798.8651063, "monotonic": 160.255390809, "kind": "startup", "case": "f4-4", "netns": "net:[4026532221]", "interfaces": ["lo"], "binary_sha256": "f453fd8217b9d798c873e5c424e139a2a3597b52e31658f76b2c177b523391af"}
+{"wall_time": 1793776798.8879764, "monotonic": 160.278260708, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776799.1502655, "monotonic": 160.540549306, "kind": "effective_parameters", "case": "f4-4", "values": {"FS_GCS_ENABLE": 0.0, "FS_THR_ENABLE": 0.0, "RC_PROTOCOLS": 0.0}}
+{"wall_time": 1793776799.5763357, "monotonic": 160.966619702, "kind": "statustext", "case": "f4-4", "text": "Barometer 1 calibration complete"}
+{"wall_time": 1793776799.5779793, "monotonic": 160.968263002, "kind": "statustext", "case": "f4-4", "text": "Barometer 2 calibration complete"}
+{"wall_time": 1793776799.5901823, "monotonic": 160.980465702, "kind": "statustext", "case": "f4-4", "text": "Beginning INS calibration. Do not move vehicle"}
+{"wall_time": 1793776799.8436534, "monotonic": 161.233937101, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776799.8903434, "monotonic": 161.280627101, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776800.2119565, "monotonic": 161.602240405, "kind": "statustext", "case": "f4-4", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"wall_time": 1793776800.2130702, "monotonic": 161.603353805, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776800.2140892, "monotonic": 161.604372805, "kind": "statustext", "case": "f4-4", "text": "ArduPilot Ready"}
+{"wall_time": 1793776800.2150352, "monotonic": 161.605318705, "kind": "statustext", "case": "f4-4", "text": "AHRS: DCM active"}
+{"wall_time": 1793776800.8931797, "monotonic": 162.283463413, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776800.8948243, "monotonic": 162.285107713, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776800.8963444, "monotonic": 162.286627613, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776801.8932862, "monotonic": 163.283570126, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776801.894671, "monotonic": 163.284954226, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776801.8961182, "monotonic": 163.286401626, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776802.2321408, "monotonic": 163.62242523, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 initialised"}
+{"wall_time": 1793776802.2336104, "monotonic": 163.62389393, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 initialised"}
+{"wall_time": 1793776802.8911057, "monotonic": 164.281389738, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776802.892558, "monotonic": 164.282841538, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776802.8943448, "monotonic": 164.284628238, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776803.8299427, "monotonic": 165.220226749, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 tilt alignment complete"}
+{"wall_time": 1793776804.4873102, "monotonic": 165.877593657, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 tilt alignment complete"}
+{"wall_time": 1793776804.5889676, "monotonic": 165.979251359, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776804.7735925, "monotonic": 166.163876061, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776804.7755373, "monotonic": 166.165821061, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776804.7780874, "monotonic": 166.168370961, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793776804.7792563, "monotonic": 166.169539861, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793776804.780703, "monotonic": 166.170986661, "kind": "statustext", "case": "f4-4", "text": "AHRS: EKF3 active"}
+{"wall_time": 1793776804.8912287, "monotonic": 166.281512762, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776804.8929334, "monotonic": 166.283216762, "kind": "speed", "case": "f4-4", "groundspeed": 0.001483064261265099}
+{"wall_time": 1793776804.8943343, "monotonic": 166.284617762, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776805.8941247, "monotonic": 167.284408574, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776805.895952, "monotonic": 167.286235274, "kind": "speed", "case": "f4-4", "groundspeed": 0.0007224207511171699}
+{"wall_time": 1793776805.897434, "monotonic": 167.287717575, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776806.891401, "monotonic": 168.281684987, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776806.8928711, "monotonic": 168.283154587, "kind": "speed", "case": "f4-4", "groundspeed": 0.0006113664130680263}
+{"wall_time": 1793776806.8942094, "monotonic": 168.284492887, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776807.5096865, "monotonic": 168.899970794, "kind": "statustext", "case": "f4-4", "text": "GPS 1: probing for u-blox at 230400 baud"}
+{"wall_time": 1793776807.5329304, "monotonic": 168.923214594, "kind": "statustext", "case": "f4-4", "text": "GPS 1: detected u-blox"}
+{"wall_time": 1793776807.7138362, "monotonic": 169.104120197, "kind": "statustext", "case": "f4-4", "text": "Set HOME to -35.36326 149.1652 at 584.00m"}
+{"wall_time": 1793776807.8919852, "monotonic": 169.2822694, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776807.8931446, "monotonic": 169.2834282, "kind": "speed", "case": "f4-4", "groundspeed": 0.0006568729295395315}
+{"wall_time": 1793776807.894254, "monotonic": 169.284538, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776808.8903062, "monotonic": 170.280590228, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776808.8916762, "monotonic": 170.281959728, "kind": "speed", "case": "f4-4", "groundspeed": 0.001348145306110382}
+{"wall_time": 1793776808.8932846, "monotonic": 170.283568628, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776809.8932834, "monotonic": 171.283567156, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776809.8949578, "monotonic": 171.285241356, "kind": "speed", "case": "f4-4", "groundspeed": 0.0019277383107692003}
+{"wall_time": 1793776809.8964584, "monotonic": 171.286741957, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776810.8911867, "monotonic": 172.281470684, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776810.892528, "monotonic": 172.282811584, "kind": "speed", "case": "f4-4", "groundspeed": 0.0025773749221116304}
+{"wall_time": 1793776810.893892, "monotonic": 172.284175485, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776811.8943434, "monotonic": 173.284627113, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776811.8961103, "monotonic": 173.286393913, "kind": "speed", "case": "f4-4", "groundspeed": 0.003143385285511613}
+{"wall_time": 1793776811.897879, "monotonic": 173.288162413, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776812.8922737, "monotonic": 174.282557641, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776812.8942006, "monotonic": 174.284484041, "kind": "speed", "case": "f4-4", "groundspeed": 0.0037919736932963133}
+{"wall_time": 1793776812.8958683, "monotonic": 174.286151941, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776813.894968, "monotonic": 175.285251769, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776813.8967826, "monotonic": 175.287066169, "kind": "speed", "case": "f4-4", "groundspeed": 0.004566476680338383}
+{"wall_time": 1793776813.898363, "monotonic": 175.288646669, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776814.8926075, "monotonic": 176.282891497, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776814.894454, "monotonic": 176.284737497, "kind": "speed", "case": "f4-4", "groundspeed": 0.0055444445461034775}
+{"wall_time": 1793776814.8961792, "monotonic": 176.286462897, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776815.8952613, "monotonic": 177.285545424, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776815.8970191, "monotonic": 177.287302524, "kind": "speed", "case": "f4-4", "groundspeed": 0.006955686025321484}
+{"wall_time": 1793776815.8984084, "monotonic": 177.288691724, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776816.8926911, "monotonic": 178.282975046, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776816.8944814, "monotonic": 178.284764746, "kind": "speed", "case": "f4-4", "groundspeed": 0.008475303649902344}
+{"wall_time": 1793776816.8959792, "monotonic": 178.286262646, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776817.7148917, "monotonic": 179.105175363, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 origin set"}
+{"wall_time": 1793776817.716432, "monotonic": 179.106715663, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 origin set"}
+{"wall_time": 1793776817.7907326, "monotonic": 179.181034765, "kind": "statustext", "case": "f4-4", "text": "Field Elevation Set: 584m"}
+{"wall_time": 1793776817.895585, "monotonic": 179.285868867, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776817.8972783, "monotonic": 179.287561567, "kind": "speed", "case": "f4-4", "groundspeed": 0.009830554015934467}
+{"wall_time": 1793776817.8988428, "monotonic": 179.289126367, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776818.8930383, "monotonic": 180.283322388, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776818.8947518, "monotonic": 180.285035288, "kind": "speed", "case": "f4-4", "groundspeed": 0.011278600431978703}
+{"wall_time": 1793776818.8963702, "monotonic": 180.286653588, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776819.8956459, "monotonic": 181.28592971, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776819.8972628, "monotonic": 181.28754641, "kind": "speed", "case": "f4-4", "groundspeed": 0.013065865263342857}
+{"wall_time": 1793776819.8988805, "monotonic": 181.28916411, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776820.8931825, "monotonic": 182.283466231, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776820.8949454, "monotonic": 182.285228831, "kind": "speed", "case": "f4-4", "groundspeed": 0.014640584588050842}
+{"wall_time": 1793776820.8964827, "monotonic": 182.286766331, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776821.8960452, "monotonic": 183.286329152, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776821.8980424, "monotonic": 183.288325852, "kind": "speed", "case": "f4-4", "groundspeed": 0.016201211139559746}
+{"wall_time": 1793776821.8994746, "monotonic": 183.289758252, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776822.8934355, "monotonic": 184.283719174, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776822.8951728, "monotonic": 184.285456174, "kind": "speed", "case": "f4-4", "groundspeed": 0.017674604430794716}
+{"wall_time": 1793776822.8966088, "monotonic": 184.286892174, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776823.896388, "monotonic": 185.286672194, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776823.8983214, "monotonic": 185.288604994, "kind": "speed", "case": "f4-4", "groundspeed": 0.018753699958324432}
+{"wall_time": 1793776823.900008, "monotonic": 185.290291495, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776824.8936915, "monotonic": 186.283975508, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776824.8954375, "monotonic": 186.285721008, "kind": "speed", "case": "f4-4", "groundspeed": 0.01961701363325119}
+{"wall_time": 1793776824.8969817, "monotonic": 186.287265208, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776825.8966916, "monotonic": 187.286975321, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776825.8985097, "monotonic": 187.288793321, "kind": "speed", "case": "f4-4", "groundspeed": 0.020589252933859825}
+{"wall_time": 1793776825.9001656, "monotonic": 187.290449021, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776826.894158, "monotonic": 188.284441634, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776826.895734, "monotonic": 188.286017434, "kind": "speed", "case": "f4-4", "groundspeed": 0.021913832053542137}
+{"wall_time": 1793776826.8971894, "monotonic": 188.287472934, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776827.8921204, "monotonic": 189.282404147, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776827.8938432, "monotonic": 189.284126947, "kind": "speed", "case": "f4-4", "groundspeed": 0.023089444264769554}
+{"wall_time": 1793776827.8955102, "monotonic": 189.285793547, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776828.8927507, "monotonic": 190.28303466, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776828.8944113, "monotonic": 190.28469466, "kind": "speed", "case": "f4-4", "groundspeed": 0.0241942647844553}
+{"wall_time": 1793776828.895992, "monotonic": 190.28627556, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776829.8956337, "monotonic": 191.285917474, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776829.89736, "monotonic": 191.287643474, "kind": "speed", "case": "f4-4", "groundspeed": 0.025205282494425774}
+{"wall_time": 1793776829.8989038, "monotonic": 191.289187274, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776830.89304, "monotonic": 192.283323987, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776830.8948386, "monotonic": 192.285121987, "kind": "speed", "case": "f4-4", "groundspeed": 0.02608969807624817}
+{"wall_time": 1793776830.8964617, "monotonic": 192.286745287, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776831.8959992, "monotonic": 193.286296096, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776831.897641, "monotonic": 193.287924296, "kind": "speed", "case": "f4-4", "groundspeed": 0.027192506939172745}
+{"wall_time": 1793776831.8990672, "monotonic": 193.289350696, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776832.893104, "monotonic": 194.283387835, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776832.8948555, "monotonic": 194.285138835, "kind": "speed", "case": "f4-4", "groundspeed": 0.02812684327363968}
+{"wall_time": 1793776832.8965106, "monotonic": 194.286794235, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776833.8961177, "monotonic": 195.286401574, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776833.8979602, "monotonic": 195.288243674, "kind": "speed", "case": "f4-4", "groundspeed": 0.028950965031981468}
+{"wall_time": 1793776833.8997757, "monotonic": 195.290059173, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776834.8933413, "monotonic": 196.283625013, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776834.895034, "monotonic": 196.285317613, "kind": "speed", "case": "f4-4", "groundspeed": 0.029816577211022377}
+{"wall_time": 1793776834.8966353, "monotonic": 196.286918912, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776835.896484, "monotonic": 197.286768051, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776835.8983777, "monotonic": 197.288661151, "kind": "speed", "case": "f4-4", "groundspeed": 0.030731167644262314}
+{"wall_time": 1793776835.8998857, "monotonic": 197.290169051, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776836.8936026, "monotonic": 198.28388639, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776836.8952117, "monotonic": 198.28549529, "kind": "speed", "case": "f4-4", "groundspeed": 0.03148917108774185}
+{"wall_time": 1793776836.8967505, "monotonic": 198.28703379, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776837.8967447, "monotonic": 199.287028129, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776837.8984287, "monotonic": 199.288712129, "kind": "speed", "case": "f4-4", "groundspeed": 0.032547011971473694}
+{"wall_time": 1793776837.8999941, "monotonic": 199.290277729, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776838.894119, "monotonic": 200.284402668, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776838.8957705, "monotonic": 200.286053968, "kind": "speed", "case": "f4-4", "groundspeed": 0.03320406749844551}
+{"wall_time": 1793776838.897228, "monotonic": 200.287511567, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776839.897901, "monotonic": 201.288184917, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776839.8995767, "monotonic": 201.289860016, "kind": "speed", "case": "f4-4", "groundspeed": 0.03397340327501297}
+{"wall_time": 1793776839.901, "monotonic": 201.291283216, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776839.9383922, "monotonic": 201.328676216, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 is using GPS"}
+{"wall_time": 1793776839.9398475, "monotonic": 201.330130816, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 is using GPS"}
+{"wall_time": 1793776840.8951285, "monotonic": 202.285412512, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776840.8967657, "monotonic": 202.287049112, "kind": "speed", "case": "f4-4", "groundspeed": 0.010880528017878532}
+{"wall_time": 1793776840.8981943, "monotonic": 202.288477812, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776841.8982687, "monotonic": 203.288552607, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776841.9000547, "monotonic": 203.290338307, "kind": "speed", "case": "f4-4", "groundspeed": 0.021920396015048027}
+{"wall_time": 1793776841.901626, "monotonic": 203.291909507, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776842.896329, "monotonic": 204.286612802, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776842.898149, "monotonic": 204.288432402, "kind": "speed", "case": "f4-4", "groundspeed": 0.03079155460000038}
+{"wall_time": 1793776842.899629, "monotonic": 204.289912602, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776843.893521, "monotonic": 205.283804897, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776843.8952765, "monotonic": 205.285559997, "kind": "speed", "case": "f4-4", "groundspeed": 0.03407547250390053}
+{"wall_time": 1793776843.8968334, "monotonic": 205.287117097, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776843.939691, "monotonic": 205.329974996, "kind": "command_ack", "case": "f4-4", "command": 400, "result": 0}
+{"wall_time": 1793776843.963541, "monotonic": 205.353824796, "kind": "statustext", "case": "f4-4", "text": "Throttle armed"}
+{"wall_time": 1793776844.897422, "monotonic": 206.287706192, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": true}
+{"wall_time": 1793776844.8989305, "monotonic": 206.289214192, "kind": "mode_command_sent", "case": "f4-4", "source_system": 255, "requested_mode": 15}
+{"wall_time": 1793776844.9003637, "monotonic": 206.290647492, "kind": "speed", "case": "f4-4", "groundspeed": 0.026820676401257515}
+{"wall_time": 1793776844.9018927, "monotonic": 206.292176192, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776844.914977, "monotonic": 206.305260892, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776844.9163387, "monotonic": 206.306622492, "kind": "mode_command_effective", "case": "f4-4", "source_system": 255, "effective_mode": 15}
+{"wall_time": 1793776845.894488, "monotonic": 207.284772387, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776845.8964398, "monotonic": 207.286723187, "kind": "speed", "case": "f4-4", "groundspeed": 0.3525274991989136}
+{"wall_time": 1793776845.8982728, "monotonic": 207.288556187, "kind": "servo_output", "case": "f4-4", "servo3": 1523}
+{"wall_time": 1793776846.8976123, "monotonic": 208.287896082, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776846.8995667, "monotonic": 208.289849982, "kind": "speed", "case": "f4-4", "groundspeed": 0.45920002460479736}
+{"wall_time": 1793776846.9012833, "monotonic": 208.291566782, "kind": "servo_output", "case": "f4-4", "servo3": 1509}
+{"wall_time": 1793776847.4455001, "monotonic": 208.835783679, "kind": "guided_velocity_stream_stopped", "case": "f4-4", "source_system": 255, "commanded_velocity_north_mps": 0.35, "duration_s": 2.5, "guid_timeout_parameter_supported": false, "speed_at_stop": 0.45920002460479736, "servo3_at_stop": 1509}
+{"wall_time": 1793776847.8948622, "monotonic": 209.285146477, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776847.8964758, "monotonic": 209.286759377, "kind": "speed", "case": "f4-4", "groundspeed": 0.3786565065383911}
+{"wall_time": 1793776847.8980453, "monotonic": 209.288328477, "kind": "servo_output", "case": "f4-4", "servo3": 1506}
+{"wall_time": 1793776848.897971, "monotonic": 210.288254977, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776848.8996723, "monotonic": 210.289955677, "kind": "speed", "case": "f4-4", "groundspeed": 0.3339446783065796}
+{"wall_time": 1793776848.9011028, "monotonic": 210.291386377, "kind": "servo_output", "case": "f4-4", "servo3": 1508}
+{"wall_time": 1793776849.8959093, "monotonic": 211.286193277, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776849.897603, "monotonic": 211.287886577, "kind": "speed", "case": "f4-4", "groundspeed": 0.33833470940589905}
+{"wall_time": 1793776849.8992164, "monotonic": 211.289499877, "kind": "servo_output", "case": "f4-4", "servo3": 1510}
+{"wall_time": 1793776850.2750204, "monotonic": 211.665304077, "kind": "statustext", "case": "f4-4", "text": "target not received last 3secs, stopping"}
+{"wall_time": 1793776850.8988812, "monotonic": 212.289165276, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776850.9005423, "monotonic": 212.290825676, "kind": "speed", "case": "f4-4", "groundspeed": 0.12489569187164307}
+{"wall_time": 1793776850.9022374, "monotonic": 212.292520876, "kind": "servo_output", "case": "f4-4", "servo3": 1483}
+{"wall_time": 1793776851.8953905, "monotonic": 213.285674276, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776851.8971124, "monotonic": 213.287395776, "kind": "speed", "case": "f4-4", "groundspeed": 0.04882657155394554}
+{"wall_time": 1793776851.898404, "monotonic": 213.288705476, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776852.8983896, "monotonic": 214.288673576, "kind": "heartbeat", "case": "f4-4", "mode": 15, "armed": true}
+{"wall_time": 1793776852.9000778, "monotonic": 214.290361276, "kind": "speed", "case": "f4-4", "groundspeed": 0.023671209812164307}
+{"wall_time": 1793776852.9015121, "monotonic": 214.291795476, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776853.5052528, "monotonic": 214.895536376, "kind": "stale_guided_observed", "case": "f4-4", "elapsed_s": 6.06, "groundspeed": 0.023671209812164307, "servo3": 1500, "mode": 15, "armed": true}
+{"wall_time": 1793776853.5068424, "monotonic": 214.897126276, "kind": "mode_command_sent", "case": "f4-4", "source_system": 255, "requested_mode": 4}
+{"wall_time": 1793776853.5164332, "monotonic": 214.906716876, "kind": "heartbeat", "case": "f4-4", "mode": 4, "armed": true}
+{"wall_time": 1793776853.5176084, "monotonic": 214.907892476, "kind": "mode_command_effective", "case": "f4-4", "source_system": 255, "effective_mode": 4}
+{"wall_time": 1793776853.5396106, "monotonic": 214.929894676, "kind": "command_ack", "case": "f4-4", "command": 400, "result": 0}
+{"wall_time": 1793776853.5411232, "monotonic": 214.931406576, "kind": "statustext", "case": "f4-4", "text": "Throttle disarmed"}
+{"wall_time": 1793776853.8955345, "monotonic": 215.285818376, "kind": "heartbeat", "case": "f4-4", "mode": 4, "armed": false}
+{"wall_time": 1793776853.8967762, "monotonic": 215.287060176, "kind": "scenario_review", "case": "f4-4", "checks": {"final_mode_hold_and_disarmed": true, "guided_timeout_configuration_supported": false, "speed_fell_after_stream_stop": false}, "speed_at_stop": 0.023671209812164307, "speed_after_6s": 0.023671209812164307, "servo3_after_6s": 1500, "note": "Este binario no expone GUID_TIMEOUT; el ensayo observa su comportamiento por defecto. HOLD posterior limita la ventana."}
+{"wall_time": 1793776853.901499, "monotonic": 215.291783076, "kind": "sitl_process_exit", "case": "f4-4", "returncode": -2}

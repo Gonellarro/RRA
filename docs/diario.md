@@ -24,3 +24,11 @@ Registro cronológico de decisiones, acciones y pruebas del software del Rover R
 - Evidencia/log: salida de arranque de SITL y consultas `mode`, `status GPS_RAW_INT`, `status GLOBAL_POSITION_INT` y `status HEARTBEAT` compartidas en la sesión. MAVProxy indicó `MAV Errors: 3` y `SYS_STATUS.errors_comm: 0` en la salida consultada.
 - Problemas o dudas: MAVProxy mostró un aviso de ModemManager y falló la descarga/lectura de la lista SRTM3 por un error de decodificación UTF-8. El mapa y la conexión SITL siguieron funcionando; no se investigaron más esos avisos. El bloqueo durante la instalación no tiene causa confirmada.
 - Siguiente paso: continuar la etapa 1 del roadmap, revisar mensajes de salud y avisos, y practicar el procedimiento de parada y arranque repetible de SITL. Mantener las pruebas en simulación; aún no hay validación de la H743 ni del hardware real.
+
+## 2026-11-03 — Preparación de la Orange Pi provisional
+- Objetivo: preparar ROS 2 Lyrical en la Orange Pi Zero 2W sin interferir con el desarrollo compartido.
+- Cambios o acciones: rama local `feature/orangepi-ros2`; diagnóstico de Armbian comunitario Ubuntu 26.04 ARM64; acceso SSH verificado para `root` y el usuario existente `rra`; instalación de ROS base, ejemplos Python, colcon y rosdep; creación de `~/rra_ws/src` y configuración del entorno del usuario.
+- Resultado observado: en una conexión nueva se cargó Lyrical; dos procesos ROS independientes publicaron y recibieron un mensaje, y finalizaron correctamente. `rosdep update`, `colcon list`, ayuda de rosbag y script de diagnóstico funcionaron. `dpkg --audit` no informó de incidencias.
+- Evidencia/log: detalles, versiones y límites en `docs/companion_orange_pi.md`; salidas de pruebas en `/tmp/rra-talker-clean.log` y `/tmp/rra-listener-clean.log` de la placa, temporales.
+- Problemas o dudas: el acceso automático inicial necesitó una clave SSH; la primera prueba usó una opción de shell incompatible y se corrigió; una prueba de ejemplo recibió mensajes pero produjo una excepción al terminarla forzadamente. La repetición con cierre normal pasó.
+- Siguiente paso: revisar con Martín la propuesta y continuar con MAVROS y telemetría de solo lectura, empezando por simulación. No se ha validado la conexión a la H743, sensores, grabación rosbag ni el rover real.

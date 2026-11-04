@@ -1,0 +1,24 @@
+{"time": 1793743851.312446, "kind": "heartbeat", "type": 10, "armed": false, "mode": 16}
+{"time": 1793743852.0414233, "kind": "status", "text": "Barometer 1 calibration complete"}
+{"time": 1793743852.0420427, "kind": "status", "text": "Barometer 2 calibration complete"}
+{"time": 1793743852.0570595, "kind": "status", "text": "Beginning INS calibration. Do not move vehicle"}
+{"time": 1793743852.6765313, "kind": "status", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"time": 1793743852.6768627, "kind": "status", "text": "ArduPilot Ready"}
+{"time": 1793743852.677035, "kind": "status", "text": "RCInput: decoding UDP (Pulses)"}
+{"time": 1793743852.67716, "kind": "status", "text": "AHRS: DCM active"}
+{"time": 1793743854.7005808, "kind": "status", "text": "EKF3 IMU0 initialised"}
+{"time": 1793743854.7011533, "kind": "status", "text": "EKF3 IMU1 initialised"}
+{"time": 1793743856.2984908, "kind": "status", "text": "EKF3 IMU0 tilt alignment complete"}
+{"time": 1793743856.2987719, "kind": "status", "text": "EKF3 IMU1 tilt alignment complete"}
+{"time": 1793743856.3801584, "kind": "status", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"time": 1793743856.380497, "kind": "status", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"time": 1793743856.3808744, "kind": "status", "text": "AHRS: EKF3 active"}
+{"time": 1793743859.9783177, "kind": "status", "text": "GPS 1: probing for u-blox at 230400 baud"}
+{"time": 1793743860.0013535, "kind": "status", "text": "GPS 1: detected u-blox"}
+{"time": 1793743860.1766899, "kind": "status", "text": "Set HOME to -35.36326 149.1652 at 584.00m"}
+{"time": 1793743860.3581188, "kind": "gps_ready", "fix_type": 6}
+{"time": 1793743861.3605535, "kind": "start_position", "position": [-35.363261, 149.1652299]}
+{"time": 1793743861.4593208, "kind": "mission_uploaded", "count": 4}
+{"time": 1793743861.4596846, "kind": "status", "text": "Flight plan received"}
+{"time": 1793743861.4770677, "kind": "arm_ack", "result": 4}
+{"time": 1793743861.477181, "kind": "error", "error": "RuntimeError('Armado SITL rechazado: 4')", "last_position": [-35.363261, 149.1652299], "armed": false}

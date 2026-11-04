@@ -1,0 +1,121 @@
+{"wall_time": 1793775669.988387, "monotonic": 294.395303151, "kind": "heartbeat", "mode": 16, "armed": false}
+{"wall_time": 1793775669.988564, "monotonic": 294.395479951, "kind": "startup", "mode": 16, "armed": false, "network_namespace": "net:[4026532221]", "interfaces": ["lo"], "enable": 0, "timeout_s": 5, "action": 2, "options": 0, "fs_thr_enable": 0, "rc_protocols": 0}
+{"wall_time": 1793775670.034947, "monotonic": 294.441862952, "kind": "heartbeat", "mode": 16, "armed": false}
+{"wall_time": 1793775670.4024234, "monotonic": 294.809339657, "kind": "effective_parameters", "values": {"FS_GCS_ENABLE": 0.0, "FS_GCS_TIMEOUT": 5.0, "FS_ACTION": 2.0, "FS_OPTIONS": 0.0, "FS_THR_ENABLE": 0.0, "RC_PROTOCOLS": 0.0}}
+{"wall_time": 1793775670.7230914, "monotonic": 295.130007562, "kind": "statustext", "text": "Barometer 1 calibration complete"}
+{"wall_time": 1793775670.7233136, "monotonic": 295.130229562, "kind": "statustext", "text": "Barometer 2 calibration complete"}
+{"wall_time": 1793775670.7328072, "monotonic": 295.139723062, "kind": "statustext", "text": "Beginning INS calibration. Do not move vehicle"}
+{"wall_time": 1793775670.9897234, "monotonic": 295.396639965, "kind": "heartbeat", "mode": 16, "armed": false}
+{"wall_time": 1793775671.04216, "monotonic": 295.449076666, "kind": "heartbeat", "mode": 16, "armed": false}
+{"wall_time": 1793775671.358334, "monotonic": 295.76525047, "kind": "statustext", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"wall_time": 1793775671.3585281, "monotonic": 295.76544397, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775671.3587189, "monotonic": 295.76563477, "kind": "statustext", "text": "ArduPilot Ready"}
+{"wall_time": 1793775671.3588488, "monotonic": 295.76576447, "kind": "statustext", "text": "AHRS: DCM active"}
+{"wall_time": 1793775672.0410202, "monotonic": 296.44793628, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775673.038417, "monotonic": 297.445333293, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775673.3767116, "monotonic": 297.783628091, "kind": "statustext", "text": "EKF3 IMU0 initialised"}
+{"wall_time": 1793775673.3770652, "monotonic": 297.783981291, "kind": "statustext", "text": "EKF3 IMU1 initialised"}
+{"wall_time": 1793775674.0414894, "monotonic": 298.448405687, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775674.980516, "monotonic": 299.387432381, "kind": "statustext", "text": "EKF3 IMU0 tilt alignment complete"}
+{"wall_time": 1793775674.980851, "monotonic": 299.387766981, "kind": "statustext", "text": "EKF3 IMU1 tilt alignment complete"}
+{"wall_time": 1793775675.0388772, "monotonic": 299.44579358, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775675.0564034, "monotonic": 299.46331958, "kind": "statustext", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793775675.0566592, "monotonic": 299.46357508, "kind": "statustext", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793775675.0569372, "monotonic": 299.46385318, "kind": "statustext", "text": "AHRS: EKF3 active"}
+{"wall_time": 1793775676.041676, "monotonic": 300.448592373, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775677.0391076, "monotonic": 301.446023967, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775678.042004, "monotonic": 302.44892066, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775678.6612442, "monotonic": 303.068160956, "kind": "statustext", "text": "GPS 1: probing for u-blox at 230400 baud"}
+{"wall_time": 1793775678.678605, "monotonic": 303.085521356, "kind": "statustext", "text": "GPS 1: detected u-blox"}
+{"wall_time": 1793775678.859602, "monotonic": 303.266517754, "kind": "statustext", "text": "Set HOME to -35.36326 149.1652 at 584.00m"}
+{"wall_time": 1793775679.0402882, "monotonic": 303.447204553, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775680.0375984, "monotonic": 304.444514547, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775681.040485, "monotonic": 305.44740114, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775682.0377455, "monotonic": 306.444661636, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775683.0408459, "monotonic": 307.447762033, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775684.0379457, "monotonic": 308.444862129, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775685.0412378, "monotonic": 309.448154226, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775686.0383322, "monotonic": 310.445248222, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775687.041315, "monotonic": 311.448231319, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775688.0384645, "monotonic": 312.445380715, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775688.8608005, "monotonic": 313.267716512, "kind": "statustext", "text": "EKF3 IMU0 origin set"}
+{"wall_time": 1793775688.8610413, "monotonic": 313.267957312, "kind": "statustext", "text": "EKF3 IMU1 origin set"}
+{"wall_time": 1793775688.9423964, "monotonic": 313.349312912, "kind": "statustext", "text": "Field Elevation Set: 584m"}
+{"wall_time": 1793775689.0424407, "monotonic": 313.449356912, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775690.0398417, "monotonic": 314.446757908, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775691.0426936, "monotonic": 315.449609804, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775692.0401292, "monotonic": 316.4470455, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775693.0430577, "monotonic": 317.449974096, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775694.0400374, "monotonic": 318.446953492, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775695.0432334, "monotonic": 319.450149288, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775696.0404618, "monotonic": 320.447377984, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775697.0436404, "monotonic": 321.45055658, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775698.0408044, "monotonic": 322.447720677, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775699.0437903, "monotonic": 323.450706774, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775700.04097, "monotonic": 324.447886271, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775701.0440497, "monotonic": 325.450965768, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775702.041349, "monotonic": 326.448265065, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775703.0443904, "monotonic": 327.451306763, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775704.0416124, "monotonic": 328.44852836, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775705.0446324, "monotonic": 329.451548557, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775706.041757, "monotonic": 330.448673554, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775707.044852, "monotonic": 331.45176805, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775708.0419102, "monotonic": 332.448826747, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775709.0453098, "monotonic": 333.452225643, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775710.043048, "monotonic": 334.44996424, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775711.0460122, "monotonic": 335.452928437, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775711.080989, "monotonic": 335.487905436, "kind": "statustext", "text": "EKF3 IMU0 is using GPS"}
+{"wall_time": 1793775711.0814316, "monotonic": 335.488347436, "kind": "statustext", "text": "EKF3 IMU1 is using GPS"}
+{"wall_time": 1793775712.0433035, "monotonic": 336.450219533, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775713.046292, "monotonic": 337.45320833, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775714.0435936, "monotonic": 338.450510027, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775715.0409417, "monotonic": 339.447858224, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775716.044043, "monotonic": 340.45095942, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775717.041842, "monotonic": 341.448758017, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775718.0450552, "monotonic": 342.451971614, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775719.0421102, "monotonic": 343.449026411, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775720.0453, "monotonic": 344.452216408, "kind": "heartbeat", "mode": 0, "armed": false}
+{"wall_time": 1793775720.0455015, "monotonic": 344.452417108, "kind": "ready", "gps_fix": 6}
+{"wall_time": 1793775720.1443667, "monotonic": 344.551283208, "kind": "mission_uploaded", "count": 4}
+{"wall_time": 1793775720.1449265, "monotonic": 344.551843008, "kind": "statustext", "text": "Flight plan received"}
+{"wall_time": 1793775720.1852214, "monotonic": 344.592137908, "kind": "command_ack", "command": 400, "result": 0}
+{"wall_time": 1793775720.209595, "monotonic": 344.616511308, "kind": "statustext", "text": "Throttle armed"}
+{"wall_time": 1793775721.0442688, "monotonic": 345.451185205, "kind": "heartbeat", "mode": 0, "armed": true}
+{"wall_time": 1793775721.0618138, "monotonic": 345.468729905, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775721.061934, "monotonic": 345.468850305, "kind": "auto_started"}
+{"wall_time": 1793775721.0850117, "monotonic": 345.491928305, "kind": "statustext", "text": "Mission: 1 WP"}
+{"wall_time": 1793775722.04713, "monotonic": 346.454046502, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775723.0443625, "monotonic": 347.451278899, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775724.047254, "monotonic": 348.454170197, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775725.044609, "monotonic": 349.451525194, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775726.0475612, "monotonic": 350.454477291, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775727.0451887, "monotonic": 351.452105388, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775728.0431645, "monotonic": 352.450080685, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775728.0836911, "monotonic": 352.490607385, "kind": "mission_item_reached", "seq": 1, "position": [-35.3631634, 149.1652406]}
+{"wall_time": 1793775728.0838034, "monotonic": 352.490719285, "kind": "gcs_heartbeat_stopped", "enable": 0, "timeout_s": 5}
+{"wall_time": 1793775728.083969, "monotonic": 352.490884985, "kind": "statustext", "text": "Reached waypoint #1"}
+{"wall_time": 1793775728.0842564, "monotonic": 352.491172885, "kind": "statustext", "text": "Mission: 2 WP"}
+{"wall_time": 1793775729.045815, "monotonic": 353.452731483, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775730.0431933, "monotonic": 354.45010938, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775731.046877, "monotonic": 355.453793177, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775732.0446112, "monotonic": 356.451527574, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775732.1266956, "monotonic": 356.533611974, "kind": "mission_item_reached", "seq": 2, "position": [-35.3631657, 149.165338]}
+{"wall_time": 1793775732.1269255, "monotonic": 356.533841474, "kind": "statustext", "text": "Reached waypoint #2"}
+{"wall_time": 1793775732.1272078, "monotonic": 356.534123574, "kind": "statustext", "text": "Mission: 3 WP"}
+{"wall_time": 1793775733.0478394, "monotonic": 357.454755972, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775734.0455043, "monotonic": 358.452420369, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775735.0483112, "monotonic": 359.455227566, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775736.0457873, "monotonic": 360.452703564, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775736.247906, "monotonic": 360.654821863, "kind": "gcs_loss_observed", "enable": 0, "duration_s": 8.16, "mode": 10, "armed": true, "reached": [1, 2], "remaining": [3]}
+{"wall_time": 1793775737.0485277, "monotonic": 361.455443961, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775738.0458724, "monotonic": 362.452788558, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775739.0487764, "monotonic": 363.455692855, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775740.0460413, "monotonic": 364.452957752, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775741.0490716, "monotonic": 365.455987748, "kind": "heartbeat", "mode": 10, "armed": true}
+{"wall_time": 1793775741.2514482, "monotonic": 365.658363848, "kind": "gcs_reconnected", "mode": 10, "armed": true, "reached": [1, 2]}
+{"wall_time": 1793775741.2515733, "monotonic": 365.658489048, "kind": "scenario_passed", "enable": 0, "loss_mode": 10, "reconnect_mode": 10, "expected_mode": 10}
+{"wall_time": 1793775741.2650104, "monotonic": 365.671927148, "kind": "heartbeat", "mode": 4, "armed": true}
+{"wall_time": 1793775741.2881975, "monotonic": 365.695114048, "kind": "command_ack", "command": 400, "result": 0}
+{"wall_time": 1793775741.2884645, "monotonic": 365.695380848, "kind": "statustext", "text": "Throttle disarmed"}
+{"wall_time": 1793775742.0465152, "monotonic": 366.453431345, "kind": "heartbeat", "mode": 4, "armed": false}
+{"wall_time": 1793775742.0466378, "monotonic": 366.453553845, "kind": "safe_end", "mode": 4, "armed": false}

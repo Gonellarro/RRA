@@ -1,0 +1,36 @@
+{
+  "sitl_version": "ArduRover 4.7.2 (hash verificado antes de arrancar)",
+  "armed": false,
+  "mode_id": 16,
+  "parameters": {
+    "FS_GCS_ENABLE": {
+      "value": 0.0,
+      "type": 2,
+      "index": 65535,
+      "count": 1240
+    },
+    "FS_GCS_TIMEOUT": {
+      "value": 5.0,
+      "type": 9,
+      "index": 65535,
+      "count": 1240
+    },
+    "FS_ACTION": {
+      "value": 2.0,
+      "type": 2,
+      "index": 65535,
+      "count": 1240
+    },
+    "FS_OPTIONS": {
+      "value": 0.0,
+      "type": 6,
+      "index": 65535,
+      "count": 1240
+    }
+  },
+  "read_only": true,
+  "network_namespace": "net:[4026532222]",
+  "interfaces": [
+    "lo"
+  ]
+}

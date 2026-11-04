@@ -1,0 +1,41 @@
+{"wall_time": 1793776696.1195493, "monotonic": 57.509833161, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776696.143564, "monotonic": 57.533848055, "kind": "startup", "case": "f4-4", "netns": "net:[4026532221]", "interfaces": ["lo"], "binary_sha256": "f453fd8217b9d798c873e5c424e139a2a3597b52e31658f76b2c177b523391af"}
+{"wall_time": 1793776696.145042, "monotonic": 57.535325354, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776696.830605, "monotonic": 58.22088918, "kind": "statustext", "case": "f4-4", "text": "Barometer 1 calibration complete"}
+{"wall_time": 1793776696.8365304, "monotonic": 58.226814278, "kind": "statustext", "case": "f4-4", "text": "Barometer 2 calibration complete"}
+{"wall_time": 1793776696.8444085, "monotonic": 58.234691976, "kind": "statustext", "case": "f4-4", "text": "Beginning INS calibration. Do not move vehicle"}
+{"wall_time": 1793776697.0981057, "monotonic": 58.488389611, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776697.1503906, "monotonic": 58.540674398, "kind": "heartbeat", "case": "f4-4", "mode": 16, "armed": false}
+{"wall_time": 1793776697.4667542, "monotonic": 58.857038117, "kind": "statustext", "case": "f4-4", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"wall_time": 1793776697.46803, "monotonic": 58.858313517, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776697.46942, "monotonic": 58.859703517, "kind": "statustext", "case": "f4-4", "text": "ArduPilot Ready"}
+{"wall_time": 1793776697.4705968, "monotonic": 58.860880416, "kind": "statustext", "case": "f4-4", "text": "AHRS: DCM active"}
+{"wall_time": 1793776698.1478841, "monotonic": 59.538168044, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776698.149531, "monotonic": 59.539814244, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776698.1510305, "monotonic": 59.541313943, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776699.1474178, "monotonic": 60.537701989, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776699.1489801, "monotonic": 60.539263589, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776699.1505356, "monotonic": 60.540819089, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776699.485872, "monotonic": 60.876156003, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 initialised"}
+{"wall_time": 1793776699.4871745, "monotonic": 60.877457903, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 initialised"}
+{"wall_time": 1793776700.1454923, "monotonic": 61.535776035, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776700.1471958, "monotonic": 61.537479435, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776700.148876, "monotonic": 61.539159534, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776701.0845265, "monotonic": 62.474810796, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 tilt alignment complete"}
+{"wall_time": 1793776701.0861995, "monotonic": 62.476483095, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 tilt alignment complete"}
+{"wall_time": 1793776701.1487327, "monotonic": 62.539016579, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776701.150366, "monotonic": 62.540649379, "kind": "speed", "case": "f4-4", "groundspeed": 0.0}
+{"wall_time": 1793776701.1517696, "monotonic": 62.542052979, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776701.1661983, "monotonic": 62.556482275, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793776701.167567, "monotonic": 62.557850675, "kind": "statustext", "case": "f4-4", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793776701.1687622, "monotonic": 62.559045574, "kind": "statustext", "case": "f4-4", "text": "AHRS: EKF3 active"}
+{"wall_time": 1793776702.146041, "monotonic": 63.536324625, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776702.1477108, "monotonic": 63.537994025, "kind": "speed", "case": "f4-4", "groundspeed": 0.001483064261265099}
+{"wall_time": 1793776702.1493883, "monotonic": 63.539671625, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776703.148807, "monotonic": 64.53909087, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776703.1504803, "monotonic": 64.540763869, "kind": "speed", "case": "f4-4", "groundspeed": 0.0007224207511171699}
+{"wall_time": 1793776703.1519582, "monotonic": 64.542241669, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776704.1461716, "monotonic": 65.536455577, "kind": "heartbeat", "case": "f4-4", "mode": 0, "armed": false}
+{"wall_time": 1793776704.1478207, "monotonic": 65.538104077, "kind": "speed", "case": "f4-4", "groundspeed": 0.0006113664130680263}
+{"wall_time": 1793776704.1494577, "monotonic": 65.539741277, "kind": "servo_output", "case": "f4-4", "servo3": 1500}
+{"wall_time": 1793776704.5562837, "monotonic": 65.946567394, "kind": "sitl_process_exit", "case": "f4-4", "returncode": -2}

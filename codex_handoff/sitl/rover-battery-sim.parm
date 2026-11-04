@@ -1,0 +1,2 @@
+# Solo SITL: monitor de voltaje y corriente; coincide con rover.parm oficial.
+BATT_MONITOR 4

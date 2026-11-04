@@ -1,0 +1,36 @@
+{
+  "date": "2026-11-04",
+  "scope": "ArduRover SITL 4.7.2 only; each case in isolated WSL network namespace with lo only",
+  "binary_sha256": "f453fd8217b9d798c873e5c424e139a2a3597b52e31658f76b2c177b523391af",
+  "f4_4": {
+    "result": "PASS",
+    "evidence": "f4-4/f4-4-wvkw3skr/",
+    "effective_parameters": {"FS_GCS_ENABLE": 0, "FS_THR_ENABLE": 0, "RC_PROTOCOLS": 0},
+    "guided_timeout_param_reply": "No PARAM_VALUE received for GUID_TIMEOUT",
+    "command": {"source_sysid": 255, "frame": "MAV_FRAME_LOCAL_NED", "velocity_north_mps": 0.35, "stream_seconds": 2.5},
+    "observed": {"stop_notice": "target not received last 3secs, stopping", "notice_after_stream_stop_seconds": 2.84, "groundspeed_at_cut_mps": 0.4592, "groundspeed_after_6s_mps": 0.0236712, "servo3_at_cut_pwm": 1509, "servo3_after_6s_pwm": 1500, "final_mode": 4, "final_armed": false},
+    "limit": "Observed default timeout behavior; configurable GUID_TIMEOUT value not tested"
+  },
+  "f4_5": {
+    "result": "PASS",
+    "evidence": "f4-5/f4-5-hmjazu9d/",
+    "effective_parameters": {"FS_GCS_ENABLE": 0, "FS_THR_ENABLE": 0, "RC_PROTOCOLS": 0, "MAV_GCS_SYSID": 42, "MAV_GCS_SYSID_HI": 42},
+    "mode_sequence": [{"source_sysid": 255, "mode": 15}, {"source_sysid": 42, "mode": 4}, {"source_sysid": 255, "mode": 15}],
+    "observed": "Both source IDs changed the mode; the last command prevailed. Final HOLD (4), disarmed.",
+    "limit": "Disarmed SET_MODE conflict only; no movement commands, RC override, MAVROS, or hardware tested"
+  },
+  "f4_5_global_filter": {
+    "result": "PASS",
+    "evidence": "f4-5-guarded/f4-5-guarded-ffb8n_xb/",
+    "effective_parameters": {"FS_GCS_ENABLE": 0, "FS_THR_ENABLE": 0, "RC_PROTOCOLS": 0, "MAV_GCS_SYSID": 42, "MAV_GCS_SYSID_HI": 42, "MAV_OPTIONS": 1},
+    "mode_attempts": [
+      {"source_sysid": 255, "requested_mode": 15, "effective_mode": 0, "result": "ignored"},
+      {"source_sysid": 42, "requested_mode": 15, "effective_mode": 15, "result": "accepted"},
+      {"source_sysid": 255, "requested_mode": 4, "effective_mode": 15, "result": "ignored"},
+      {"source_sysid": 42, "requested_mode": 4, "effective_mode": 4, "result": "accepted"}
+    ],
+    "observed": "MAV_OPTIONS bit 0 filtered SET_MODE by configured SYSID in this SITL. Final HOLD (4), disarmed.",
+    "limit": "Declared MAVLink source SYSID is not cryptographic identity; only SET_MODE tested, no hardware or MAVROS"
+  },
+  "runner": "../../sitl/fase4_guided_authority.py"
+}

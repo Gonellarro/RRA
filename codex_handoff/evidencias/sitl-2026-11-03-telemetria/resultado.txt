@@ -1,0 +1,22 @@
+Resultados observados el 2026-11-03 con ArduRover SITL 4.7.2 y BATT_MONITOR 4:
+
+Tres ejecuciones consecutivas, con cierre secuencial, cada una:
+- 1249 datagramas, 53 estados conectados, 52 GPS, 52 IMU, 53 batería.
+- Estado conectado: MANUAL, desarmado. GPS e IMU simulados recibidos.
+- Batería simulada: 12.600000381469727 V; porcentaje 1.0 (100 %).
+- Pérdida de diagnóstico y desconexión observadas tras detener el flujo.
+- Códigos de salida MAVROS y observador [0, 0]; grabador 0.
+
+Carpetas de resultados en la Orange Pi:
+1. /tmp/rra-sitl-receiver-fg8mol9a
+2. /tmp/rra-sitl-receiver-y3cjrrf2
+3. /tmp/rra-sitl-receiver-lpfm9a_4
+
+Primera bolsa: duración 61.05 s, 266 mensajes: 55 estado, 51 GPS, 51 IMU,
+51 batería y 58 diagnósticos. Reproducción 4x en dominio ROS separado:
+REPLAY_OK {'state': 55, 'gps': 51, 'imu': 51, 'battery': 51, 'diag': 58}.
+Se comprobaron estado conectado y desconectado, datos finitos, batería válida
+y diagnósticos GPS/IMU/batería nivel OK durante la reproducción.
+
+El observador pasó 9 pruebas unitarias y una prueba ROS integrada con estado y
+sensores válidos, ausentes, caducados y batería inválida simulada.

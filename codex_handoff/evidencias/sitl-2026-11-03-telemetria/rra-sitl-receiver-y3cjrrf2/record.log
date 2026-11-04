@@ -1,0 +1,18 @@
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1793742911.494030052] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1793742911.494037343] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1793742911.554555311] [rosbag2_recorder]: Starting recording to '/tmp/rra-sitl-receiver-y3cjrrf2/bag'
+[WARN] [1793742911.554755061] [rosbag2_recorder]: No input serialization format specified, using default rmw serialization format: 'cdr'.
+[INFO] [1793742911.564324597] [rosbag2_storage]: Opened database '/tmp/rra-sitl-receiver-y3cjrrf2/bag/0_bag_2026_11_03-22_55_11.db3' for READ_WRITE.
+[INFO] [1793742911.568177720] [rosbag2_recorder]: Listening for topics...
+[INFO] [1793742911.568375678] [rosbag2_recorder]: Recording...
+[INFO] [1793742911.569979927] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1793742911.879270678] [rosbag2_recorder]: Subscribed to topic '/mavros/global_position/global'
+[INFO] [1793742911.912167451] [rosbag2_recorder]: Subscribed to topic '/mavros/imu/data'
+[INFO] [1793742911.927197652] [rosbag2_recorder]: Subscribed to topic '/mavros/battery'
+[INFO] [1793742911.980445331] [rosbag2_recorder]: Subscribed to topic '/mavros/state'
+[INFO] [1793742914.146619703] [rosbag2_recorder]: Subscribed to topic '/rra/telemetry/diagnostics'
+[INFO] [1793742914.146855744] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1793742914.146893119] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1793742973.063451535] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1793742973.083253065] [rosbag2_recorder]: Recording stopped
+[INFO] [1793742973.087393438] [rosbag2_recorder]: Event publisher thread: Exited

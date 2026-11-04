@@ -1,0 +1,192 @@
+{"wall_time": 1793777212.5901194, "monotonic": 101.898118244, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 16, "armed": false}
+{"wall_time": 1793777212.61125, "monotonic": 101.919248944, "kind": "startup", "case": "f4-5-guarded", "netns": "net:[4026532221]", "interfaces": ["lo"], "binary_sha256": "f453fd8217b9d798c873e5c424e139a2a3597b52e31658f76b2c177b523391af"}
+{"wall_time": 1793777212.630678, "monotonic": 101.938676944, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 16, "armed": false}
+{"wall_time": 1793777213.0039513, "monotonic": 102.311950739, "kind": "effective_parameters", "case": "f4-5-guarded", "values": {"FS_GCS_ENABLE": 0.0, "FS_THR_ENABLE": 0.0, "RC_PROTOCOLS": 0.0, "MAV_GCS_SYSID": 42.0, "MAV_GCS_SYSID_HI": 42.0, "MAV_OPTIONS": 1.0}}
+{"wall_time": 1793777213.3189166, "monotonic": 102.626915734, "kind": "statustext", "case": "f4-5-guarded", "text": "Barometer 1 calibration complete"}
+{"wall_time": 1793777213.3203835, "monotonic": 102.628382034, "kind": "statustext", "case": "f4-5-guarded", "text": "Barometer 2 calibration complete"}
+{"wall_time": 1793777213.332344, "monotonic": 102.640342634, "kind": "statustext", "case": "f4-5-guarded", "text": "Beginning INS calibration. Do not move vehicle"}
+{"wall_time": 1793777213.5914717, "monotonic": 102.899470431, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 16, "armed": false}
+{"wall_time": 1793777213.6371453, "monotonic": 102.94514423, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 16, "armed": false}
+{"wall_time": 1793777213.9589195, "monotonic": 103.266918626, "kind": "statustext", "case": "f4-5-guarded", "text": "INS: alloc 6144 bytes for ISB (free=524288)"}
+{"wall_time": 1793777213.9601495, "monotonic": 103.268148326, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777213.961356, "monotonic": 103.269354826, "kind": "statustext", "case": "f4-5-guarded", "text": "ArduPilot Ready"}
+{"wall_time": 1793777213.962752, "monotonic": 103.270750626, "kind": "statustext", "case": "f4-5-guarded", "text": "AHRS: DCM active"}
+{"wall_time": 1793777214.6345453, "monotonic": 103.942544217, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777214.6362, "monotonic": 103.944198417, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0}
+{"wall_time": 1793777214.6377535, "monotonic": 103.945752217, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777215.6339436, "monotonic": 104.941942603, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777215.6355, "monotonic": 104.943498603, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0}
+{"wall_time": 1793777215.6370196, "monotonic": 104.945018203, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777215.977973, "monotonic": 105.285972001, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU0 initialised"}
+{"wall_time": 1793777215.9793398, "monotonic": 105.287338301, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU1 initialised"}
+{"wall_time": 1793777216.6372905, "monotonic": 105.945289398, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777216.6389928, "monotonic": 105.946991298, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0}
+{"wall_time": 1793777216.6404533, "monotonic": 105.948451998, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777217.5768294, "monotonic": 106.884828494, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU0 tilt alignment complete"}
+{"wall_time": 1793777217.5782535, "monotonic": 106.886252194, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU1 tilt alignment complete"}
+{"wall_time": 1793777217.6351578, "monotonic": 106.943156793, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777217.636853, "monotonic": 106.944851493, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0}
+{"wall_time": 1793777217.6382725, "monotonic": 106.946270993, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777217.6592104, "monotonic": 106.967209493, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU0 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793777217.6606343, "monotonic": 106.968632993, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU1 MAG0 initial yaw alignment complete"}
+{"wall_time": 1793777217.6617239, "monotonic": 106.969722293, "kind": "statustext", "case": "f4-5-guarded", "text": "AHRS: EKF3 active"}
+{"wall_time": 1793777218.639149, "monotonic": 107.947148389, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777218.640772, "monotonic": 107.948770389, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.001483064261265099}
+{"wall_time": 1793777218.6422966, "monotonic": 107.950295189, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777219.6364427, "monotonic": 108.944441485, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777219.6382372, "monotonic": 108.946235585, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0007224207511171699}
+{"wall_time": 1793777219.6399019, "monotonic": 108.947900485, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777220.6352499, "monotonic": 109.94324888, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777220.6369367, "monotonic": 109.94493528, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0006113664130680263}
+{"wall_time": 1793777220.6384313, "monotonic": 109.94642968, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777221.2592063, "monotonic": 110.567205677, "kind": "statustext", "case": "f4-5-guarded", "text": "GPS 1: probing for u-blox at 230400 baud"}
+{"wall_time": 1793777221.2767074, "monotonic": 110.584706477, "kind": "statustext", "case": "f4-5-guarded", "text": "GPS 1: detected u-blox"}
+{"wall_time": 1793777221.4576118, "monotonic": 110.765610477, "kind": "statustext", "case": "f4-5-guarded", "text": "Set HOME to -35.36326 149.1652 at 584.00m"}
+{"wall_time": 1793777221.6374288, "monotonic": 110.945427776, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777221.639108, "monotonic": 110.947106276, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0006568729295395315}
+{"wall_time": 1793777221.6406264, "monotonic": 110.948625076, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777222.6402097, "monotonic": 111.948208871, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777222.6419408, "monotonic": 111.949939171, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.001348145306110382}
+{"wall_time": 1793777222.643564, "monotonic": 111.951562571, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777223.637455, "monotonic": 112.945454267, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777223.6390457, "monotonic": 112.947044167, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0019277383107692003}
+{"wall_time": 1793777223.640605, "monotonic": 112.948603467, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777224.6405618, "monotonic": 113.948560871, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777224.6422746, "monotonic": 113.950273071, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0025773749221116304}
+{"wall_time": 1793777224.6437657, "monotonic": 113.951764171, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777225.6387255, "monotonic": 114.946724677, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777225.6404364, "monotonic": 114.948434977, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.003143385285511613}
+{"wall_time": 1793777225.641915, "monotonic": 114.949913577, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777226.636085, "monotonic": 115.944084382, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777226.6378307, "monotonic": 115.945828982, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0037919736932963133}
+{"wall_time": 1793777226.6393337, "monotonic": 115.947332082, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777227.6389937, "monotonic": 116.946992588, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777227.6407099, "monotonic": 116.948708188, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.004566476680338383}
+{"wall_time": 1793777227.6422422, "monotonic": 116.950240888, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777228.6365116, "monotonic": 117.944510493, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777228.6382093, "monotonic": 117.946207793, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0055444445461034775}
+{"wall_time": 1793777228.6396818, "monotonic": 117.947680193, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777229.6401331, "monotonic": 118.948132299, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777229.641953, "monotonic": 118.949951399, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.006955686025321484}
+{"wall_time": 1793777229.643424, "monotonic": 118.951422499, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777230.6380448, "monotonic": 119.946043904, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777230.6397371, "monotonic": 119.947735504, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.008475303649902344}
+{"wall_time": 1793777230.641075, "monotonic": 119.949073504, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777231.4603384, "monotonic": 120.768336908, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU0 origin set"}
+{"wall_time": 1793777231.4617896, "monotonic": 120.769788308, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU1 origin set"}
+{"wall_time": 1793777231.5362148, "monotonic": 120.844213809, "kind": "statustext", "case": "f4-5-guarded", "text": "Field Elevation Set: 584m"}
+{"wall_time": 1793777231.6408994, "monotonic": 120.948898309, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777231.642848, "monotonic": 120.950846609, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.009830554015934467}
+{"wall_time": 1793777231.6445556, "monotonic": 120.952553909, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777232.6382847, "monotonic": 121.946283803, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777232.6398706, "monotonic": 121.947869103, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.011278600431978703}
+{"wall_time": 1793777232.6414905, "monotonic": 121.949488903, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777233.6411588, "monotonic": 122.949157895, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777233.6429813, "monotonic": 122.950979795, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.013065865263342857}
+{"wall_time": 1793777233.6444824, "monotonic": 122.952480695, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777234.6385205, "monotonic": 123.946519487, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777234.6403358, "monotonic": 123.948334487, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.014640584588050842}
+{"wall_time": 1793777234.641835, "monotonic": 123.949833487, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777235.641296, "monotonic": 124.949295079, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777235.6429546, "monotonic": 124.950953079, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.016201211139559746}
+{"wall_time": 1793777235.6444743, "monotonic": 124.952472779, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777236.6387787, "monotonic": 125.946777571, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777236.6404736, "monotonic": 125.948472071, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.017674604430794716}
+{"wall_time": 1793777236.642092, "monotonic": 125.950090371, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777237.6416373, "monotonic": 126.949636263, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777237.64355, "monotonic": 126.951548363, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.018753699958324432}
+{"wall_time": 1793777237.6449533, "monotonic": 126.952951863, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777238.6390822, "monotonic": 127.947081055, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777238.6406932, "monotonic": 127.948691655, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.01961701363325119}
+{"wall_time": 1793777238.6421466, "monotonic": 127.950144955, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777239.641893, "monotonic": 128.949892247, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777239.6481795, "monotonic": 128.956177847, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.020589252933859825}
+{"wall_time": 1793777239.6499739, "monotonic": 128.957972447, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777240.639258, "monotonic": 129.947269352, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777240.6408937, "monotonic": 129.948892252, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.021913832053542137}
+{"wall_time": 1793777240.6424172, "monotonic": 129.950415652, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777241.6420357, "monotonic": 130.950034558, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777241.6437871, "monotonic": 130.951785658, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.023089444264769554}
+{"wall_time": 1793777241.645302, "monotonic": 130.953300358, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777242.6369774, "monotonic": 131.944976365, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777242.6386557, "monotonic": 131.946654165, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.0241942647844553}
+{"wall_time": 1793777242.6403637, "monotonic": 131.948362365, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777243.6402035, "monotonic": 132.948202871, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777243.6417775, "monotonic": 132.949775771, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.025205282494425774}
+{"wall_time": 1793777243.6433475, "monotonic": 132.951345771, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777244.6381888, "monotonic": 133.946187778, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777244.6399844, "monotonic": 133.947982778, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.02608969807624817}
+{"wall_time": 1793777244.64156, "monotonic": 133.949558578, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777245.6410282, "monotonic": 134.949026884, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777245.6426785, "monotonic": 134.950677084, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.027192506939172745}
+{"wall_time": 1793777245.6442897, "monotonic": 134.952288384, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777246.638422, "monotonic": 135.946420891, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777246.6399646, "monotonic": 135.947963191, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.02812684327363968}
+{"wall_time": 1793777246.6414485, "monotonic": 135.949446891, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777247.6414866, "monotonic": 136.949485497, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777247.64315, "monotonic": 136.951148597, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.028950965031981468}
+{"wall_time": 1793777247.6446652, "monotonic": 136.952663797, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777248.6387424, "monotonic": 137.946741399, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777248.640512, "monotonic": 137.948510599, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.029816577211022377}
+{"wall_time": 1793777248.6420987, "monotonic": 137.950097099, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777249.6417532, "monotonic": 138.9497521, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777249.6436703, "monotonic": 138.9516687, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.030731167644262314}
+{"wall_time": 1793777249.645146, "monotonic": 138.9531443, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777250.6390276, "monotonic": 139.947026701, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777250.6408672, "monotonic": 139.948865801, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.03148917108774185}
+{"wall_time": 1793777250.642387, "monotonic": 139.950385401, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777251.6421359, "monotonic": 140.950134201, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777251.6438062, "monotonic": 140.951804701, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.032547011971473694}
+{"wall_time": 1793777251.6453865, "monotonic": 140.953385001, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777252.6394532, "monotonic": 141.947452602, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777252.641221, "monotonic": 141.949219502, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.03320406749844551}
+{"wall_time": 1793777252.642787, "monotonic": 141.950785602, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777253.6431522, "monotonic": 142.951151003, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777253.6446743, "monotonic": 142.952672903, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.03397340327501297}
+{"wall_time": 1793777253.646121, "monotonic": 142.954119303, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777253.683542, "monotonic": 142.991541103, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU0 is using GPS"}
+{"wall_time": 1793777253.684723, "monotonic": 142.992721503, "kind": "statustext", "case": "f4-5-guarded", "text": "EKF3 IMU1 is using GPS"}
+{"wall_time": 1793777254.640603, "monotonic": 143.948602204, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777254.6461024, "monotonic": 143.954100904, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.010880528017878532}
+{"wall_time": 1793777254.6475892, "monotonic": 143.955587404, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777255.6440952, "monotonic": 144.952094505, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777255.645817, "monotonic": 144.953815505, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.021920396015048027}
+{"wall_time": 1793777255.6473227, "monotonic": 144.955321205, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777256.6413507, "monotonic": 145.949349603, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777256.6429682, "monotonic": 145.950966403, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.03079155460000038}
+{"wall_time": 1793777256.6446004, "monotonic": 145.952598903, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777257.6385574, "monotonic": 146.946556601, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777257.640136, "monotonic": 146.948134401, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.03407547250390053}
+{"wall_time": 1793777257.641715, "monotonic": 146.949713501, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777257.6429625, "monotonic": 146.950960901, "kind": "mode_command_sent", "case": "f4-5-guarded", "source_system": 255, "requested_mode": 15, "global_sysid_filter": true}
+{"wall_time": 1793777258.6416357, "monotonic": 147.949634699, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 0, "armed": false}
+{"wall_time": 1793777258.6432745, "monotonic": 147.951272999, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.031754519790410995}
+{"wall_time": 1793777258.6446812, "monotonic": 147.952679599, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777259.2484255, "monotonic": 148.556423798, "kind": "mode_command_observed", "case": "f4-5-guarded", "source_system": 255, "requested_mode": 15, "effective_mode": 0, "expected_mode": 0, "matched": true}
+{"wall_time": 1793777259.2498283, "monotonic": 148.557827398, "kind": "mode_command_sent", "case": "f4-5-guarded", "source_system": 42, "requested_mode": 15, "global_sysid_filter": true}
+{"wall_time": 1793777259.2597423, "monotonic": 148.567741398, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 15, "armed": false}
+{"wall_time": 1793777259.6388407, "monotonic": 148.946839797, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 15, "armed": false}
+{"wall_time": 1793777259.640576, "monotonic": 148.948574297, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.027881601825356483}
+{"wall_time": 1793777259.6421094, "monotonic": 148.950107897, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777260.641875, "monotonic": 149.949873995, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 15, "armed": false}
+{"wall_time": 1793777260.643424, "monotonic": 149.951422395, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.02459726482629776}
+{"wall_time": 1793777260.6449199, "monotonic": 149.952918395, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777260.797088, "monotonic": 150.105086395, "kind": "mode_command_observed", "case": "f4-5-guarded", "source_system": 42, "requested_mode": 15, "effective_mode": 15, "expected_mode": 15, "matched": true}
+{"wall_time": 1793777260.7984333, "monotonic": 150.106432795, "kind": "mode_command_sent", "case": "f4-5-guarded", "source_system": 255, "requested_mode": 4, "global_sysid_filter": true}
+{"wall_time": 1793777261.6388974, "monotonic": 150.946896394, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 15, "armed": false}
+{"wall_time": 1793777261.6404517, "monotonic": 150.948449894, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.023068726062774658}
+{"wall_time": 1793777261.6420105, "monotonic": 150.950008894, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777262.4151819, "monotonic": 151.723180292, "kind": "mode_command_observed", "case": "f4-5-guarded", "source_system": 255, "requested_mode": 4, "effective_mode": 15, "expected_mode": 15, "matched": true}
+{"wall_time": 1793777262.4166756, "monotonic": 151.724674692, "kind": "mode_command_sent", "case": "f4-5-guarded", "source_system": 42, "requested_mode": 4, "global_sysid_filter": true}
+{"wall_time": 1793777262.4204807, "monotonic": 151.728479692, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 4, "armed": false}
+{"wall_time": 1793777262.6421266, "monotonic": 151.950125592, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 4, "armed": false}
+{"wall_time": 1793777262.6438632, "monotonic": 151.951861792, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.022295163944363594}
+{"wall_time": 1793777262.6453462, "monotonic": 151.953344492, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777263.6392255, "monotonic": 152.94722459, "kind": "heartbeat", "case": "f4-5-guarded", "mode": 4, "armed": false}
+{"wall_time": 1793777263.6407156, "monotonic": 152.94871409, "kind": "speed", "case": "f4-5-guarded", "groundspeed": 0.02288747951388359}
+{"wall_time": 1793777263.6420887, "monotonic": 152.95008719, "kind": "servo_output", "case": "f4-5-guarded", "servo3": 1500}
+{"wall_time": 1793777263.944922, "monotonic": 153.25292029, "kind": "mode_command_observed", "case": "f4-5-guarded", "source_system": 42, "requested_mode": 4, "effective_mode": 4, "expected_mode": 4, "matched": true}
+{"wall_time": 1793777263.946335, "monotonic": 153.25433409, "kind": "source_filter_observed", "case": "f4-5-guarded", "filter": "MAV_OPTIONS bit0", "allowed_sysid_range": [42, 42], "checks": {"unauthorized_255_ignored": true, "authorized_42_changes_mode": true, "last_authorized_command_holds": true, "remained_disarmed": true}}
+{"wall_time": 1793777263.947423, "monotonic": 153.25544299, "kind": "safe_end", "case": "f4-5-guarded", "mode": 4, "armed": false}
+{"wall_time": 1793777263.948398, "monotonic": 153.25639699, "kind": "scenario_finished", "case": "f4-5-guarded", "result": "PASS", "checks": {"unauthorized_255_ignored": true, "authorized_42_changes_mode": true, "last_authorized_command_holds": true, "remained_disarmed": true}}
+{"wall_time": 1793777263.9530013, "monotonic": 153.26100019, "kind": "sitl_process_exit", "case": "f4-5-guarded", "returncode": -2}

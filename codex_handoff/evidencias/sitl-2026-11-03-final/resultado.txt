@@ -1,0 +1,15 @@
+Resultado impreso por sitl_local_bridge.py en la prueba final del 2026-11-03:
+
+DATAGRAMAS_SITL 1197
+SSH_EXIT 0
+counts: datagrams=1197, state=55, connected=53, gps=52, imu=52, battery=52,
+        diagnostic_connected=53, disconnected_after_connection=1, diagnostic_loss=5
+connected_state: connected=true, armed=false, mode=MANUAL
+último estado tras pérdida: connected=false, armed=false, mode vacío
+GPS simulado: status=0, lat=-35.3632611, lon=149.16523, alt=603.4486290697827
+IMU simulada: orientation_w=-0.7181182512137015
+Batería simulada: voltage=0.0, percentage=-0.009999999776482582 (no válido)
+errors=[]
+exit_codes MAVROS/observador=[0, 0]
+SITL_LOG=/home/kitttrain/rra-sitl/ensayo-figwth49/sitl.log
+Logs receptor originales=/tmp/rra-sitl-receiver-3z4zzr4f

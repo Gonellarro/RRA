@@ -1,0 +1,94 @@
+[
+  {
+    "folder": "/mnt/c/RRA/codex_handoff/evidencias/fase3-2026-11-03/fase3-wfafzpff",
+    "counts": {
+      "POS": 1093,
+      "GPS": 109,
+      "MODE": 3,
+      "CMD": 4
+    },
+    "modes": [
+      {
+        "time_us": 51212007,
+        "mode": 0
+      },
+      {
+        "time_us": 52071663,
+        "mode": 10
+      },
+      {
+        "time_us": 72991625,
+        "mode": 4
+      }
+    ],
+    "max_distance_from_start_m": 14.51,
+    "position_path_length_m": 36.19,
+    "mission_complete": {
+      "time": 1793744039.431298,
+      "kind": "mission_complete",
+      "duration_s": 20.9,
+      "reached": [
+        1,
+        2,
+        3
+      ],
+      "position": [
+        -35.3632607,
+        149.1652293
+      ],
+      "distance_home_m": 0.07
+    },
+    "safe_end": {
+      "time": 1793744039.5073004,
+      "kind": "safe_end",
+      "mode": "HOLD",
+      "armed": false
+    }
+  },
+  {
+    "folder": "/mnt/c/RRA/codex_handoff/evidencias/fase3-2026-11-03/fase3-fcjlt7ru",
+    "counts": {
+      "POS": 1093,
+      "GPS": 109,
+      "MODE": 3,
+      "CMD": 4
+    },
+    "modes": [
+      {
+        "time_us": 51212007,
+        "mode": 0
+      },
+      {
+        "time_us": 52071663,
+        "mode": 10
+      },
+      {
+        "time_us": 72991625,
+        "mode": 4
+      }
+    ],
+    "max_distance_from_start_m": 14.51,
+    "position_path_length_m": 36.19,
+    "mission_complete": {
+      "time": 1793744117.533129,
+      "kind": "mission_complete",
+      "duration_s": 20.9,
+      "reached": [
+        1,
+        2,
+        3
+      ],
+      "position": [
+        -35.3632607,
+        149.1652293
+      ],
+      "distance_home_m": 0.07
+    },
+    "safe_end": {
+      "time": 1793744117.6143754,
+      "kind": "safe_end",
+      "mode": "HOLD",
+      "armed": false
+    }
+  }
+]

@@ -1,0 +1,9 @@
+Home: -35.363261 149.165230 alt=584.000000m hdg=0.000000
+Starting sketch 'Rover'
+Starting SITL input
+Using Irlock at port : 9005
+UDP connection 127.0.0.1:14690
+UDP connection 127.0.0.1:14691
+UDP connection 127.0.0.1:14692
+validate_structures:538: Validating structures
+Waiting for internal clock bits to be set (current=0x00)

@@ -1,0 +1,133 @@
+[INFO] [1793742819.714409566] [mavros_node]: Starting mavros_node container
+[INFO] [1793742819.714974524] [mavros_node]: FCU URL: udp://127.0.0.1:14680@127.0.0.1:14681
+[INFO] [1793742819.715043607] [mavros_node]: GCS URL: 
+[INFO] [1793742819.715126024] [mavros_node]: UAS Prefix: /uas1
+[INFO] [1793742819.715164357] [mavros_node]: Starting mavros router node
+[INFO] [1793742819.829397429] [mavros_router]: Built-in SIMD instructions: ARM NEON
+[INFO] [1793742819.829596846] [mavros_router]: Built-in MAVLink package version: 2026.9.9
+[INFO] [1793742819.829640929] [mavros_router]: Known MAVLink dialects: common ardupilotmega ASLUAV AVSSUAS all csAirLink cubepilot development icarous loweheiser marsh paparazzi standard stemstudios storm32 uAvionix
+[INFO] [1793742819.829677221] [mavros_router]: MAVROS Router started
+[INFO] [1793742819.830370179] [mavros_node]: Starting mavros uas node
+[INFO] [1793742819.998436226] [mavros_router]: Requested to add endpoint: type: 0, url: udp://127.0.0.1:14680@127.0.0.1:14681
+[INFO] [1793742819.998755018] [mavros_router]: Endpoint link[1000] created
+[INFO] [1793742820.000325142] [mavros_router]: link[1000] opened successfully
+[INFO] [1793742820.000500684] [mavros_router]: Requested to add endpoint: type: 2, url: /uas1
+[INFO] [1793742820.000597642] [mavros_router]: Endpoint link[1001] created
+[INFO] [1793742820.007207639] [mavros_router]: link[1001] opened successfully
+[INFO] [1793742820.015377427] [mavros]: UAS Executor started, threads: 4
+[INFO] [1793742820.147122157] [mavros]: Plugin actuator_control created
+[INFO] [1793742820.147427991] [mavros]: Plugin actuator_control initialized
+[INFO] [1793742820.192674345] [mavros]: Plugin altitude created
+[INFO] [1793742820.192922553] [mavros]: Plugin altitude initialized
+[INFO] [1793742820.305516126] [mavros]: Plugin command created
+[INFO] [1793742820.307507417] [mavros]: Plugin command initialized
+[INFO] [1793742820.443415937] [mavros]: Plugin ftp created
+[INFO] [1793742820.443721729] [mavros]: Plugin ftp initialized
+[INFO] [1793742820.525596982] [mavros]: Plugin geofence created
+[INFO] [1793742820.525940274] [mavros]: Plugin geofence initialized
+[INFO] [1793742820.647407551] [mavros]: Plugin global_position created
+[INFO] [1793742820.647848676] [mavros]: Plugin global_position initialized
+[INFO] [1793742820.707768856] [mavros_router]: link[1000] detected remote address 1.1
+[INFO] [1793742820.722010350] [mavros]: Plugin home_position created
+[INFO] [1793742820.722291808] [mavros]: Plugin home_position initialized
+[INFO] [1793742820.811717183] [mavros]: Plugin imu created
+[INFO] [1793742820.812044808] [mavros]: Plugin imu initialized
+[INFO] [1793742820.899317684] [mavros]: Plugin local_position created
+[INFO] [1793742820.899598559] [mavros]: Plugin local_position initialized
+[INFO] [1793742820.966484278] [mavros]: Plugin manual_control created
+[INFO] [1793742820.966738153] [mavros]: Plugin manual_control initialized
+[INFO] [1793742821.030406457] [mavros]: Plugin nav_controller_output created
+[INFO] [1793742821.030674040] [mavros]: Plugin nav_controller_output initialized
+[INFO] [1793742821.117101333] [mavros]: Plugin param created
+[INFO] [1793742821.117361250] [mavros]: Plugin param initialized
+[INFO] [1793742821.205922042] [mavros]: Plugin rallypoint created
+[INFO] [1793742821.206250459] [mavros]: Plugin rallypoint initialized
+[INFO] [1793742821.287501879] [mavros]: Plugin rc_io created
+[INFO] [1793742821.287797338] [mavros]: Plugin rc_io initialized
+[INFO] [1793742821.360083513] [mavros]: Plugin setpoint_accel created
+[INFO] [1793742821.360325762] [mavros]: Plugin setpoint_accel initialized
+[INFO] [1793742821.440921892] [mavros]: Plugin setpoint_attitude created
+[INFO] [1793742821.441154183] [mavros]: Plugin setpoint_attitude initialized
+[INFO] [1793742821.541105679] [mavros]: Plugin setpoint_position created
+[INFO] [1793742821.541367929] [mavros]: Plugin setpoint_position initialized
+[INFO] [1793742821.650051587] [mavros]: Plugin setpoint_raw created
+[INFO] [1793742821.650479586] [mavros]: Plugin setpoint_raw initialized
+[INFO] [1793742821.757297204] [mavros]: Plugin setpoint_trajectory created
+[INFO] [1793742821.757785412] [mavros]: Plugin setpoint_trajectory initialized
+[INFO] [1793742821.853162243] [mavros]: Plugin setpoint_velocity created
+[INFO] [1793742821.853397951] [mavros]: Plugin setpoint_velocity initialized
+[INFO] [1793742822.117028370] [mavros]: Plugin sys_status created
+[INFO] [1793742822.117410328] [mavros]: Plugin sys_status initialized
+[INFO] [1793742822.220855322] [mavros.time]: TM: Timesync mode: MAVLINK
+[INFO] [1793742822.244249520] [mavros]: Plugin sys_time created
+[INFO] [1793742822.244509728] [mavros]: Plugin sys_time initialized
+[INFO] [1793742822.427192018] [mavros]: Plugin waypoint created
+[INFO] [1793742822.427541059] [mavros]: Plugin waypoint initialized
+[INFO] [1793742822.548992211] [mavros]: Plugin wind_estimation created
+[INFO] [1793742822.549275503] [mavros]: Plugin wind_estimation initialized
+[INFO] [1793742822.567172953] [mavros]: Built-in SIMD instructions: ARM NEON
+[INFO] [1793742822.567366161] [mavros]: Built-in MAVLink package version: 2026.9.9
+[INFO] [1793742822.567403786] [mavros]: Known MAVLink dialects: common ardupilotmega ASLUAV AVSSUAS all csAirLink cubepilot development icarous loweheiser marsh paparazzi standard stemstudios storm32 uAvionix
+[INFO] [1793742822.567441453] [mavros]: MAVROS UAS via /uas1 started. MY ID 1.191, TARGET ID 1.1
+[INFO] [1793742822.759521697] [mavros]: CON: Got HEARTBEAT, connected. FCU: ArduPilot
+[INFO] [1793742822.759967530] [mavros.mission]: WP: detected enable_partial_push: 1
+[INFO] [1793742822.763947361] [mavros.rc]: RC_CHANNELS message detected!
+[INFO] [1793742822.771385900] [mavros.imu]: IMU: Raw IMU message used.
+[WARN] [1793742822.772557191] [mavros.global_position]: GP: No GPS fix
+[WARN] [1793742822.773125149] [mavros.time]: TM: Wrong FCU time.
+[INFO] [1793742822.952319149] [mavros_router]: link[1001] detected remote address 1.191
+[INFO] [1793742824.030722647] [mavros.sys]: FCU: EKF3 IMU0 initialised
+[INFO] [1793742824.031285313] [mavros.sys]: FCU: EKF3 IMU1 initialised
+[WARN] [1793742824.804517828] [mavros.sys]: VER: broadcast request timeout, retries left 4
+[INFO] [1793742825.731505895] [mavros.sys]: FCU: EKF3 IMU0 tilt alignment complete
+[INFO] [1793742825.731869311] [mavros.sys]: FCU: EKF3 IMU1 tilt alignment complete
+[INFO] [1793742825.737998475] [mavros.sys]: FCU: EKF3 IMU0 MAG0 initial yaw alignment complete
+[INFO] [1793742825.738392225] [mavros.sys]: FCU: EKF3 IMU1 MAG0 initial yaw alignment complete
+[INFO] [1793742825.738798433] [mavros.sys]: FCU: AHRS: EKF3 active
+[WARN] [1793742825.788880743] [mavros.sys]: VER: broadcast request timeout, retries left 3
+[ERROR] [1793742827.773490272] [mavros.sys]: VER: autopilot version service timeout
+[ERROR] [1793742827.773754688] [mavros.sys]: VER: command plugin service call failed!
+[WARN] [1793742827.773803105] [mavros.sys]: VER: unicast request timeout, retries left 2
+[ERROR] [1793742828.801358664] [mavros.sys]: VER: autopilot version service timeout
+[ERROR] [1793742828.812643117] [mavros.sys]: VER: command plugin service call failed!
+[WARN] [1793742828.812921617] [mavros.sys]: VER: unicast request timeout, retries left 1
+[INFO] [1793742829.411430210] [mavros.sys]: FCU: GPS 1: probing for u-blox at 230400 baud
+[INFO] [1793742829.411702001] [mavros.sys]: FCU: GPS 1: detected u-blox
+[INFO] [1793742829.511672079] [mavros.sys]: FCU: Set HOME to -35.36326 149.1652 at 584.00m
+[ERROR] [1793742829.827950471] [mavros.sys]: VER: autopilot version service timeout
+[ERROR] [1793742829.828235846] [mavros.sys]: VER: command plugin service call failed!
+[WARN] [1793742829.828285888] [mavros.sys]: VER: unicast request timeout, retries left 0
+[ERROR] [1793742830.848682948] [mavros.sys]: VER: autopilot version service timeout
+[ERROR] [1793742830.848976907] [mavros.sys]: VER: command plugin service call failed!
+[WARN] [1793742830.849048657] [mavros.sys]: VER: your FCU don't support AUTOPILOT_VERSION, switched to default capabilities
+[WARN] [1793742831.776398301] [mavros.cmd]: CMD: Command 512 -- ack timeout
+[WARN] [1793742833.765026068] [mavros.param]: PR: request list timeout, retries left 2
+[WARN] [1793742834.769191507] [mavros.param]: PR: request list timeout, retries left 1
+[WARN] [1793742835.769738114] [mavros.param]: PR: request list timeout, retries left 0
+[WARN] [1793742836.784545714] [mavros.cmd]: CMD: Command 512 -- ack timeout
+[WARN] [1793742836.884970291] [mavros.cmd.rclcpp]: failed to send response to /mavros/cmd/command (timeout): client will not receive response, at ./src/rmw_response.cpp:164, at ./src/rcl/service.c:392
+[WARN] [1793742838.764950849] [mavros.mission]: WP: timeout, retries left 2
+[INFO] [1793742839.549431140] [mavros.sys]: FCU: EKF3 IMU0 origin set
+[INFO] [1793742839.549866848] [mavros.sys]: FCU: EKF3 IMU1 origin set
+[INFO] [1793742839.590900286] [mavros.sys]: FCU: Field Elevation Set: 584m
+[WARN] [1793742839.767523785] [mavros.mission]: WP: timeout, retries left 1
+[WARN] [1793742840.769239679] [mavros.mission]: WP: timeout, retries left 0
+[ERROR] [1793742841.769831614] [mavros.mission]: WP: timed out.
+[WARN] [1793742841.888559432] [mavros.cmd]: CMD: Command 512 -- ack timeout
+[WARN] [1793742841.988937217] [mavros.cmd.rclcpp]: failed to send response to /mavros/cmd/command (timeout): client will not receive response, at ./src/rmw_response.cpp:164, at ./src/rcl/service.c:392
+[WARN] [1793742843.767272899] [mavros.rallypoint]: RP: timeout, retries left 2
+[WARN] [1793742844.769550498] [mavros.rallypoint]: RP: timeout, retries left 1
+[WARN] [1793742845.770873679] [mavros.rallypoint]: RP: timeout, retries left 0
+[ERROR] [1793742846.773263192] [mavros.rallypoint]: RP: timed out.
+[WARN] [1793742846.991420378] [mavros.cmd]: CMD: Command 512 -- ack timeout
+[WARN] [1793742847.091817621] [mavros.cmd.rclcpp]: failed to send response to /mavros/cmd/command (timeout): client will not receive response, at ./src/rmw_response.cpp:164, at ./src/rcl/service.c:392
+[WARN] [1793742848.763122056] [mavros.geofence]: GF: timeout, retries left 2
+[WARN] [1793742849.765495983] [mavros.geofence]: GF: timeout, retries left 1
+[ERROR] [1793742850.016228153] [mavros.sys]: FCU: PreArm: 3D Accel calibration needed
+[WARN] [1793742850.767963951] [mavros.geofence]: GF: timeout, retries left 0
+[ERROR] [1793742851.769332877] [mavros.geofence]: GF: timed out.
+[INFO] [1793742861.775056174] [mavros.sys]: FCU: EKF3 IMU0 is using GPS
+[INFO] [1793742861.778773130] [mavros.sys]: FCU: EKF3 IMU1 is using GPS
+[WARN] [1793742884.777275389] [mavros]: CON: Lost connection, HEARTBEAT timed out.
+[INFO] [1793742886.565476711] [rclcpp]: signal_handler(signum=2)
+[WARN] [1793742886.569159542] [mavros]: UAS Executor terminated

@@ -1,0 +1,162 @@
+{
+  "date": "2026-11-04",
+  "scope": "ArduRover 4.7.2 SITL only; isolated WSL loopback",
+  "results": [
+    {
+      "case": 0,
+      "effective_parameters": {
+        "FS_GCS_ENABLE": 0.0,
+        "FS_GCS_TIMEOUT": 5.0,
+        "FS_ACTION": 2.0,
+        "FS_OPTIONS": 0.0,
+        "FS_THR_ENABLE": 0.0,
+        "RC_PROTOCOLS": 0.0
+      },
+      "time_to_gcs_failsafe_s": null,
+      "gcs_failsafe_message": false,
+      "continue_auto_message": false,
+      "radio_failsafe_message": false,
+      "mode_after_heartbeat_loss": 10,
+      "mode_after_reconnect": 10,
+      "waypoints_reached_before_and_during_loss": [
+        1,
+        2
+      ],
+      "safe_end": {
+        "wall_time": 1793775742.0466378,
+        "monotonic": 366.453553845,
+        "kind": "safe_end",
+        "mode": 4,
+        "armed": false
+      },
+      "dataflash_message_counts": {
+        "MODE": 3,
+        "POS": 1090,
+        "GPS": 109,
+        "CMD": 4
+      },
+      "dataflash_mode_sequence": [
+        0,
+        10,
+        4
+      ],
+      "checks": {
+        "loopback_only": true,
+        "parameters_match": true,
+        "gcs_timeout_event_expected": true,
+        "no_radio_failsafe": true,
+        "mode_after_loss_expected": true,
+        "mode_after_reconnect_expected": true,
+        "passed_event": true,
+        "safe_end_hold_disarmed": true,
+        "dataflash_has_auto_hold": true
+      },
+      "result": "PASS"
+    },
+    {
+      "case": 1,
+      "effective_parameters": {
+        "FS_GCS_ENABLE": 1.0,
+        "FS_GCS_TIMEOUT": 5.0,
+        "FS_ACTION": 2.0,
+        "FS_OPTIONS": 0.0,
+        "FS_THR_ENABLE": 0.0,
+        "RC_PROTOCOLS": 0.0
+      },
+      "time_to_gcs_failsafe_s": 6.0,
+      "gcs_failsafe_message": true,
+      "continue_auto_message": false,
+      "radio_failsafe_message": false,
+      "mode_after_heartbeat_loss": 4,
+      "mode_after_reconnect": 4,
+      "waypoints_reached_before_and_during_loss": [
+        1,
+        2
+      ],
+      "safe_end": {
+        "wall_time": 1793775815.3803897,
+        "monotonic": 439.787305503,
+        "kind": "safe_end",
+        "mode": 4,
+        "armed": false
+      },
+      "dataflash_message_counts": {
+        "MODE": 3,
+        "POS": 1092,
+        "GPS": 109,
+        "CMD": 4
+      },
+      "dataflash_mode_sequence": [
+        0,
+        10,
+        4
+      ],
+      "checks": {
+        "loopback_only": true,
+        "parameters_match": true,
+        "gcs_timeout_event_expected": true,
+        "no_radio_failsafe": true,
+        "mode_after_loss_expected": true,
+        "mode_after_reconnect_expected": true,
+        "passed_event": true,
+        "safe_end_hold_disarmed": true,
+        "dataflash_has_auto_hold": true,
+        "gcs_failsafe_delay_approx_5s": true
+      },
+      "result": "PASS"
+    },
+    {
+      "case": 2,
+      "effective_parameters": {
+        "FS_GCS_ENABLE": 2.0,
+        "FS_GCS_TIMEOUT": 5.0,
+        "FS_ACTION": 2.0,
+        "FS_OPTIONS": 0.0,
+        "FS_THR_ENABLE": 0.0,
+        "RC_PROTOCOLS": 0.0
+      },
+      "time_to_gcs_failsafe_s": 5.8,
+      "gcs_failsafe_message": true,
+      "continue_auto_message": true,
+      "radio_failsafe_message": false,
+      "mode_after_heartbeat_loss": 10,
+      "mode_after_reconnect": 10,
+      "waypoints_reached_before_and_during_loss": [
+        1,
+        2
+      ],
+      "safe_end": {
+        "wall_time": 1793775888.7166655,
+        "monotonic": 513.12358148,
+        "kind": "safe_end",
+        "mode": 4,
+        "armed": false
+      },
+      "dataflash_message_counts": {
+        "MODE": 3,
+        "POS": 1091,
+        "GPS": 109,
+        "CMD": 4
+      },
+      "dataflash_mode_sequence": [
+        0,
+        10,
+        4
+      ],
+      "checks": {
+        "loopback_only": true,
+        "parameters_match": true,
+        "gcs_timeout_event_expected": true,
+        "no_radio_failsafe": true,
+        "mode_after_loss_expected": true,
+        "mode_after_reconnect_expected": true,
+        "passed_event": true,
+        "safe_end_hold_disarmed": true,
+        "dataflash_has_auto_hold": true,
+        "continue_auto_message": true
+      },
+      "result": "PASS"
+    }
+  ],
+  "overall": "PASS"
+}

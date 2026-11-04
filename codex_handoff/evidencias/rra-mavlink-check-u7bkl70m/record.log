@@ -1,0 +1,15 @@
+stdin is not a terminal device. Keyboard handling disabled.[INFO] [1793740785.301282093] [rosbag2_recorder]: Press SPACE for pausing/resuming
+[INFO] [1793740785.301448801] [rosbag2_recorder]: Event publisher thread: Started
+[INFO] [1793740785.727230611] [rosbag2_recorder]: Starting recording to '/tmp/rra-mavlink-check-u7bkl70m/bag'
+[WARN] [1793740785.727484860] [rosbag2_recorder]: No input serialization format specified, using default rmw serialization format: 'cdr'.
+[INFO] [1793740785.747018508] [rosbag2_storage]: Opened database '/tmp/rra-mavlink-check-u7bkl70m/bag/0_bag_2026_11_03-22_19_45.db3' for READ_WRITE.
+[INFO] [1793740785.751868035] [rosbag2_recorder]: Listening for topics...
+[INFO] [1793740785.752062159] [rosbag2_recorder]: Recording...
+[INFO] [1793740785.752268117] [rosbag2_recorder]: Topics discovery started.
+[INFO] [1793740786.580098185] [rosbag2_recorder]: Subscribed to topic '/mavros/state'
+[INFO] [1793740789.208801036] [rosbag2_recorder]: Subscribed to topic '/rra/telemetry/diagnostics'
+[INFO] [1793740789.209019410] [rosbag2_recorder]: All requested topics are subscribed. Stopping discovery...
+[INFO] [1793740789.209057827] [rosbag2_recorder]: Topics discovery stopped.
+[INFO] [1793740818.245401786] [rosbag2_cpp]: Writing remaining messages from cache to the bag. It may take a while
+[INFO] [1793740818.255984504] [rosbag2_recorder]: Recording stopped
+[INFO] [1793740818.259838200] [rosbag2_recorder]: Event publisher thread: Exited
