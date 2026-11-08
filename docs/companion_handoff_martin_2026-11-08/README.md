@@ -1,6 +1,6 @@
 # RRA Companion: paquete de integración para revisión de Martín
 
-Fecha de preparación: 2026-11-08. Estado: material local preparado para revisión, todavía sin subir.
+Fecha de preparación: 2026-11-08. Estado: paquete publicado en la rama `main` para revisión de Martín. Contiene telemetría ROS cruda según la decisión de Juan.
 
 ## Qué incluye
 
@@ -8,6 +8,7 @@ Fecha de preparación: 2026-11-08. Estado: material local preparado para revisi�
 - `rosbag2_h743_raw_telemetry_2026-11-08/`: rosbag2 íntegra con la telemetría cruda anunciada en ROS durante una sesión real Orange Pi ↔ H743.
 - `ROS2_HC_SR04_RESULTADO.md`: resultado de la validación del sonar hasta `/mavros_node/rangefinder_pub`.
 - `mavros_hardware.yaml`: configuración de MAVROS usada en el Companion provisional.
+- [`../INVENTARIO_HARDWARE_COMPANION.md`](../INVENTARIO_HARDWARE_COMPANION.md): modelos y versiones documentados del rover, sensores, Orange Pi y software.
 
 ## Captura ROS bag
 

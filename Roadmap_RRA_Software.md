@@ -2,7 +2,7 @@
 
 **Documento inicial para el responsable de software**  
 **Estado:** plan de trabajo; algunas etapas ya tienen resultados de SITL y pruebas físicas reportadas. Consultar el estado vigente antes de ejecutar una etapa.  
-**Base del proyecto:** Axial AX10 · MATEK H743-WLITE · ArduRover · UM982+ RTK  
+**Base del proyecto:** Axial AX10 · MATEK H743-WLITE · ArduRover 4.7.2 · GNSS QUEScan AN251 M10 + brújula QMC5883L (modelo reportado por el usuario). UM982+RTK es una mejora futura, no el GNSS instalado identificado actualmente.
 **Principio:** avanzar con simulación y pruebas controladas; el hardware real se integra cuando esté disponible y caracterizado.
 
 ---
@@ -18,7 +18,7 @@ Cada etapa indica:
 - qué resultado verificable debe quedar;
 - qué debe cumplirse antes de avanzar.
 
-Este roadmap conserva el orden de aprendizaje original; no es una descripción completa del estado actual. Además de las pruebas físicas iniciales de H743/ArduRover, RC, GNSS M10 y una misión AUTO elemental comunicadas por el usuario, el 7 de noviembre de 2026 se probó el Companion Orange Pi por UART con telemetría física y replay rosbag. La causa de los cortes Wi-Fi/SSH aún no está identificada y la sesión no validó patrulla física con Companion. Véanse [`codex_handoff/ESTADO_ACTUAL.md`](codex_handoff/ESTADO_ACTUAL.md), [`codex_handoff/H743_DATOS_HARDWARE.md`](codex_handoff/H743_DATOS_HARDWARE.md) y [`codex_handoff/MAVROS_READONLY_BOUNDARY.md`](codex_handoff/MAVROS_READONLY_BOUNDARY.md). Los resultados de campo se registran como comunicados por el responsable, no como auditoría instrumental independiente.
+Este roadmap conserva el orden de aprendizaje original; no es una descripción completa del estado actual. Además de las pruebas físicas iniciales de H743/ArduRover, RC, GNSS M10 y una misión AUTO elemental comunicadas por el usuario, el Companion Orange Pi por UART recibió telemetría física y se validó replay rosbag. La causa de los cortes Wi-Fi/SSH aún no está identificada y no se ha validado una patrulla física con Companion. Véanse [`codex_handoff/ESTADO_ACTUAL.md`](codex_handoff/ESTADO_ACTUAL.md), [`docs/INVENTARIO_HARDWARE_COMPANION.md`](docs/INVENTARIO_HARDWARE_COMPANION.md) y [`codex_handoff/MAVROS_READONLY_BOUNDARY.md`](codex_handoff/MAVROS_READONLY_BOUNDARY.md). Los resultados de campo se registran como comunicados por el responsable, no como auditoría instrumental independiente.
 
 Prioridad práctica vigente (2026-11-08): AX10 measurement sheet, HC-SR04 nativo H743 primero en modo lectura y SITL con firmware 4.7.2, y cámara USB UVC a Orange Pi con grabación local. No habilitar evitación en AUTO hasta confirmar el behavior exacto en SITL/FCU y medir frenado real. Detalles operativos en `codex_handoff/PLAN_SIGUIENTES_PASOS.md`.
 
@@ -300,7 +300,7 @@ Aprender ROS 2 y probar su integración con ArduPilot en una máquina Linux, man
 ### Aprender
 
 - Nodos, topics, mensajes, servicios, parámetros y transformaciones TF.
-- ROS 2 Jazzy como candidato indicado en el documento maestro; confirmar compatibilidad y versiones vigentes antes de instalar.
+- ROS 2 Jazzy figuraba como candidato en la documentación inicial; el Companion provisional instalado usa ROS 2 Lyrical. La distribución del Companion definitivo sigue pendiente de acuerdo.
 - Puente MAVLink/ROS, inicialmente MAVROS 2 como candidato. Comparar con DDS nativo de ArduPilot solo en una prueba delimitada.
 - Marcos de coordenadas: ENU/NED y ROS FLU frente a FRD, a nivel práctico.
 
@@ -485,7 +485,7 @@ Usar documentación oficial actual y registrar fecha/versiones consultadas:
 - [ArduPilot: Rover MAVLink commands](https://ardupilot.org/dev/docs/mavlink-rover-commands.html)
 - [ArduPilot: ROS 2](https://ardupilot.org/dev/docs/ros2.html)
 - [MAVLink](https://mavlink.io/en/)
-- [ROS 2 Jazzy](https://docs.ros.org/en/jazzy/)
+- [ROS 2 Lyrical](https://docs.ros.org/en/lyrical/)
 - [Nav2](https://docs.nav2.org/)
 
 Las páginas, versiones y compatibilidad pueden cambiar. Antes de instalar o fijar versiones, comprobar qué combinaciones recomienda la documentación vigente y anotar las versiones efectivamente usadas.

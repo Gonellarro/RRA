@@ -5,8 +5,14 @@ metodologia: 1
 ---
 # Estado
 
+> **Instantánea histórica/superada (2026-11-08 12:45).** Conserva el punto de
+> partida del seguimiento inicial de SITL y no refleja los hitos posteriores
+> del Companion físico, el HC-SR04 ni el contrato de integración. Para el estado
+> vigente consulta `README.md`, `docs/INVENTARIO_HARDWARE_COMPANION.md` y
+> `docs/companion_handoff_martin_2026-11-08/`.
+
 ## Qué es
-Software del Rover Rural Autónomo (Axial AX10 + MATEK H743-WING V3 + ArduRover). Proyecto a dos: el socio lleva el hardware y sube sus archivos al mismo repo de GitHub (`Gonellarro/RRA`); aquí se lleva el software. ArduRover conserva el control directo; el software externo empieza en solo lectura y todo se prueba antes en SITL.
+Software del Rover Rural Autónomo (Axial AX10 + MATEK H743-WLITE + ArduRover 4.7.2, según identificación del usuario y lectura mostrada por Mission Planner). Proyecto a dos; consultar el contrato vigente para responsabilidades e interfaces. La presente instantánea describe el seguimiento inicial del software/SITL.
 
 ## Dónde estamos
 **Final de la etapa 0 y en plena etapa 1 del roadmap** (`Roadmap_RRA_Software.md`).

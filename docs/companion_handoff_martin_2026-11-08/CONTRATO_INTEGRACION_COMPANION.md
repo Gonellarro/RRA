@@ -1,6 +1,6 @@
 # Contrato de integración del Computer Companion RRA
 
-**Estado:** borrador local para coordinación con Martín. No se atribuye ninguna
+**Estado:** borrador para coordinación con Martín. No se atribuye ninguna
 decisión de arquitectura al Companion definitivo. Las líneas marcadas
 *pendiente de acuerdo* son propuestas, no compromisos. Actualizado: 2026-11-08.
 
@@ -13,11 +13,13 @@ control de bajo nivel de ESC/dirección, armado/modos, failsafes y protecciones
 críticas. El Companion no sustituye estas funciones ni debe ser requisito para
 que ArduRover mantenga sus failsafes.
 
-Cableado reportado por el usuario, no re-inspeccionado en esta sesión: ESC
-(señal) en S1 sin conductor positivo; servo dirección en S3; receptor RC en RX6;
-DroneBridge ESP32 en TX7/RX7; GNSS/brújula en TX2/RX2 y SDA1/SCL1. TX1/RX1
-(TELEM2/SERIAL2) ahora conecta la Orange Pi por UART5; se probó telemetría real
-con MAVLink2/57600 el 2026-11-07. Firmware ArduRover 4.7.2 y SERIAL2
+Cableado reportado por el usuario: ESC (señal) en S1 sin conductor positivo;
+servo dirección en S3; receptor FlySky FS-A8S/i-BUS en RX6; DroneBridge ESP32
+en TX7/RX7; GNSS QUEScan AN251 M10 por TX2/RX2 y brújula QMC5883L por
+SDA1/SCL1. Los modelos de receptor y GNSS/brújula son reportados por el
+usuario, no re-identificados en esta sesión. TX1/RX1 (TELEM2/SERIAL2) conecta
+la Orange Pi por UART5; se probó telemetría real con MAVLink2/57600 el
+2026-11-07. Firmware ArduRover 4.7.2 y SERIAL2
 PROTOCOL/BAUD/OPTIONS constan de capturas de Mission Planner; aún falta export
 completo de parámetros, confirmar revisión exacta de PCB y verificar signing.
 
@@ -30,6 +32,9 @@ completo de parámetros, confirmar revisión exacta de PCB y verificar signing.
   por falta de correlación MAVLink; no usar para decisiones críticas.
 - `rra_mavros_version_plugin`: consulta específica de versión y parámetro; se
   conserva sin refactor. MAVROS/plugin permanecen en la base de confianza.
+- Entorno provisional documentado: Orange Pi Zero 2W, Ubuntu 26.04 ARM64,
+  ROS 2 Lyrical y MAVROS 2.16.0. El inventario publicado detalla paquetes y
+  versiones registrados durante la instalación.
 - SITL/rosbag2: fixture para comprobar interfaces y ayudar a Martín sin placa.
 
 ### Companion definitivo de Martín
@@ -77,8 +82,10 @@ MAVROS documenta los mensajes de [global_position](https://github.com/mavlink/ma
   Armbian y aparece como `/dev/ttyS5` con permiso `dialout`.
 - Verificar pinout/nivel antes de conectar a GPIO; no asumir tolerancia de
   tensión de la entrada Orange Pi.
-- UART FCU propuesta: TELEM2 TX1/RX1 (WLITE/SERIAL2), reportada libre. No asumir
-  parámetros ni habilitar retorno antes de las comprobaciones de banco.
+- UART FCU actualmente conectada: TELEM2 TX1/RX1 (WLITE/SERIAL2) ↔ UART5 de la
+  Orange Pi; telemetría MAVLink2 a 57600 y solicitudes acotadas fueron probadas.
+  El enlace es bidireccional y no debe describirse como físicamente de solo
+  lectura. No se envían consignas de movimiento ni se cambian parámetros.
 - LiDAR/GNSS RTK/encoder sin instalación, puerto, tasa, driver ni TF confirmados.
 - El ordenador definitivo no debe depender de `/dev/ttyS5`, `/home/rra`, WSL,
   IP doméstica ni del CPU de Orange Pi.
@@ -104,17 +111,17 @@ drivers y UART son adaptadores. Martín debe revisar y acordar las interfaces
 antes de portar el código. Los nombres provisionales y valores SITL no son
 decisiones acordadas.
 
-## Estado de integración física actualizado — 2026-11-07
+## Estado de integración física actualizado — 2026-11-08
 
 Esta nota supersede las frases anteriores de este contrato que dicen que la Orange Pi/H743 está desconectada. Se estableció UART5 de la Orange Pi en `/dev/ttyS5:57600`; MATEK TX1→Orange Pi UART5_RX y Orange Pi UART5_TX→MATEK RX1 con GND común están conectados según el usuario. Con MAVROS se confirmó estado real conectado/HOLD/desarmado, telemetría de GPS, IMU, batería, velocidad y heading; una consulta fija BATT_MONITOR recibió `PARAM_VALUE=4` pero su correlación con la petición es ambigua. No se habilitó el plugin MAVROS estándar `param` ni el plugin `command` en la sesión de observación. La lectura física de AUTOPILOT_VERSION por el plugin local sigue sin respuesta. En 2026-11-07 se probó una rosbag física y replay de siete tópicos; el 2026-11-08 se capturó otra rosbag íntegra de todos los tópicos ROS visibles y se copió al paquete local de integración para Martín.
 
-MATEK y ArduRover: el usuario identifica la placa instalada como H743-WLITE; Mission Planner mostró ArduRover 4.7.2 y capturas de SERIAL2 con protocolo MAVLink2, baud 57 (57600) y OPTIONS 0. La revisión exacta del PCB no está documentada con foto legible. El repositorio público `Gonellarro/RRA` en su README aún dice H743-WING V3 y menciona ROS 2 Jazzy como referencia. Son datos/documentación en discrepancia: no asumir que Martín ya eligió Jazzy ni corregir la documentación compartida sin acuerdo.
+MATEK y ArduRover: el usuario identifica la placa instalada como H743-WLITE; Mission Planner mostró ArduRover 4.7.2 (compilación visible `fb773567`) y capturas de SERIAL2 con protocolo MAVLink2, baud 57 (57600) y OPTIONS 0. La revisión exacta del PCB no está documentada con foto legible. La distribución confirmada para el Companion provisional es ROS 2 Lyrical; la distribución del Companion definitivo de Martín continúa pendiente de acuerdo. Las menciones a H743-WING V3 o Jazzy en notas antiguas son históricas y no describen la configuración física/provisional actual.
 
 El Companion provisional sigue siendo un adaptador de datos/diagnóstico ROS y registro. No publica consignas físicas ni sustituye control, failsafes o RC de ArduRover. La edad del observador es edad de recepción local, no edad del sensor.
 
 ## Addendum — ROS 2 real del sensor HC-SR04 y rosbag — 2026-11-08
 
-La H743-WLITE con ArduRover 4.7.2 publica `DISTANCE_SENSOR` y MAVROS `distance_sensor` lo convierte al tipo estándar `sensor_msgs/msg/Range`. En la configuración de hardware del Companion el tópico observado es `/mavros_node/rangefinder_pub`; `frame_id=hc_sr04_front`, radiación ultrasónica, límites 0,20–2,0 m y `field_of_view=0` (ángulo aún no medido). La posición configurada del sensor está a cero como placeholder y no es una medición del montaje. Una muestra ROS de 0,90 m coincide con la medida física de 90 cm que comunicó Juan; Mission Planner mostró lecturas exactas a 30 cm y 90 cm según su comprobación manual. El flujo recibido en ROS 2 está comprobado.
+El usuario reporta el HC-SR04 conectado a la H743-WLITE en S4/GPIO53 (TRIG), S5/GPIO54 (ECHO), 5 V y GND común. La H743-WLITE con ArduRover 4.7.2 publica `DISTANCE_SENSOR` y MAVROS `distance_sensor` lo convierte al tipo estándar `sensor_msgs/msg/Range`. En la configuración de hardware del Companion el tópico observado es `/mavros_node/rangefinder_pub`; `frame_id=hc_sr04_front`, radiación ultrasónica, límites 0,20–2,0 m y `field_of_view=0` (ángulo aún no medido). La posición configurada del sensor está a cero como placeholder y no es una medición del montaje. Una muestra ROS de 0,90 m coincide con la medida física de 90 cm que comunicó Juan; Mission Planner mostró lecturas exactas a 30 cm y 90 cm según su comprobación manual. El flujo recibido en ROS 2 está comprobado.
 
 El paquete `ros-lyrical-mavros-extras` se instaló en la Orange Pi, `distance_sensor` se añadió a la allowlist y `rra_telemetry` se reconstruyó. Solo hay `rangefinder_pub` configurado; no se definió un subscriber ROS de distancia que transmita al FCU. Esto no convierte la UART completa en un enlace físicamente de solo lectura: los demás plugins MAVROS y la UART deben evaluarse por separado.
 

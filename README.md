@@ -26,7 +26,7 @@ La meta del software es acompañar el rover con observación, registro y, cuando
 
 **Companion provisional:** Orange Pi Zero 2W (4 GB) con Armbian/Ubuntu 26.04, ROS 2 Lyrical, MAVROS 2.16.0 y `rra_telemetry`. El 7/11 se compiló e inició sobre UART5 `/dev/ttyS5` ↔ TELEM2/SERIAL2 de la H743, MAVLink2 a 57600; se recibió estado/sensores reales y un rosbag de siete tópicos superó replay. La consulta fija BATT_MONITOR recibió valor 4 con correlación MAVLink ambigua; AUTOPILOT_VERSION sigue sin respuesta. La conexión permite transmisiones de petición y no debe llamarse físicamente unidireccional ni de solo lectura. El Companion continúa en observación; no envía órdenes de movimiento. El problema de Wi-Fi/SSH de la Pi tuvo cortes sin causa confirmada.
 
-El historial y los límites están en [`codex_handoff/ESTADO_ACTUAL.md`](codex_handoff/ESTADO_ACTUAL.md), [`codex_handoff/MAVROS_READONLY_BOUNDARY.md`](codex_handoff/MAVROS_READONLY_BOUNDARY.md) y [`codex_handoff/H743_DATOS_HARDWARE.md`](codex_handoff/H743_DATOS_HARDWARE.md). Las mediciones físicas pendientes del AX10 están en [`codex_handoff/AX10_MEDICIONES.md`](codex_handoff/AX10_MEDICIONES.md); los ensayos y propuestas de sensores, en las fichas HC-SR04 y cámara USB enlazadas desde el plan local.
+El historial y los límites están en [`codex_handoff/ESTADO_ACTUAL.md`](codex_handoff/ESTADO_ACTUAL.md) y [`codex_handoff/MAVROS_READONLY_BOUNDARY.md`](codex_handoff/MAVROS_READONLY_BOUNDARY.md). El inventario publicado de hardware y software es [`docs/INVENTARIO_HARDWARE_COMPANION.md`](docs/INVENTARIO_HARDWARE_COMPANION.md). Las mediciones físicas pendientes del AX10 están en [`codex_handoff/AX10_MEDICIONES.md`](codex_handoff/AX10_MEDICIONES.md); los ensayos y propuestas de sensores, en las fichas HC-SR04 y cámara USB enlazadas desde el plan local.
 
 ## Roadmap
 
@@ -107,7 +107,7 @@ Una instrucción inicial útil es:
 - [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html)
 - [Comandos MAVLink de Rover](https://ardupilot.org/dev/docs/mavlink-rover-commands.html)
 - [MAVLink](https://mavlink.io/en/)
-- [ROS 2 Jazzy](https://docs.ros.org/en/jazzy/)
+- [ROS 2 Lyrical](https://docs.ros.org/en/lyrical/)
 - [Nav2](https://docs.nav2.org/)
 
 Las versiones compatibles se comprobarán en la documentación vigente antes de instalar o fijar dependencias. El estado real de cada integración se documentará aquí o en los documentos enlazados.
