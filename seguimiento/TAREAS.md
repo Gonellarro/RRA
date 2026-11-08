@@ -45,7 +45,7 @@ Hecho cuando: `git status` limpio y `origin/main` contiene el seguimiento.
 - avance: 0%
 - inicio:
 - fin:
-- depende:
+- depende: T-012
 - origen: maquina
 
 Alcance: añadir a `docs/entorno_de_desarrollo.md` lo que falta para reproducir el entorno: ruta y commit de ArduPilot (`~/src/ardupilot`, `eb8b5180a1`), venv (`~/venv-ardupilot`), versiones de MAVProxy (1.8.75) y pymavlink (2.4.50), kernel actual, y que el instalador no llegó a escribir el PATH en `~/.profile`. Entregable «lista de herramientas y versiones» de la etapa 0.
@@ -77,7 +77,7 @@ Hecho cuando: el glosario existe y cubre los términos usados en el diario y en 
 - avance: 0%
 - inicio:
 - fin:
-- depende:
+- depende: T-012
 - origen: maquina
 
 Alcance: `scripts/sitl.sh` (arrancar con/sin consola y mapa, parar, reiniciar desde cero con `-w`) y guía `docs/sitl.md` con los pasos, el puerto `tcp:127.0.0.1:5760` y cómo comprobar que funciona. Solo simulación. Entregable principal de la etapa 1.
@@ -162,3 +162,67 @@ Hecho cuando: la propuesta existe y el usuario la ha aceptado o descartado.
 
 Alcance: programa Python de solo lectura que se conecta a SITL y muestra conexión, modo, armado, posición, velocidad, batería y avisos; marca datos antiguos y guarda un log con hora y estado de conexión. Sin enviar órdenes. Se partirá en subtareas cuando empiece.
 Hecho cuando: cumple el criterio de la etapa 2 del roadmap (no presenta como actual un dato perdido y el log permite reconstruir una desconexión).
+
+## T-011 · Preparar el portátil (SO y base)
+- estado: pendiente
+- importante: sí
+- urgente: sí
+- cuando:
+- vence:
+- estimacion: 2h
+- avance: 0%
+- inicio:
+- fin:
+- depende:
+- origen: maquina
+
+Alcance: pasos 0 a 3 de `docs/migracion_portatil.md`: apuntar los datos del portátil, decidir e instalar el SO (propuesta: Ubuntu 24.04 LTS), paquetes base, git, clave SSH para GitHub y clonar RRA en `~/Documentos/Personal/RRA`.
+Hecho cuando: en el portátil, `git pull` funciona en RRA y los datos del equipo y la decisión del SO están escritos.
+
+## T-012 · ArduPilot SITL en el portátil y verificación
+- estado: pendiente
+- importante: sí
+- urgente: sí
+- cuando:
+- vence:
+- estimacion: 2h
+- avance: 0%
+- inicio:
+- fin:
+- depende: T-011
+- origen: maquina
+
+Alcance: pasos 4 y 5 de `docs/migracion_portatil.md`: decidir la versión de ArduPilot (mismo commit o la estable de Rover, consultándolo con el socio), instalar las dependencias, compilar SITL y pasar la lista de verificación. Solo simulación.
+Hecho cuando: todas las casillas del paso 5 están marcadas y el resultado está en el devlog.
+
+## T-013 · Flujo HQ en el portátil y sincronización con el panel
+- estado: pendiente
+- importante: sí
+- urgente: no
+- cuando:
+- vence:
+- estimacion: 1h
+- avance: 0%
+- inicio:
+- fin:
+- depende: T-011
+- origen: maquina
+
+Alcance: pasos 6 y 7 de `docs/migracion_portatil.md`: Claude Code, `/empezar` y `/cerrar` en el portátil, resolver la ruta de `METODOLOGIA.md` (propuesta: dar a HQ un commit y un remoto privado) y comprobar el ciclo portátil → push → pull en el PC principal → panel.
+Hecho cuando: una sesión cerrada en el portátil aparece en el panel HQ del PC principal.
+
+## T-014 · Limpiar ArduPilot del PC principal
+- estado: pendiente
+- importante: no
+- urgente: no
+- cuando:
+- vence:
+- estimacion: 20min
+- avance: 0%
+- inicio:
+- fin:
+- depende: T-012, T-006
+- origen: maquina
+
+Alcance: paso 9 de `docs/migracion_portatil.md`: después de confirmarlo, borrar `~/src/ardupilot` y `~/venv-ardupilot` (3,5 GB). No se tocan los paquetes de apt.
+Hecho cuando: el PC principal ya no tiene ArduPilot y el portátil sigue pasando la verificación.
