@@ -1,6 +1,6 @@
 ---
 tipo: estado
-actualizado: 2026-11-08 13:05
+actualizado: 2026-11-08 18:37
 metodologia: 1
 ---
 # Estado
@@ -12,28 +12,29 @@ metodologia: 1
 > `docs/companion_handoff_martin_2026-11-08/`.
 
 ## Qué es
-Software del Rover Rural Autónomo (Axial AX10 + MATEK H743-WLITE + ArduRover 4.7.2, según identificación del usuario y lectura mostrada por Mission Planner). Proyecto a dos; consultar el contrato vigente para responsabilidades e interfaces. La presente instantánea describe el seguimiento inicial del software/SITL.
+Software del Rover Rural Autónomo (Axial AX10 + MATEK H743-WLITE + ArduRover 4.7.2, según identificación de Juanjo y lectura de Mission Planner). Proyecto a dos: Juanjo (socio y cuñado) lleva el hardware y sube sus archivos al mismo repo de GitHub (`Gonellarro/RRA`); aquí se lleva el software. El contrato vigente de responsabilidades e interfaces está en `docs/companion_handoff_martin_2026-11-08/`. ArduRover conserva el control directo; el software externo empieza en solo lectura y todo se prueba antes en SITL.
 
 ## Dónde estamos
-**Final de la etapa 0 y en plena etapa 1 del roadmap** (`Roadmap_RRA_Software.md`).
+**Etapa 1 del roadmap, migrada a un portátil dedicado.** Todo el trabajo de software del RRA se hace ahora en el portátil; el PC principal solo guarda HQ y una copia del repo que se actualiza con `git pull`.
 
-- Etapa 0: repo y README hechos; entorno registrado en `docs/entorno_de_desarrollo.md` pero incompleto (faltan ArduPilot, MAVProxy y pymavlink). Falta el glosario.
-- Etapa 1: ArduRover SITL compilado y funcionando (primer arranque el 2026-10-15, ver `docs/diario.md`). Revisado el 2026-11-08 tras un borrado accidental de carpetas: `~/src/ardupilot`, el binario `build/sitl/bin/ardurover` y `~/venv-ardupilot` están intactos, y SITL responde con HEARTBEAT por `tcp:127.0.0.1:5760`. Faltan los entregables: guía/script de arranque y parada, copia de parámetros, evidencia de conexión y decisión sobre la estación de control.
-- Se arranca a mano: `source ~/venv-ardupilot/bin/activate`, `cd ~/src/ardupilot/Rover`, `../Tools/autotest/sim_vehicle.py -v Rover --console --map -w`.
-- Nada validado con hardware real. El seguimiento HQ se añadió el 2026-11-08.
+- Portátil (T-011, hecha): Lenovo IdeaPad 81BV, i5-8250U, 8 GiB, SSD NVMe de 256 GB, **Ubuntu 26.04 LTS**, usuario `marti`. Git, clave SSH y repo clonado en `~/Documentos/Personal/RRA`.
+- ArduPilot (T-012, bloqueada): clonado en `~/Herramientas/RRA/ardupilot`. Falta la versión: será la que lleve la H743 de Juanjo, y se cargarán sus parámetros en SITL. Juanjo lo subirá a GitHub.
+- Guía: `docs/instalacion_portatil.md` (qué se instala y por qué) y `docs/migracion_portatil.md` (plan y datos del equipo).
+- ROS 2 será **Lyrical Luth** (no Jazzy) en la etapa 7.
+- Hay cambios sin subir: `f238957` y todo lo de hoy, a la espera de que Juanjo suba lo suyo.
+- Nada validado con hardware real.
 
 ## Próximos pasos
-**Migración al portátil antes de seguir** (plan en `docs/migracion_portatil.md`). El trabajo de SITL se hará allí.
-1. T-011 · Preparar el portátil (SO y base).
-2. T-012 · ArduPilot SITL en el portátil y verificación.
-3. T-013 · Flujo HQ en el portátil y sincronización con el panel.
-4. Después, ya en el portátil: T-005 (arranque y parada repetibles de SITL), T-003 (entorno) y T-007 (estación de control).
-5. Al final: T-014, limpiar ArduPilot del PC principal.
+1. Cuando Juanjo suba: `git pull --rebase`, commit y `git push` en el PC principal, y `git pull` en el portátil.
+2. T-012 · Compilar en el portátil la versión de ArduRover de Juanjo y pasar la verificación (con Claude Code instalado en el portátil).
+3. T-013 · Flujo HQ en el portátil (Claude Code, /empezar y /cerrar, ruta de METODOLOGIA.md).
+4. T-005 · Arranque y parada repetibles de SITL.
+5. T-007 · Estación de control (QGroundControl en `~/Herramientas/RRA/qgc`).
 
 ## Riesgos y dudas
-- El socio sube cambios al mismo repo cuando lo considera: hay que hacer `git pull --rebase` antes de empezar y antes de subir.
-- Hay dos diarios: `docs/diario.md` (del README) y `seguimiento/devlog/` (HQ). Pendiente de decidir (T-009).
-- El instalador de ArduPilot se interrumpió (bloqueo del PC): no escribió el PATH en `~/.profile`. SITL funciona igualmente, pero el entorno no queda configurado solo.
-- Los avisos del primer arranque (ModemManager, SRTM3, `MAV Errors: 3`) siguen sin explicar (T-008).
-- Durante la migración hay dos equipos con el repo: en el PC principal solo se hace `git pull`, no se edita.
-- Fuera del proyecto: el código de HQ (`/home/marti/HQ`) no tiene ningún commit ni copia remota.
+- La T-012 depende de que Juanjo suba la versión de firmware y el `.param` de la H743. Algunos parámetros son de hardware y habrá que revisarlos antes de cargarlos en SITL.
+- Hasta hacer push, el portátil no tiene el tutorial ni el plan de migración.
+- `CLAUDE.md` apunta a `/home/marti/HQ/...`, que no existe en el portátil (T-013). El código de HQ sigue sin commit ni remoto.
+- El usuario se pierde con muchos comandos de golpe y con el cambio de PC: explicar primero la idea y trabajar desde el portátil.
+- Idea abierta: un móvil con visión como ordenador de compañía (T-015). Necesita un puerto serie libre de la H743, que lo decide Juanjo.
+- Siguen pendientes la T-009 (propuesta README/roadmap, ahora con Lyrical) y la T-008 (avisos de SITL; ModemManager probablemente explicado).

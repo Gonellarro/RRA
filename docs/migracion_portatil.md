@@ -2,6 +2,8 @@
 
 **Estado:** propuesta (2026-11-08). Tareas: T-011 a T-014 de `seguimiento/TAREAS.md`.
 
+El tutorial paso a paso, con qué se instala y por qué, está en [`instalacion_portatil.md`](instalacion_portatil.md).
+
 ## Por qué
 
 Las herramientas del rover (ArduPilot SITL, estación de control y, más adelante, ROS 2) instalan muchos paquetes del sistema. Se llevan a un portátil dedicado para no ensuciar el PC principal, que se queda con HQ y el trabajo diario.
@@ -35,18 +37,31 @@ Apuntar en este documento:
 - si tiene SSD;
 - sistema operativo actual y si se puede borrar entero.
 
-**Datos (2026-11-08):** Intel Core i5 de 8.ª generación (4 núcleos / 8 hilos), **8 GB de RAM**, **256 GB de disco**. Pendiente: si es SSD y qué SO tiene ahora. Cumple los mínimos. Con 8 GB, compilar con `-j4` para no quedarse sin memoria, y no usar el portátil para otra cosa mientras instala.
+**Datos (2026-11-08, `sudo lshw -short`):**
+
+| Elemento | Valor |
+|---|---|
+| Equipo | Lenovo IdeaPad (modelo 81BV), nombre `lenovoPad` |
+| CPU | Intel Core i5-8250U (8.ª generación, 4 núcleos / 8 hilos, bajo consumo) |
+| RAM | 8 GiB DDR4 (un único módulo SODIMM) |
+| Disco | SSD NVMe de 256 GB (SK hynix HFS256GD9TNG), partición EXT4 de 238 GiB |
+| Gráfica | Intel UHD 620 (integrada) |
+| Wi-Fi / Bluetooth | Qualcomm QCA6174 / QCA61x4 |
+| SO | Ubuntu 26.04 LTS |
+| Usuario | `marti` (renombrado desde `martii` el 2026-11-08, para que coincida con el PC principal) |
+
+Cumple los mínimos. Con 8 GB, compilar con `-j4` para no quedarse sin memoria, y no usar el portátil para otra cosa mientras instala.
 
 Mínimos orientativos: **8 GB de RAM** (con 4 GB se compila, pero lento y con `-j2`), **40 GB libres** (ArduPilot y venv ocupan unos 4 GB; ROS 2 y Gazebo, más adelante, bastante más) y SSD si es posible.
 
 ## Paso 1 · Sistema operativo
 
-**Decisión pendiente** (se apunta en el devlog al tomarla):
+**Decisión tomada (2026-11-08): Ubuntu 26.04 LTS**, igual que el PC principal. Lo confirma el socio, que además cambia ROS 2 Jazzy por **ROS 2 Lyrical Luth** (la versión para 26.04) para la etapa 7. Opciones que se consideraron:
 
 - **Ubuntu 24.04 LTS.** Es la plataforma principal de ROS 2 Jazzy, que es el que cita el README para la etapa 7. ArduPilot la soporta. *Propuesta recomendada.*
 - **Ubuntu 26.04 LTS.** Es igual que el PC principal y ya se ha visto que ArduPilot compila en él. Antes de elegirla hay que comprobar qué ROS 2 está soportado en 26.04.
 
-Instalación limpia, con usuario `marti` para que las rutas coincidan con las del PC principal.
+Instalación limpia hecha, con usuario `marti` para que las rutas coincidan con las del PC principal (se renombró desde `martii`).
 
 ## Paso 2 · Base del sistema
 
@@ -74,7 +89,7 @@ La misma ruta que en el PC principal, para que la documentación y los scripts s
 ## Paso 4 · ArduPilot y SITL
 
 ```bash
-mkdir -p ~/src && cd ~/src
+mkdir -p ~/Herramientas/RRA && cd ~/Herramientas/RRA
 git clone --recurse-submodules https://github.com/ArduPilot/ardupilot.git
 cd ardupilot
 ```
@@ -90,7 +105,7 @@ Tools/environment_install/install-prereqs-ubuntu.sh -y
 ```
 
 - Lanzarla con el portátil enchufado, sin otras aplicaciones abiertas y vigilando la RAM (`free -h`).
-- Al acabar, **comprobar que ha escrito** en `~/.profile` el PATH a `Tools/autotest` y el `source ~/venv-ardupilot/bin/activate`. Después cerrar la sesión y volver a entrar, o hacer `. ~/.profile`.
+- Al acabar, **comprobar que ha escrito** en `~/.profile` el PATH a `Tools/autotest` y el `source` del venv (en el portátil, `~/Herramientas/RRA/ardupilot/.venv`; ver `instalacion_portatil.md`). Después cerrar la sesión y volver a entrar, o hacer `. ~/.profile`.
 
 Compilación:
 
@@ -104,7 +119,7 @@ Compilación:
 Hay que repetir lo del diario del 2026-10-15:
 
 ```bash
-cd ~/src/ardupilot/Rover
+cd ~/Herramientas/RRA/ardupilot/Rover
 sim_vehicle.py -v Rover --console --map -w
 ```
 

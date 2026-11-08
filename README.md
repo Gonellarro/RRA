@@ -107,7 +107,7 @@ Una instrucción inicial útil es:
 - [ArduPilot SITL](https://ardupilot.org/dev/docs/sitl-simulator-software-in-the-loop.html)
 - [Comandos MAVLink de Rover](https://ardupilot.org/dev/docs/mavlink-rover-commands.html)
 - [MAVLink](https://mavlink.io/en/)
-- [ROS 2 Lyrical](https://docs.ros.org/en/lyrical/)
+- [ROS 2 Lyrical Luth](https://docs.ros.org/en/lyrical/)
 - [Nav2](https://docs.nav2.org/)
 
 Las versiones compatibles se comprobarán en la documentación vigente antes de instalar o fijar dependencias. El estado real de cada integración se documentará aquí o en los documentos enlazados.

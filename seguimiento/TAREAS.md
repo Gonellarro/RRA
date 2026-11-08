@@ -27,8 +27,8 @@ Hecho cuando: ESTADO.md describe dónde estamos y hay al menos tres tareas con e
 - vence:
 - estimacion: 20min
 - avance: 100%
-- inicio: 2026-11-08 12:52
-- fin: 2026-11-08 12:55
+- inicio: 2026-11-08 12:46
+- fin: 2026-11-08 12:49
 - depende: T-001
 - origen: maquina
 
@@ -144,7 +144,7 @@ Hecho cuando: cada aviso está explicado o descartado en el devlog.
 - depende:
 - origen: maquina
 
-Alcance: propuesta en `seguimiento/propuestas/` para: (1) diario `docs/diario.md` vs devlog de HQ; (2) numeración de etapas 1–9 del README frente a 0–9 del roadmap; (3) sección «Uso con Codex» frente a /empezar y /cerrar; (4) cómo se coordina el repo con el socio (pull --rebase, carpetas).
+Alcance: propuesta en `seguimiento/propuestas/` para: (1) diario `docs/diario.md` vs devlog de HQ; (2) numeración de etapas 1–9 del README frente a 0–9 del roadmap; (3) sección «Uso con Codex» frente a /empezar y /cerrar; (4) cómo se coordina el repo con el socio (pull --rebase, carpetas); (5) ROS 2 Jazzy → Lyrical Luth y Ubuntu 26.04 (decisión del socio del 2026-11-08), en el README y en el roadmap.
 Hecho cuando: la propuesta existe y el usuario la ha aceptado o descartado.
 
 ## T-010 · Programa de lectura de estado (etapa 2)
@@ -164,15 +164,15 @@ Alcance: programa Python de solo lectura que se conecta a SITL y muestra conexi�
 Hecho cuando: cumple el criterio de la etapa 2 del roadmap (no presenta como actual un dato perdido y el log permite reconstruir una desconexión).
 
 ## T-011 · Preparar el portátil (SO y base)
-- estado: pendiente
+- estado: hecha
 - importante: sí
 - urgente: sí
 - cuando:
 - vence:
 - estimacion: 2h
-- avance: 0%
-- inicio:
-- fin:
+- avance: 100%
+- inicio: 2026-11-08 17:26
+- fin: 2026-11-08 18:06
 - depende:
 - origen: maquina
 
@@ -180,17 +180,19 @@ Alcance: pasos 0 a 3 de `docs/migracion_portatil.md`: apuntar los datos del port
 Hecho cuando: en el portátil, `git pull` funciona en RRA y los datos del equipo y la decisión del SO están escritos.
 
 ## T-012 · ArduPilot SITL en el portátil y verificación
-- estado: pendiente
+- estado: bloqueada
 - importante: sí
 - urgente: sí
 - cuando:
 - vence:
 - estimacion: 2h
-- avance: 0%
-- inicio:
+- avance: 10%
+- inicio: 2026-11-08 18:25
 - fin:
 - depende: T-011
 - origen: maquina
+
+Bloqueo: falta saber qué versión de ArduRover y qué parámetros lleva la H743 de Juanjo; los subirá a GitHub.
 
 Alcance: pasos 4 y 5 de `docs/migracion_portatil.md`: decidir la versión de ArduPilot (mismo commit o la estable de Rover, consultándolo con el socio), instalar las dependencias, compilar SITL y pasar la lista de verificación. Solo simulación.
 Hecho cuando: todas las casillas del paso 5 están marcadas y el resultado está en el devlog.
@@ -226,3 +228,19 @@ Hecho cuando: una sesión cerrada en el portátil aparece en el panel HQ del PC 
 
 Alcance: paso 9 de `docs/migracion_portatil.md`: después de confirmarlo, borrar `~/src/ardupilot` y `~/venv-ardupilot` (3,5 GB). No se tocan los paquetes de apt.
 Hecho cuando: el PC principal ya no tiene ArduPilot y el portátil sigue pasando la verificación.
+
+## T-015 · Estudiar el móvil como ordenador de compañía con visión
+- estado: pendiente
+- importante: no
+- urgente: no
+- cuando:
+- vence:
+- estimacion: 3h
+- avance: 0%
+- inicio:
+- fin:
+- depende: T-012
+- origen: maquina
+
+Alcance: estudio, sin implementar todavía. Idea del usuario y su socio: un móvil a bordo, con Termux y un LLM con visión pequeño, que mira con la cámara y **pide** acciones a la H743 por MAVLink (por ejemplo, HOLD si hay un obstáculo). Nunca controla directamente el motor ni la dirección: ArduRover conserva el control y los failsafes. Revisar: (1) la conexión con la H743, por WiFi con un puente ESP32 en un puerto serie libre (propuesta) o por USB OTG (difícil en Termux sin root); (2) pymavlink en Termux; (3) qué LLM con visión cabe en el móvil y cuánto tarda por imagen; (4) calor y batería; (5) qué puerto libre y qué módulo propone el socio. Primera prueba prevista: el móvil conectado por WiFi a SITL en el portátil. Es la etapa 8 del roadmap («solo si aporta una mejora demostrable»).
+Hecho cuando: hay un documento en `docs/` con la arquitectura propuesta, las opciones de conexión, la latencia medida o estimada del LLM y las preguntas para el socio, y el usuario lo ha revisado.

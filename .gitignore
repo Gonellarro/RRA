@@ -24,3 +24,5 @@ config/local/
 .vscode/
 *.swp
 .DS_Store
+# Portada del proyecto para el panel HQ: no va a git
+seguimiento/portada.*
