@@ -6,10 +6,12 @@ import time
 import rclpy
 from diagnostic_msgs.msg import DiagnosticArray, DiagnosticStatus, KeyValue
 from mavros_msgs.msg import State
+from nav_msgs.msg import Odometry
 from rclpy.node import Node
 from rclpy.qos import qos_profile_sensor_data
 from rclpy.signals import SignalHandlerOptions
 from sensor_msgs.msg import BatteryState, Imu, NavSatFix
+from std_msgs.msg import Float64
 
 from rra_telemetry.sensors import sensor_status
 from rra_telemetry.status import classify_state
@@ -24,6 +26,8 @@ class StateObserver(Node):
         self.declare_parameter('gps_topic', '/mavros/global_position/global')
         self.declare_parameter('imu_topic', '/mavros/imu/data')
         self.declare_parameter('battery_topic', '/mavros/battery')
+        self.declare_parameter('odometry_topic', '/mavros/global_position/local')
+        self.declare_parameter('heading_topic', '/mavros/global_position/compass_hdg')
         state_topic = self.get_parameter('state_topic').value
         diagnostics_topic = self.get_parameter('diagnostics_topic').value
         self.stale_after = float(self.get_parameter('stale_after_sec').value)
@@ -31,13 +35,15 @@ class StateObserver(Node):
             raise ValueError('stale_after_sec debe ser positivo')
         self.received_at = None
         self.state = None
-        self.sensors = {kind: (None, None) for kind in ('gps', 'imu', 'battery')}
+        self.sensors = {kind: (None, None) for kind in ('gps', 'imu', 'battery', 'speed', 'heading')}
         self.publisher = self.create_publisher(DiagnosticArray, diagnostics_topic, 10)
         self.subscription = self.create_subscription(State, state_topic, self.on_state, 10)
         self.sensor_subscriptions = []
         for kind, msg_type, param in (('gps', NavSatFix, 'gps_topic'),
                                       ('imu', Imu, 'imu_topic'),
-                                      ('battery', BatteryState, 'battery_topic')):
+                                      ('battery', BatteryState, 'battery_topic'),
+                                      ('speed', Odometry, 'odometry_topic'),
+                                      ('heading', Float64, 'heading_topic')):
             self.sensor_subscriptions.append(self.create_subscription(
                 msg_type, self.get_parameter(param).value,
                 lambda msg, key=kind: self.on_sensor(key, msg), qos_profile_sensor_data))
@@ -63,13 +69,23 @@ class StateObserver(Node):
         status.message = message
         if self.state is not None and level != 2:
             mode = self.state.mode.encode('ascii', errors='replace').decode('ascii')
+            age_ms = max(0, int((now - self.received_at) * 1000))
             status.values = [KeyValue(key='modo', value=mode),
                              KeyValue(key='armado', value=str(self.state.armed)),
-                             KeyValue(key='conectado', value=str(self.state.connected))]
+                             KeyValue(key='conectado', value=str(self.state.connected)),
+                             KeyValue(key='edad_recepcion_ms', value=str(age_ms)),
+                             KeyValue(key='edad_muestra_verificada', value='no')]
         result = DiagnosticArray()
         result.header.stamp = self.get_clock().now().to_msg()
         result.status = [status]
-        for kind in ('gps', 'imu', 'battery'):
+        companion = DiagnosticStatus()
+        companion.name = 'RRA: Companion telemetry'
+        companion.hardware_id = 'rra_companion'
+        companion.level = b'\x00'
+        companion.message = 'Observador activo'
+        companion.values = [KeyValue(key='publicacion_hz', value='1')]
+        result.status.append(companion)
+        for kind in ('gps', 'imu', 'battery', 'speed', 'heading'):
             msg, received = self.sensors[kind]
             age = None if received is None else now - received
             level, description, values = sensor_status(kind, msg, age, self.stale_after)

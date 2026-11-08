@@ -6,9 +6,9 @@ Este repositorio corresponde al trabajo de software. Las especificaciones genera
 
 ## Objetivo
 
-Desarrollar, por etapas, el software necesario para supervisar y acompañar un rover rural basado en un **Axial AX10**, un autopiloto **MATEK H743-WING V3** y **ArduRover**.
+Desarrollar, por etapas, el software necesario para supervisar y acompañar un rover rural basado en un **Axial AX10**, un autopiloto **MATEK H743-WLITE** y **ArduRover**.
 
-La primera meta de software es aprender y validar el flujo en simulación: conectar con ArduRover SITL, observar su estado, guardar registros y ejecutar una misión sencilla. La integración con el vehículo real llegará después de que el hardware esté montado y sus conexiones y límites hayan sido medidos.
+La meta del software es acompañar el rover con observación, registro y, cuando exista una frontera de autoridad comprobada, funciones superiores. El rover ya tiene pruebas físicas iniciales reportadas por su responsable; el Companion provisional también se conectó a la H743 y pasó una prueba de telemetría física y replay el 7 de noviembre de 2026. Esos hitos no equivalen a validar toda la operación en campo ni a una patrulla con el Companion.
 
 ## Principios del proyecto
 
@@ -22,15 +22,11 @@ La primera meta de software es aprender y validar el flujo en simulación: conec
 
 ## Estado actual
 
-**Fase de preparación y aprendizaje.** El responsable de software conoce Linux y Git. El siguiente trabajo es preparar el entorno de desarrollo, ejecutar ArduRover SITL y aprender a inspeccionar sus estados desde una estación de control.
+**Rover físico, según resultados comunicados por el usuario:** MATEK H743-WLITE con ArduRover 4.7.2; MANUAL/RC, armado/desarmado, HOLD, tracción/dirección y fix GNSS 3D probados. Una misión AUTO sencilla de 3–4 waypoints se ejecutó con éxito el 2/11/2026. La incidencia LOITER se ha confirmado resuelta, sin causa raíz registrada. La última calidad GNSS comunicada fue HDOP 0,6 y error horizontal estimado 0,3 m; no es una medida absoluta topográfica. No implica validación de failsafes completos, geocerca o todas las condiciones de campo.
 
-Todavía no se da por implementado ni validado:
+**Companion provisional:** Orange Pi Zero 2W (4 GB) con Armbian/Ubuntu 26.04, ROS 2 Lyrical, MAVROS 2.16.0 y `rra_telemetry`. El 7/11 se compiló e inició sobre UART5 `/dev/ttyS5` ↔ TELEM2/SERIAL2 de la H743, MAVLink2 a 57600; se recibió estado/sensores reales y un rosbag de siete tópicos superó replay. La consulta fija BATT_MONITOR recibió valor 4 con correlación MAVLink ambigua; AUTOPILOT_VERSION sigue sin respuesta. La conexión permite transmisiones de petición y no debe llamarse físicamente unidireccional ni de solo lectura. El Companion continúa en observación; no envía órdenes de movimiento. El problema de Wi-Fi/SSH de la Pi tuvo cortes sin causa confirmada.
 
-- la conexión con la placa H743 real;
-- el enlace de telemetría que usará el rover;
-- la integración del UM982+ RTK y sus correcciones;
-- la lectura del encoder AS5047P;
-- los parámetros y failsafes finales del vehículo.
+El historial y los límites están en [`codex_handoff/ESTADO_ACTUAL.md`](codex_handoff/ESTADO_ACTUAL.md), [`codex_handoff/MAVROS_READONLY_BOUNDARY.md`](codex_handoff/MAVROS_READONLY_BOUNDARY.md) y [`codex_handoff/H743_DATOS_HARDWARE.md`](codex_handoff/H743_DATOS_HARDWARE.md). Las mediciones físicas pendientes del AX10 están en [`codex_handoff/AX10_MEDICIONES.md`](codex_handoff/AX10_MEDICIONES.md); los ensayos y propuestas de sensores, en las fichas HC-SR04 y cámara USB enlazadas desde el plan local.
 
 ## Roadmap
 

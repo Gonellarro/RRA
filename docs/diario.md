@@ -1,5 +1,12 @@
 # Diario de desarrollo — RRA Software
 
+## 2026-11-08 — actualización de estado de campo y preparación de sensores
+- Objetivo: incorporar el resumen de pruebas físicas reportado por el usuario y preparar integración HC-SR04 + cámara sin actuar sobre hardware.
+- Cambios: actualizar README, roadmap, contexto, estado, plan y fichas locales; añadir `HC_SR04_H743_INTEGRACION.md` y `CAMARA_USB_ORANGE_PI.md`; ampliar `AX10_MEDICIONES.md` con radios/diámetros de giro, frenado y poses de sensores.
+- Resultado: se registra misión AUTO de 3–4 waypoints el 2026-11-02, LOITER resuelto sin causa raíz, GNSS último reportado HDOP 0,6 y error estimado 0,3 m; se corrige como vigente la conexión Companion UART física y replay ya verificados el 2026-11-07.
+- Límites: los resultados de campo proceden del usuario, no de ejecución física en esta sesión. HC-SR04/cámara no se conectaron; no se cambiaron parámetros, cableado, misión ni firmware. No se ejecutaron pruebas de hardware ni nuevas pruebas SITL en esta actualización documental.
+- Siguiente paso: medir el AX10 y recopilar/exportar parámetros actuales; confirmar S4/S5 libres y el sensor/cámara reales; después validar driver HC-SR04/evitación en SITL ArduRover 4.7.2 y captura UVC sin instalar paquetes por adelantado.
+
 Registro cronológico de decisiones, acciones y pruebas del software del Rover Rural Autónomo.
 
 **Estado inicial:** todavía no se han ejecutado pruebas de software ni de integración desde este repositorio. Las especificaciones y el roadmap son propuestas de partida.

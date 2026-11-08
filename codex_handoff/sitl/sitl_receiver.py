@@ -19,8 +19,10 @@ import time
 import rclpy
 from diagnostic_msgs.msg import DiagnosticArray
 from mavros_msgs.msg import State
+from nav_msgs.msg import Odometry
 from rclpy.qos import qos_profile_sensor_data
 from sensor_msgs.msg import BatteryState, Imu, NavSatFix
+from std_msgs.msg import Float64
 
 
 def main():
@@ -32,7 +34,8 @@ def main():
     finished = threading.Event()
     errors = []
     counts = {'datagrams': 0, 'state': 0, 'connected': 0, 'gps': 0,
-              'imu': 0, 'battery': 0, 'diagnostic_connected': 0,
+              'imu': 0, 'battery': 0, 'odometry': 0, 'heading': 0,
+              'diagnostic_connected': 0, 'diagnostic_speed_heading': 0,
               'disconnected_after_connection': 0, 'diagnostic_loss': 0}
     messages = {}
 
@@ -104,17 +107,37 @@ def main():
         counts['battery'] += 1
         messages['battery'] = {'voltage': m.voltage, 'percentage': m.percentage}
 
+    def odometry(m):
+        counts['odometry'] += 1
+        velocity = m.twist.twist.linear
+        messages['odometry'] = {'frame_id': m.header.frame_id,
+                                'child_frame_id': m.child_frame_id,
+                                'velocity_enu_m_s': [velocity.x, velocity.y, velocity.z]}
+
+    def heading(m):
+        counts['heading'] += 1
+        messages['heading'] = {'degrees_from_north': m.data}
+
     def diagnostic(m):
-        if any(s.level == b'\x00' and s.message == 'MAVROS conectado' for s in m.status):
+        connected = any(s.level == b'\x00' and s.message == 'MAVROS conectado'
+                        for s in m.status)
+        if connected:
             counts['diagnostic_connected'] += 1
         elif counts['diagnostic_connected']:
             counts['diagnostic_loss'] += 1
+        names = {s.name: s.level for s in m.status}
+        if names.get('RRA: speed') == b'\x00' and names.get('RRA: heading') == b'\x00':
+            counts['diagnostic_speed_heading'] += 1
 
     subscriptions = [
         node.create_subscription(State, '/mavros/state', state, 10),
         node.create_subscription(NavSatFix, '/mavros/global_position/global', gps, qos_profile_sensor_data),
         node.create_subscription(Imu, '/mavros/imu/data', imu, qos_profile_sensor_data),
         node.create_subscription(BatteryState, '/mavros/battery', battery, qos_profile_sensor_data),
+        node.create_subscription(Odometry, '/mavros/global_position/local', odometry,
+                                 qos_profile_sensor_data),
+        node.create_subscription(Float64, '/mavros/global_position/compass_hdg', heading,
+                                 qos_profile_sensor_data),
         node.create_subscription(DiagnosticArray, '/rra/telemetry/diagnostics', diagnostic, 10),
     ]
     try:
@@ -127,7 +150,8 @@ def main():
         recorder = subprocess.Popen([
             'ros2', 'bag', 'record', '-s', 'sqlite3', '-o', os.path.join(folder, 'bag'),
             '--topics', '/mavros/state', '/mavros/global_position/global',
-            '/mavros/imu/data', '/mavros/battery', '/rra/telemetry/diagnostics'],
+            '/mavros/imu/data', '/mavros/battery', '/mavros/global_position/local',
+            '/mavros/global_position/compass_hdg', '/rra/telemetry/diagnostics'],
             stdout=record_log, stderr=subprocess.STDOUT, start_new_session=True)
         threading.Thread(target=relay, daemon=True).start()
         print('READY', flush=True)
@@ -167,9 +191,15 @@ def main():
     result = {'counts': counts, 'samples': messages, 'errors': errors,
               'log_dir': folder, 'exit_codes': [p.returncode for p in procs],
               'record_exit': None if recorder is None else recorder.returncode}
+    if recorder is not None and recorder.returncode == 0:
+        info = subprocess.run(['ros2', 'bag', 'info', os.path.join(folder, 'bag')],
+                              capture_output=True, text=True, timeout=30)
+        result['bag_info_exit'] = info.returncode
+        print('BAG_INFO\n' + info.stdout, flush=True)
     print('RESULT ' + json.dumps(result, allow_nan=True), flush=True)
     if errors or recorder is None or recorder.returncode != 0 or any(p.returncode != 0 for p in procs) or not all(counts[key] for key in
                          ('connected', 'diagnostic_connected', 'gps', 'imu', 'battery',
+                          'odometry', 'heading', 'diagnostic_speed_heading',
                           'disconnected_after_connection', 'diagnostic_loss')):
         sys.exit(1)
 

@@ -1,5 +1,7 @@
 # Companion provisional: Orange Pi Zero 2W
 
+> Estado vigente a 2026-11-08: Orange Pi conectada a la H743-WLITE por UART5↔TELEM2 a 57600 MAVLink2. El 7/11 se probaron telemetría física, grabación rosbag de siete tópicos y replay. La receta manual se compiló y se ejecutó; no hay autostart. Ver `codex_handoff/ESTADO_ACTUAL.md` para el resultado y los límites.
+
 Estado: ROS 2 base instalado y comunicación local básica verificada.
 Registro inicial: 2026-11-03.
 
@@ -67,6 +69,52 @@ El script [`companion_diagnostico.sh`](../scripts/companion_diagnostico.sh) se
 probó en la placa y se copió a `/home/rra/rra_ws/tools/`; se ejecuta con
 `bash ~/rra_ws/tools/companion_diagnostico.sh` desde la sesión de `rra`.
 
-APT ofrece `ros-lyrical-mavros` 2.16.0-1 para ARM64, aún sin instalar. MAVROS,
-sensores, grabación/reproducción de rosbag y comunicación con el autopiloto
-son etapas posteriores; no se ha demostrado ninguna conexión real.
+### Actualización — 2026-11-04
+
+La nota anterior reflejaba el estado del 3 de noviembre y quedó obsoleta: MAVROS
+se instaló después. La conexión ROS local se verificó con mensajes de prueba;
+MAVROS 2.16.0 arrancó aislado y el flujo MAVLink de SITL/loopback se probó en la
+Orange Pi. El gateway también se probó primero con nodos sintéticos y luego con
+MAVROS real bajo SROS2 Enforce. El detalle, comandos y evidencias están en
+[`../codex_handoff/ESTADO_ACTUAL.md`](../codex_handoff/ESTADO_ACTUAL.md) y
+[`../codex_handoff/MAVROS_READONLY_BOUNDARY.md`](../codex_handoff/MAVROS_READONLY_BOUNDARY.md).
+
+El 2026-11-04 se completó además un ensayo bidireccional de ArduRover SITL 4.7.2
+con MAVROS 2.16.0 por un túnel SSH de prueba: 1.517 datagramas llegaron a MAVROS
+y 47 volvieron a SITL. SITL estaba aislado en un namespace WSL con loopback y los
+puertos Orange Pi 14680/14681 solo enlazaron a 127.0.0.1. No se conectó la MATEK
+H743-WLITE ni se emitieron órdenes de actuación.
+
+La aplicación usa SROS2 Enforce y un broker de consultas de identidad separada.
+El broker expone tres servicios `Trigger` fijos para estado, versión y lectura
+del parámetro `BATT_MONITOR`; la app no pudo crear clientes para 233/233
+servicios MAVROS ni lectores/escritores directos en los tópicos MAVROS/MAVLink.
+Se denegaron 142 endpoints de tópicos. El estado leído fue conectado,
+desarmado, MANUAL; `ParamPull` recibió 1.253 parámetros y `BATT_MONITOR` valió 4.
+Tras detener SITL, se observó desconexión y el broker devolvió fallo acotado al
+intentar otra lectura.
+
+La consulta de vehículo respondió solo con `available_info=1` (heartbeat): SITL
+no entregó `AUTOPILOT_VERSION`, así que la API marca el firmware como no
+disponible aunque el log de MAVROS identifica ArduRover V4.7.2. La versión
+numérica todavía no se obtiene por la interfaz. SROS2 controla endpoints, no el
+contenido de una solicitud; el broker restringe los nombres de parámetros en su
+código. El proceso MAVROS conserva permisos propios para sus interfaces de
+escritura. Esto no valida un enlace físico ni resistencia a compromiso de MAVROS
+o del broker. Evidencia y scripts locales en
+[`../codex_handoff/evidencias/mavros-bidirectional-sros-2026-11-04/`](../codex_handoff/evidencias/mavros-bidirectional-sros-2026-11-04/)
+y `../codex_handoff/mavros_sros_probe/`. No se conectó H743 ni se habilitó
+arranque automático.
+
+### Verificación de continuidad — 2026-11-04
+
+Se instaló localmente en el workspace de Orange Pi el paquete ROS
+`rra_companion_readonly`; build y cuatro pruebas unitarias correctas. Ensayo
+SITL bidireccional bajo SROS2 Enforce correcto: consultas de estado y
+`BATT_MONITOR=4`, 233 servicios MAVROS y 142 endpoints directos denegados,
+desconexión y timeout limitado al detener SITL. La versión numérica se obtuvo
+por MAVLink directo en SITL (`REQUEST_MESSAGE 512/148`, ArduRover 4.7.2,
+`fb773567`), pero la API ROS todavía informa versión no disponible. La consulta
+está pendiente de una ruta MAVROS dedicada; no habilitar `cmd/command` genérico.
+No se conectó H743 ni se activó autostart. Evidencia detallada en
+[`../codex_handoff/evidencias/mavros-bidirectional-sros-2026-11-04/seguimiento-puntos-1-3.txt`](../codex_handoff/evidencias/mavros-bidirectional-sros-2026-11-04/seguimiento-puntos-1-3.txt).

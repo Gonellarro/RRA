@@ -1,8 +1,8 @@
 # Roadmap de software — Rover Rural Autónomo
 
 **Documento inicial para el responsable de software**  
-**Estado:** propuesta para aprender, diseñar y validar por etapas  
-**Base del proyecto:** Axial AX10 · MATEK H743-WING V3 · ArduRover · UM982+ RTK  
+**Estado:** plan de trabajo; algunas etapas ya tienen resultados de SITL y pruebas físicas reportadas. Consultar el estado vigente antes de ejecutar una etapa.  
+**Base del proyecto:** Axial AX10 · MATEK H743-WLITE · ArduRover · UM982+ RTK  
 **Principio:** avanzar con simulación y pruebas controladas; el hardware real se integra cuando esté disponible y caracterizado.
 
 ---
@@ -18,7 +18,11 @@ Cada etapa indica:
 - qué resultado verificable debe quedar;
 - qué debe cumplirse antes de avanzar.
 
-Es una propuesta inicial. Las versiones, interfaces y decisiones se confirmarán al probarlas y al recibir del responsable de hardware los datos reales del montaje. No hace falta empezar por ROS 2, IA, LiDAR ni brazo robótico.
+Este roadmap conserva el orden de aprendizaje original; no es una descripción completa del estado actual. Además de las pruebas físicas iniciales de H743/ArduRover, RC, GNSS M10 y una misión AUTO elemental comunicadas por el usuario, el 7 de noviembre de 2026 se probó el Companion Orange Pi por UART con telemetría física y replay rosbag. La causa de los cortes Wi-Fi/SSH aún no está identificada y la sesión no validó patrulla física con Companion. Véanse [`codex_handoff/ESTADO_ACTUAL.md`](codex_handoff/ESTADO_ACTUAL.md), [`codex_handoff/H743_DATOS_HARDWARE.md`](codex_handoff/H743_DATOS_HARDWARE.md) y [`codex_handoff/MAVROS_READONLY_BOUNDARY.md`](codex_handoff/MAVROS_READONLY_BOUNDARY.md). Los resultados de campo se registran como comunicados por el responsable, no como auditoría instrumental independiente.
+
+Prioridad práctica vigente (2026-11-08): AX10 measurement sheet, HC-SR04 nativo H743 primero en modo lectura y SITL con firmware 4.7.2, y cámara USB UVC a Orange Pi con grabación local. No habilitar evitación en AUTO hasta confirmar el behavior exacto en SITL/FCU y medir frenado real. Detalles operativos en `codex_handoff/PLAN_SIGUIENTES_PASOS.md`.
+
+Las versiones, interfaces y decisiones restantes se confirmarán con pruebas y datos del responsable de hardware. No hace falta empezar de nuevo por las etapas ya completadas.
 
 ## 2. Meta de la primera versión
 
