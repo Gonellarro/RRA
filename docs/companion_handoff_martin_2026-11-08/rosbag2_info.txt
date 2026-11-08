@@ -1,0 +1,56 @@
+
+Files:             0_rra_martin_raw_all_20261108_04_2026_11_08-19_53_17.db3
+Bag size:          713.8 KiB
+Storage id:        sqlite3
+ROS Distro:        lyrical
+Duration:          57.176865249s
+Start:             Nov  8 2026 19:53:17.843404672 (1794163997.843404672)
+End:               Nov  8 2026 19:54:15.020269921 (1794164055.020269921)
+Messages:          2730
+Topic information: Topic: /diagnostics | Type: diagnostic_msgs/msg/DiagnosticArray | Count: 68 | Serialization Format: cdr
+                   Topic: /events/rosbag2_messages_lost | Type: rosbag2_interfaces/msg/MessagesLostEvent | Count: 0 | Serialization Format: cdr
+                   Topic: /events/write_split | Type: rosbag2_interfaces/msg/WriteSplitEvent | Count: 4 | Serialization Format: cdr
+                   Topic: /mavros_node/battery | Type: sensor_msgs/msg/BatteryState | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/estimator_status | Type: mavros_msgs/msg/EstimatorStatus | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/extended_state | Type: mavros_msgs/msg/ExtendedState | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/compass_hdg | Type: std_msgs/msg/Float64 | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/global | Type: sensor_msgs/msg/NavSatFix | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/gp_lp_offset | Type: geometry_msgs/msg/PoseStamped | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/gp_origin | Type: geographic_msgs/msg/GeoPointStamped | Count: 2 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/local | Type: nav_msgs/msg/Odometry | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/raw/fix | Type: sensor_msgs/msg/NavSatFix | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/raw/gps_vel | Type: geometry_msgs/msg/TwistStamped | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/raw/satellites | Type: std_msgs/msg/UInt32 | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/global_position/rel_alt | Type: std_msgs/msg/Float64 | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/data | Type: sensor_msgs/msg/Imu | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/data_raw | Type: sensor_msgs/msg/Imu | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/diff_pressure | Type: sensor_msgs/msg/FluidPressure | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/mag | Type: sensor_msgs/msg/MagneticField | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/static_pressure | Type: sensor_msgs/msg/FluidPressure | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/temperature_baro | Type: sensor_msgs/msg/Temperature | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/imu/temperature_imu | Type: sensor_msgs/msg/Temperature | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/accel | Type: geometry_msgs/msg/AccelWithCovarianceStamped | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/odom | Type: nav_msgs/msg/Odometry | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/pose | Type: geometry_msgs/msg/PoseStamped | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/pose_cov | Type: geometry_msgs/msg/PoseWithCovarianceStamped | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/velocity_body | Type: geometry_msgs/msg/TwistStamped | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/velocity_body_cov | Type: geometry_msgs/msg/TwistWithCovarianceStamped | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/local_position/velocity_local | Type: geometry_msgs/msg/TwistStamped | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/rangefinder_pub | Type: sensor_msgs/msg/Range | Count: 57 | Serialization Format: cdr
+                   Topic: /mavros_node/readonly_version/autopilot_version | Type: std_msgs/msg/String | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/readonly_version/batt_monitor | Type: std_msgs/msg/String | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/state | Type: mavros_msgs/msg/State | Count: 67 | Serialization Format: cdr
+                   Topic: /mavros_node/status_event | Type: mavros_msgs/msg/StatusEvent | Count: 0 | Serialization Format: cdr
+                   Topic: /mavros_node/statustext/recv | Type: mavros_msgs/msg/StatusText | Count: 2 | Serialization Format: cdr
+                   Topic: /mavros_node/sys_status | Type: mavros_msgs/msg/SysStatus | Count: 67 | Serialization Format: cdr
+                   Topic: /parameter_events | Type: rcl_interfaces/msg/ParameterEvent | Count: 0 | Serialization Format: cdr
+                   Topic: /rosout | Type: rcl_interfaces/msg/Log | Count: 52 | Serialization Format: cdr
+                   Topic: /rra/telemetry/diagnostics | Type: diagnostic_msgs/msg/DiagnosticArray | Count: 57 | Serialization Format: cdr
+                   Topic: /tf | Type: tf2_msgs/msg/TFMessage | Count: 0 | Serialization Format: cdr
+                   Topic: /tf_static | Type: tf2_msgs/msg/TFMessage | Count: 1 | Serialization Format: cdr
+                   Topic: /uas1/mavlink_sink | Type: mavros_msgs/msg/Mavlink | Count: 57 | Serialization Format: cdr
+                   Topic: /uas1/mavlink_source | Type: mavros_msgs/msg/Mavlink | Count: 1270 | Serialization Format: cdr
+Services:          0
+Service information: 
+Actions:           0
+Action information: 

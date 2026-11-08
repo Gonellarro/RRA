@@ -1,0 +1,22 @@
+/**:
+  ros__parameters:
+    tgt_system: 1
+    tgt_component: 1
+    fcu_protocol: "v2.0"
+    plugin_allowlist:
+      - sys_status
+      - global_position
+      - imu
+      - local_position
+      - rra_readonly_version
+      - distance_sensor
+
+/**/distance_sensor:
+  ros__parameters:
+    config: |
+      rangefinder_pub:
+        id: 0
+        frame_id: hc_sr04_front
+        field_of_view: 0.0
+        send_tf: false
+        sensor_position: {x: 0.0, y: 0.0, z: 0.0}
