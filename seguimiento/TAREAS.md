@@ -244,3 +244,35 @@ Hecho cuando: el PC principal ya no tiene ArduPilot y el portátil sigue pasando
 
 Alcance: estudio, sin implementar todavía. Idea del usuario y su socio: un móvil a bordo, con Termux y un LLM con visión pequeño, que mira con la cámara y **pide** acciones a la H743 por MAVLink (por ejemplo, HOLD si hay un obstáculo). Nunca controla directamente el motor ni la dirección: ArduRover conserva el control y los failsafes. Revisar: (1) la conexión con la H743, por WiFi con un puente ESP32 en un puerto serie libre (propuesta) o por USB OTG (difícil en Termux sin root); (2) pymavlink en Termux; (3) qué LLM con visión cabe en el móvil y cuánto tarda por imagen; (4) calor y batería; (5) qué puerto libre y qué módulo propone el socio. Primera prueba prevista: el móvil conectado por WiFi a SITL en el portátil. Es la etapa 8 del roadmap («solo si aporta una mejora demostrable»).
 Hecho cuando: hay un documento en `docs/` con la arquitectura propuesta, las opciones de conexión, la latencia medida o estimada del LLM y las preguntas para el socio, y el usuario lo ha revisado.
+
+## T-016 · Sincronizar el repo con los cambios de Juanjo
+- estado: pendiente
+- importante: sí
+- urgente: sí
+- cuando:
+- vence:
+- estimacion: 45min
+- avance: 0%
+- inicio:
+- fin:
+- depende:
+- origen: maquina
+
+Alcance: Juanjo subió 6 commits el 2026-11-08 (de `efcdea6` a `9a11cc8`, 172 archivos: `codex_handoff/`, paquete del Companion, inventario de hardware, cambios en README, roadmap, `docs/diario.md` y `seguimiento/ESTADO.md`). En el PC principal hay un commit local (`f238957`) y cambios sin commit de las sesiones del 2026-11-08. Conflictos previstos: `README.md` (el usuario y Juanjo cambiaron la misma línea de ROS 2) y `seguimiento/ESTADO.md` (Juanjo añadió un aviso; aquí se regeneró). Hacer commit de lo local, `git pull --rebase`, resolver los conflictos con el usuario (el README es suyo) y `git push`. Después, `git pull` en el portátil.
+Hecho cuando: `main` local y `origin/main` coinciden en el PC principal y en el portátil.
+
+## T-017 · Revisar el paquete de Juanjo y replanificar
+- estado: pendiente
+- importante: sí
+- urgente: sí
+- cuando:
+- vence:
+- estimacion: 2h
+- avance: 0%
+- inicio:
+- fin:
+- depende: T-016
+- origen: maquina
+
+Alcance: leer con el usuario `docs/INVENTARIO_HARDWARE_COMPANION.md`, `docs/companion_handoff_martin_2026-11-08/` (sobre todo `CONTRATO_INTEGRACION_COMPANION.md`, con 7 acuerdos pendientes con Martín) y `codex_handoff/ESTADO_ACTUAL.md` y `PLAN_SIGUIENTES_PASOS.md`. Novedades: H743-WLITE (no WING V3) con ArduRover 4.7.2, rover físico con AUTO probado, Companion provisional (Orange Pi Zero 2W, Ubuntu 26.04, ROS 2 Lyrical, MAVROS) conectado por TELEM2, HC-SR04, ESP32 DroneBridge y pruebas SITL de las fases 3 y 4 ya hechas por Juanjo. Replantear ESTADO.md y las tareas T-003 a T-015 (qué sobra, qué cambia y qué falta), y decidir el papel del usuario («Companion definitivo»).
+Hecho cuando: el usuario entiende el paquete, ESTADO.md y TAREAS.md reflejan la situación real y hay una lista de respuestas o preguntas para Juanjo sobre los acuerdos pendientes.
