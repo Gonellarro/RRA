@@ -1,0 +1,26 @@
+# Telemetría y parámetros generados por MAVProxy/SITL (se versionan copias seleccionadas en config/ y logs/)
+*.tlog
+*.tlog.raw
+mav.parm
+eeprom.bin
+terrain/
+logs/*.bin
+logs/**/*.bin
+
+# Python
+__pycache__/
+*.pyc
+.venv/
+venv/
+*.egg-info/
+
+# Secretos y configuración local (NTRIP, tokens, contraseñas)
+.env
+*.local.*
+secrets/
+config/local/
+
+# Editores y sistema
+.vscode/
+*.swp
+.DS_Store
