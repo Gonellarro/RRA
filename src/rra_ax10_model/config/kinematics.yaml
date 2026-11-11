@@ -1,0 +1,15 @@
+ax10_kinematics:
+  ros__parameters:
+    # Medidas reportadas en codex_handoff/AX10_MEDICIONES.md
+    wheelbase_m: 0.320
+    front_track_m: 0.203
+    rear_track_m: 0.203
+    wheel_radius_m: 0.056
+    # 25 grados reportados; límite preliminar, aún no calibrado con señal real.
+    max_steering_angle_deg: 25.0
+    # Ackermann medido 0 grados: modelo de ruedas delanteras paralelas.
+    steering_geometry: parallel
+    input_topic: /rra/model/cmd_ackermann
+    odom_topic: /rra/model/predicted_odom
+    publish_tf: false
+    command_timeout_s: 0.5

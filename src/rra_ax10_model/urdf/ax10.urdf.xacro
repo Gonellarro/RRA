@@ -1,0 +1,64 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://www.ros.org/wiki/xacro" name="rra_ax10">
+  <!-- Valores geométricos reportados; no se inventan dimensiones de carrocería. -->
+  <xacro:arg name="wheelbase" default="0.320"/>
+  <xacro:arg name="front_track" default="0.203"/>
+  <xacro:arg name="rear_track" default="0.203"/>
+  <xacro:property name="wheelbase" value="$(arg wheelbase)"/>
+  <xacro:property name="front_track" value="$(arg front_track)"/>
+  <xacro:property name="rear_track" value="$(arg rear_track)"/>
+  <xacro:property name="wheel_radius" value="0.056"/>
+
+  <!-- base_link está en el centro del eje trasero; X delante, Y izquierda ROS. -->
+  <link name="base_link"/>
+  <link name="front_left_steering_link"/>
+  <link name="front_right_steering_link"/>
+  <link name="front_left_wheel_link"/>
+  <link name="front_right_wheel_link"/>
+  <link name="rear_left_wheel_link"/>
+  <link name="rear_right_wheel_link"/>
+  <link name="gnss_link"/>
+  <link name="imu_link"/>
+  <link name="hc_sr04_link"/>
+
+  <joint name="front_left_steering_joint" type="revolute">
+    <parent link="base_link"/><child link="front_left_steering_link"/>
+    <origin xyz="${wheelbase} ${front_track/2} 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/><limit lower="-0.436332" upper="0.436332" effort="1" velocity="2"/>
+  </joint>
+  <joint name="front_right_steering_joint" type="revolute">
+    <parent link="base_link"/><child link="front_right_steering_link"/>
+    <origin xyz="${wheelbase} ${-front_track/2} 0" rpy="0 0 0"/>
+    <axis xyz="0 0 1"/><limit lower="-0.436332" upper="0.436332" effort="1" velocity="2"/>
+  </joint>
+  <joint name="front_left_wheel_joint" type="continuous">
+    <parent link="front_left_steering_link"/><child link="front_left_wheel_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+  </joint>
+  <joint name="front_right_wheel_joint" type="continuous">
+    <parent link="front_right_steering_link"/><child link="front_right_wheel_link"/>
+    <origin xyz="0 0 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+  </joint>
+  <joint name="rear_left_wheel_joint" type="continuous">
+    <parent link="base_link"/><child link="rear_left_wheel_link"/>
+    <origin xyz="0 ${rear_track/2} 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+  </joint>
+  <joint name="rear_right_wheel_joint" type="continuous">
+    <parent link="base_link"/><child link="rear_right_wheel_link"/>
+    <origin xyz="0 ${-rear_track/2} 0" rpy="0 0 0"/><axis xyz="0 1 0"/>
+  </joint>
+
+  <!-- Posiciones medidas con Y derecha positiva; Y ROS = -Y de la ficha. -->
+  <joint name="gnss_mount_joint" type="fixed">
+    <parent link="base_link"/><child link="gnss_link"/>
+    <origin xyz="0.120 -0.058 0.210" rpy="0 0 0"/>
+  </joint>
+  <joint name="imu_mount_joint" type="fixed">
+    <parent link="base_link"/><child link="imu_link"/>
+    <origin xyz="0.180 -0.058 0.100" rpy="0 0 0"/>
+  </joint>
+  <joint name="hc_sr04_mount_joint" type="fixed">
+    <parent link="base_link"/><child link="hc_sr04_link"/>
+    <origin xyz="0.290 0 0.120" rpy="0 0 0"/>
+  </joint>
+</robot>

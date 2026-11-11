@@ -39,3 +39,34 @@ Registro cronológico de decisiones, acciones y pruebas del software del Rover R
 - Evidencia/log: detalles, versiones y límites en `docs/companion_orange_pi.md`; salidas de pruebas en `/tmp/rra-talker-clean.log` y `/tmp/rra-listener-clean.log` de la placa, temporales.
 - Problemas o dudas: el acceso automático inicial necesitó una clave SSH; la primera prueba usó una opción de shell incompatible y se corrigió; una prueba de ejemplo recibió mensajes pero produjo una excepción al terminarla forzadamente. La repetición con cierre normal pasó.
 - Siguiente paso: revisar con Martín la propuesta y continuar con MAVROS y telemetría de solo lectura, empezando por simulación. No se ha validado la conexión a la H743, sensores, grabación rosbag ni el rover real.
+
+## 2026-11-10 — Respuesta de aceleración y frenado
+- Resultado de campo reportado por Juanjo: al cambiar `MOT_SLEWRATE` a `0`, la aceleración y la respuesta al soltar el acelerador/frenar pasaron a funcionar de forma inmediata y satisfactoria.
+- Interpretación: confirma que la rampa de salida configurada por ArduRover era la causa práctica del retardo observado. El resultado es coherente con el valor anterior `MOT_SLEWRATE=100` mostrado en Mission Planner. No se atribuye el retardo a la curva Rate/Exp de la emisora; la captura de FS-i6S correspondía a CH4 y no demuestra por sí sola que ese canal sea el acelerador.
+- Estado del parámetro: `MOT_SLEWRATE=0`, según el usuario. No se leyó de nuevo desde Mission Planner en esta sesión.
+- Límite: esta observación valida la respuesta percibida en las condiciones de la prueba; no cuantifica distancia de frenado ni sustituye una medición repetible. No se cambió ningún parámetro desde esta sesión.
+- Siguiente paso útil: conservar el ajuste si sigue siendo satisfactorio y, cuando se realicen las mediciones físicas del AX10, anotar superficie, velocidad inicial y distancia de parada para disponer de una referencia.
+
+## 2026-11-10 — modelo ROS básico y cinemática inicial del AX10
+- Objetivo: aprovechar las medidas disponibles en un modelo ROS reutilizable sin esperar nuevas mediciones de dirección.
+- Cambios: nuevo paquete local `src/rra_ax10_model` con Xacro de marcos `base_link`, ruedas, GNSS, IMU y HC-SR04; geometría de batalla/vías/rueda en parámetros externos; biblioteca cinemática y nodo ROS 2.
+- Cinemática: se usa modo `parallel` por defecto, coherente con 0° de diferencia Ackermann reportados; aplica límite preliminar de 25° y modelo bicicleta con batalla 0,320 m. Se ofrece modo `ackermann` ideal configurable, sin presentarlo como geometría física medida.
+- Interfaces: entrada `ackermann_msgs/AckermannDriveStamped` en `/rra/model/cmd_ackermann`; salida de odometría predicha `nav_msgs/Odometry` en `/rra/model/predicted_odom` y articulaciones predichas en `/rra/model/joint_states`. No conecta con MAVROS ni emite órdenes al rover. TF dinámico desactivado por defecto.
+- Coordenadas: URDF usa convención ROS Y izquierda; los offsets Y positivos a derecha de la ficha se convirtieron a Y negativa para GNSS e IMU. Orientaciones de sensores siguen provisionales.
+- Pruebas: seis pruebas Python unitarias pasan; XML de `package.xml` y Xacro bien formado. ROS 2, `colcon`, `xacro` y lanzamiento del nodo no están disponibles en este portátil, así que falta validación nativa ROS.
+- Siguiente paso: compilar y lanzar en ROS 2 Lyrical (Pi o entorno x86_64 de desarrollo), verificar `/tf_static`, articulaciones y respuesta recta/giro en el tópico de modelo; después acordar con Martín frames y namespace antes de integrar.
+
+## 2026-11-10 — topología de baterías reportada
+- Motor: pack HOOVO LiPo 2S, 7,4 V nominal, 5200 mAh, etiqueta/ficha indica 80C y XT60; alimenta solo el ESC Axial AE-2 y el motor.
+- Electrónica: pack idéntico según el usuario; BAT+/BAT− de la Matek H743-WLITE a través de fusible 30 A e interruptor. La Matek alimenta servo TowerPro MG995, Companion Orange Pi, HC-SR04, GNSS/brújula, receptor FS-BS8 y XIAO ESP32-S3/DroneBridge; el rail concreto de cada carga está por identificar.
+- ESC: cable rojo BEC retirado del conector de señal; queda señal PWM en S1 y referencia de masa común. Servo de dirección en S3.
+- Evaluación: dos packs separan las corrientes principales de motor y electrónica. El fusible limita sobrecorriente/cortocircuito, pero no evita sobredescarga. El AE-2 admite 2S LiPo y su manual indica corte Auto-LiPo predeterminado, pero el ajuste actual debe verificarse. La H743-WLITE especifica entrada 6,8–30 V; se requiere una alarma/failsafe configurada para la batería electrónica y lectura de tensión contrastada.
+- Pendiente práctico: mapear el rail de alimentación de cada módulo y medir tensión/corriente bajo carga de Companion y movimiento de servo; comprobar corte LiPo AE-2; revisar monitor y failsafe de la batería electrónica sin cambiar parámetros hasta autorizarlos.
+- Referencias oficiales: manual H743-WLITE y guía de programación AE-2 enlazadas en `codex_handoff/ARQUITECTURA_ALIMENTACION_BATERIAS.md`.
+
+## 2026-11-10 — diseño por etapas de protección de baterías
+- Evaluación de la propuesta del usuario: zumbador por celdas para ambos packs; corte Auto-LiPo del AE-2 para motor; primera etapa de baja tensión en el pack electrónico para solicitar apagado limpio de Orange Pi; segunda etapa con interruptor electrónico de baja tensión, enclavado y rearme manual.
+- Aclaración funcional: el failsafe de batería de ArduPilot informa/ejecuta acciones del rover, pero no apaga por sí mismo Linux. La solicitud de `poweroff` necesita un servicio local del Companion que consuma tensión MAVROS válida y reciente.
+- Umbrales del usuario (7,2 V y 7,0 V) quedan como candidatos. El mínimo especificado de entrada de H743-WLITE es 6,8 V; 7,0 V ofrece solo 0,2 V de margen nominal y debe revisarse con caída de cable y sag bajo cargas reales.
+- Recomendación: medir/calibrar primero la lectura H743; comprobar BATT_LOW_TIMER/failsafe y estado Auto-LiPo; medir el rail con Companion y servo; después seleccionar corte enclavado independiente del software. No se cambió hardware, se instalaron alarmas ni se modificaron parámetros.
+- Diseño, secuencia y aceptación: `codex_handoff/ARQUITECTURA_ALIMENTACION_BATERIAS.md`.

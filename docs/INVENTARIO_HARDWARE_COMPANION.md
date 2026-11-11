@@ -1,6 +1,6 @@
 # Inventario del rover y del Companion provisional
 
-Actualizado: 2026-11-08. Este inventario distingue lo reportado por el usuario,
+Actualizado: 2026-11-10. Este inventario distingue lo reportado por el usuario,
 lo observado en Mission Planner y lo validado en el flujo ROS. No sustituye una
 lectura nueva de la controladora ni una inspección física de las revisiones.
 
@@ -10,12 +10,16 @@ lectura nueva de la controladora ni una inspección física de las revisiones.
 |---|---|---|
 | Controladora | MATEK H743-WLITE; revisión de PCB sin confirmar | Modelo identificado por el usuario; revisión no legible en las fotos disponibles. |
 | Firmware | ArduRover 4.7.2; compilación visible `fb773567` | Versión y target `MatekH743` mostrados en Mission Planner el 2026-11-07; no es una lectura nueva en esta actualización. |
-| Receptor RC | FlySky FS-A8S con i-BUS, conectado a RX6 | Modelo y conexión comunicados por el usuario; no se inspeccionó el receptor en esta sesión. |
+| Receptor RC | FlySky FS-BS8, conectado a RX6 | Modelo y conexión comunicados por el usuario; sustituye al FS-A8S anotado por error anteriormente. |
 | GNSS | QUEScan AN251 M10, conectado a TX2/RX2 | Modelo/conexión reportados por el usuario. No se ha confirmado RTK ni precisión absoluta. |
 | Brújula | QMC5883L del conjunto GNSS, bus I²C SDA1/SCL1 | Identificación y conexión reportadas por el usuario. |
-| Bridge GCS | ESP32 con DroneBridge, conectado a TX7/RX7 | Cableado reportado por el usuario; mantiene el enlace con Mission Planner/QGroundControl. |
+| Bridge GCS | Seeed XIAO ESP32-S3 con DroneBridge, conectado a TX7/RX7 | Modelo y cableado reportados por el usuario; mantiene el enlace con Mission Planner/QGroundControl. |
 | Sonar frontal | HC-SR04 reportado en S4/GPIO53 TRIG y S5/GPIO54 ECHO, con 5 V y GND común | El usuario reportó mediciones a 30 y 90 cm. MAVROS recibió `sensor_msgs/msg/Range` de unos 0,90 m; la posición física y el campo de visión aún no están medidos. |
-| Actuadores | Señal ESC en S1 (conductor positivo desconectado); servo de dirección en S3 | Conexionado reportado por el usuario. |
+| ESC y motor | ESC Axial AE-2; motor Axial del conjunto AX10 | Modelo visible en fotos anteriores y comunicado por el usuario; el pack de motor alimenta solo el ESC/motor. |
+| Servo de dirección | TowerPro MG995, señal en S3 | Modelo legible en la foto aportada anteriormente; alimentación por el rail de la Matek, según cableado reportado. |
+| Batería de motor | HOOVO LiPo 2S, 7,4 V nominal, 5200 mAh, 80C, XT60 | Modelo visto en ficha comercial; el usuario informa que la batería alimenta solo ESC/motor. AE-2 debe tener activo su corte LiPo para 2S; estado real pendiente de comprobar. |
+| Batería de electrónica | Mismo pack HOOVO LiPo 2S, 7,4 V nominal, 5200 mAh, 80C, XT60 | Según el usuario, idéntica a la de motor; conectada a BAT+/BAT− de H743 a través de fusible de 30 A e interruptor. |
+| Distribución de energía | Batería de motor separada de batería electrónica; H743 alimenta Companion y periféricos | Distribución comunicada: servo, señal PWM ESC, GNSS/brújula, Orange Pi, HC-SR04, FS-BS8 y XIAO ESP32-S3 cuelgan de la Matek. No está mapeado todavía qué rail alimenta cada periférico ni la corriente total/picos. El cable rojo BEC del ESC está desconectado; la señal comparte masa con la controladora. El fusible no protege contra sobredescarga. |
 
 La mención antigua a UM982+RTK describe una mejora prevista, no el GNSS instalado
 identificado actualmente. No atribuir al sensor M10 prestaciones RTK.
