@@ -1,0 +1,23 @@
+[Unit]
+Description=RRA electronics battery shutdown listener via existing MAVROS router
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=simple
+User=rra
+Group=rra
+Environment=ROS_DISTRO=lyrical
+Environment=ROS_DOMAIN_ID=205
+Environment=ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+Environment=RRA_POWER_SHUTDOWN_DRY_RUN=1
+EnvironmentFile=-/etc/default/rra-power-shutdown
+LogsDirectory=rra
+UMask=0077
+ExecStart=/usr/bin/bash -lc 'source /opt/ros/lyrical/setup.bash && source /home/rra/rra_ws/install/setup.bash && exec ros2 run rra_battery_protection rra-power-shutdown --ros-args -p mavlink_source_topic:=/uas1/mavlink_source -p mavlink_sink_topic:=/uas1/mavlink_sink -p event_log:=/var/log/rra/battery-protection.jsonl'
+Restart=on-failure
+RestartSec=3
+TimeoutStopSec=10
+
+[Install]
+WantedBy=multi-user.target

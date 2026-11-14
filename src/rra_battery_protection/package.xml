@@ -1,0 +1,14 @@
+<?xml version="1.0"?>
+<package format="3">
+  <name>rra_battery_protection</name>
+  <version>0.1.0</version>
+  <description>Filtrado, simulación y servicio de protección de batería para RRA.</description>
+  <maintainer email="rra-local@example.invalid">RRA local</maintainer>
+  <license>Proprietary</license>
+  <buildtool_depend>ament_python</buildtool_depend>
+  <exec_depend>rclpy</exec_depend>
+  <exec_depend>mavros_msgs</exec_depend>
+  <exec_depend>sensor_msgs</exec_depend>
+  <test_depend>ament_pytest</test_depend>
+  <export><build_type>ament_python</build_type></export>
+</package>

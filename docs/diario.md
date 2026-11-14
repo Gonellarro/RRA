@@ -70,3 +70,42 @@ Registro cronológico de decisiones, acciones y pruebas del software del Rover R
 - Umbrales del usuario (7,2 V y 7,0 V) quedan como candidatos. El mínimo especificado de entrada de H743-WLITE es 6,8 V; 7,0 V ofrece solo 0,2 V de margen nominal y debe revisarse con caída de cable y sag bajo cargas reales.
 - Recomendación: medir/calibrar primero la lectura H743; comprobar BATT_LOW_TIMER/failsafe y estado Auto-LiPo; medir el rail con Companion y servo; después seleccionar corte enclavado independiente del software. No se cambió hardware, se instalaron alarmas ni se modificaron parámetros.
 - Diseño, secuencia y aceptación: `codex_handoff/ARQUITECTURA_ALIMENTACION_BATERIAS.md`.
+
+## 2026-11-11 — lectura inicial de tensión y corriente de electrónica
+- Mission Planner `battery_voltage`: 7,38 V. Multímetro reportado: 7,46 V; diferencia 0,08 V (aprox. 1,1%). No consta si fueron medidas simultáneas ni si el multímetro estaba exactamente en BAT+/BAT−.
+- Corriente en Mission Planner: normalmente 0,15 A, con picos observados de 0,6 A cuando todos los periféricos estaban conectados y el servo se movía repetidamente. El usuario observa que la Orange Pi deja de responder al mover el servo; caída transitoria en Vx/5 V es una hipótesis aún no medida. La telemetría podría no capturar picos breves.
+- Interpretación: lectura de tensión cercana, sin base suficiente para cambiar `BATT_VOLT_MULT` ni configurar los cortes propuestos. Repetir ambas medidas en los mismos pads y bajo Companion activo/servo moviéndose; comparar corriente con método independiente si está disponible.
+- No se modificaron parámetros ni hardware. Diseño actualizado en `codex_handoff/ARQUITECTURA_ALIMENTACION_BATERIAS.md`.
+
+## 2026-11-11 — caída de batería observada al mover servo
+- Juanjo midió con multímetro una variación aproximada de 7,5 a 6,6 V entre GND y la entrada de batería mientras mueve el servo repetidamente; Mission Planner no muestra una variación comparable.
+- Falta confirmar si las puntas estaban directamente en BAT+/BAT− de la H743. Si sí, el mínimo observado (6,6 V) está bajo el mínimo de entrada especificado para H743-WLITE (6,8 V). Esto hace probable una caída de alimentación relacionada con los cortes de la Orange Pi, pero la localización requiere medir también el pack, Vx y la entrada de 5 V de la Pi.
+- Siguiente prueba: comparar con el mismo movimiento servo los voltajes en el conector de batería, en BAT+/BAT− de la H743 y en la entrada 5 V/GND de la Pi. Si la batería se mantiene y BAT cae, revisar cable/fusible/interruptor/conectores; si BAT se mantiene y cae la Pi, revisar Vx/distribución; si todo se mantiene, investigar masa/ruido/Wi-Fi/software.
+- No se cambió cableado ni parámetros. Los valores candidatos de apagado 7,2/7,0 V quedan sin aplicar hasta corregir/entender la caída.
+
+## 2026-11-13 — prototipo de protección de batería y prueba Pi–Matek
+- Añadido `src/rra_battery_protection`: modelo Python con anillo de 20, mediana de cinco + EMA, timers monotónicos, sensor fault, histéresis y dry-run; seis pruebas pasan localmente y en Orange Pi. Simulador incluye caída de servo, descarga, lectura defectuosa y pérdida de sensor.
+- El paquete se copió y compiló en `~/rra_ws` de la Orange Pi; SSH confirmado en 192.168.1.156, ROS 2 Lyrical/Python 3.14. MAVROS temporal por `/dev/ttyS5:57600` conectó a ArduPilot; observador RRA publicó. Monitor dry-run leyó 7,890 V y sonar 1,63 m. QoS se corrigió a `qos_profile_sensor_data`. Launch temporal cerrado; sin systemd/autostart instalado.
+- Lectura de parámetros sin escritura: `SCR_ENABLE=0`, `SCR_HEAP_SIZE` ausente, `BATT_MONITOR=4`, `BATT_VOLT_PIN=10`, `BATT_VOLT_MULT=11`, `BATT_LOW_VOLT=0`, `BATT_CRT_VOLT=0`, `BATT_LOW_TIMER=10`, failsafes de batería 0, `SERVO12_FUNCTION=0`, `RELAY1_FUNCTION=0`, `RELAY_PIN` y `RELAY1_DEFAULT` ausentes. No se escribió ningún parámetro.
+- La referencia publicada por Matek indica escala 21, distinta del 11 leído. La batería marcó 7,891 V en MAVROS; no fue medida simultáneamente con multímetro. Contrastar directamente en BAT+/BAT− antes de calibrar o activar umbrales. Lua permanece prototipo, no subido/ejecutado; protocolo de apagado aún incompleto y GPIO/Pololu no accionados. Detalle en `codex_handoff/PROTECCION_BATERIA_2026-11-13.md`.
+
+### Medición simultánea de tensión — 2026-11-13
+El usuario midió 7,89 V con multímetro y 7,854 V en ArduPilot al mismo tiempo: diferencia 0,036 V (0,46%). El ajuste actual `BATT_VOLT_MULT=11` coincide bien en este punto; no modificar por la sola diferencia respecto a la referencia de ficha 21. Pendiente comprobar otro nivel y sag bajo servo. No se cambiaron parámetros.
+
+## 2026-11-13 — protocolo de apagado Companion sin Pololu
+- Se amplió `src/rra_battery_protection`: Lua ahora prepara aviso, solicitud urgente a ≤7,2 V sostenidos durante 5 s, `COMMAND_LONG` 31000 al Companion 1/191, ACKs y READY 31001 con nonce. No contiene accionamiento GPIO, relé ni corte físico.
+- Listener ROS2 usa los topics raw `/uas1/mavlink_source` y `/uas1/mavlink_sink` del router MAVROS existente; filtra origen/destino, persiste evento JSONL, responde ACK y prepara el cierre. `DRY_RUN=1` es el default; el modo real llama a `systemctl poweroff` únicamente cuando explícitamente se configura `0`.
+- Se prepararon unidad systemd y script de instalación solo DRY_RUN. No se han instalado, ni se han escrito parámetros FCU. En esta sesión el SSH por lote devolvió `Permission denied (publickey,password)` y quedó una sesión interactiva esperando clave; la Pi aún no autenticada, sin despliegue de esta versión.
+- Verificación local: 13 pruebas pasan y `compileall` termina. La primera ventana SSH falló porque Windows Terminal interpretó mal argumentos y buscó `bash` local; una segunda sesión SSH directa quedó autenticada por el usuario. Se creó clave dedicada `id_ed25519_rra_companion_codex`, cuya clave pública aún debe instalarse en `authorized_keys`; hasta entonces no hay acceso automatizado ni despliegue nuevo. Falta compilar/validar frames contra MAVROS/Lua del equipo; no se afirma despliegue operativo todavía. La documentación completa y pasos siguientes están en `codex_handoff/PROTECCION_BATERIA_2026-11-13.md`.
+
+### Actualización de despliegue en Pi — 2026-11-13
+- El usuario añadió la clave pública a `authorized_keys`; SSH por clave a `rra@192.168.1.156` quedó verificado. Se respaldó la versión previa fuera del workspace, en `~/rra_battery_protection.codex-backup-20261113-233152`.
+- El paquete actualizado se compiló correctamente con `colcon build --symlink-install --packages-up-to rra_battery_protection` en ROS 2 Lyrical / Python 3.14.
+- Prueba sintética ROS en domain 205 pasó: comando 31000 → evento JSONL con fsync → ACK → READY 31001/ACK → `DRY_RUN: poweroff simulado`. Linux siguió activo. No había MAVROS ni nodos ROS conectados durante esta prueba.
+- La unidad systemd se instaló y quedó `active/enabled` con `RRA_POWER_SHUTDOWN_DRY_RUN=1`; `/etc/default/rra-power-shutdown` confirma el modo. Después se repitió el handshake a través del servicio persistente ejecutado como root. Lua no se subió ni se ejecutó y no se modificó ningún parámetro de la Matek. Este resultado valida compilación y protocolo ROS local, no la conexión física ni el comportamiento del firmware.
+
+## 2026-11-14 — enlace MAVROS real y estado de Lua
+- MAVROS se conectó a la Matek por `/dev/ttyS5:57600`; log confirmó FCU ArduPilot y `MY ID 1.191, TARGET ID 1.1`. `/mavros_node/state`: connected=true, armed=false, mode=HOLD. `/mavros_node/battery`: 7,633 V, corriente -0,2 A.
+- Se detectó y corrigió en el listener una incompatibilidad QoS: MAVROS raw source publica BEST_EFFORT y el subscriber RELIABLE no recibía. El servicio ahora corre como `rra`, usa BEST_EFFORT y ROS graph confirma subscriber de `rra_power_shutdown` en `/uas1/mavlink_source`. Listener registró heartbeat físico (msgid 0, sysid/compid 1.1). Unidad sigue activa y DRY_RUN=1.
+- Para inspeccionar parámetros se habilitaron temporalmente plugins `param` y `ftp`; se ejecutó pull/read solamente. Tras descargar 1150 parámetros, `SCR_ENABLE=0` y `SCR_HEAP_SIZE` no está declarado; no aparece ningún otro `SCR_*`. No se hizo ningún set ni operación FTP. Se restauró la allowlist habitual, con `param` y `ftp` excluidos.
+- No se pudo ejecutar Lua en este firmware con evidencia disponible de scripting incompleto; no se subió el archivo ni se reinició/cambió la Matek. La siguiente tarea es confirmar AP_Scripting/heap y la SD `APM/scripts`. No GPIO, Pololu, apagado Linux real ni comandos de movimiento.
