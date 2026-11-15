@@ -1,6 +1,17 @@
 # Estado comprobado de RRA
 
-Actualizado: 2026-11-08, hora Europe/Madrid. Revalidar lo variable al retomar.
+Actualizado: 2026-11-15, hora Europe/Madrid. Revalidar lo variable al retomar.
+
+## Estado vigente: protección de batería electrónica (2026-11-15)
+
+- La H743 ejecuta el monitor Lua de `src/rra_battery_protection`; `SCR_ENABLE=1`. Filtra la tensión y solicita el apagado del Companion. El Lua instalado no controla GPIO ni Pololu. El respaldo previo de parámetros y las evidencias están en `codex_handoff/evidencias/battery-protection-2026-11-15/`.
+- La Orange Pi tiene MAVROS UART5/57600 y el receptor de batería como servicios habilitados. El receptor permanece en **DRY_RUN=1**: una batería baja real todavía no apaga Linux. Se verificó arranque tras reinicio y recuperación de MAVROS; ante 120 s sin tramas válidas de la FCU se intenta reiniciar el enlace. La causa de un arranque con tramas UART anómalas y la estabilidad prolongada siguen pendientes.
+- Con 7,1 V simulados, la petición Lua→Companion, ACK, PREPARED y apagado simulado pasaron. También se comprobó que el Lua reintenta y completa el intercambio cuando el receptor vuelve tras más de 40 s detenido.
+- Por autorización del usuario se probó **apagado Linux real** con petición y PREPARED sintéticos en dominio ROS aislado; el journal confirmó `System Power Off` y el usuario volvió a encender la Pi. Tras el arranque, MAVROS y receptor recuperaron la telemetría real. Esta prueba no fue un apagado real iniciado por el Lua físico; el servicio habitual sigue en simulación.
+- Pendiente: resolver la caída de alimentación de la Orange Pi al mover el servo, valorar BEC separado y comprobar alimentación bajo carga; observar estabilidad y reconexión prolongadas; preparar y obtener autorización para una prueba de apagado real iniciada por el Lua con tensión simulada; instalar y verificar el Pololu primero con carga de prueba y, solo con autorización, implementar y activar el corte GPIO. Comprobar calibración de tensión, umbrales y protección por celda en el montaje final. No se ha validado corte físico ni recuperación ante todas las pérdidas de alimentación.
+- Defecto pendiente antes de habilitar apagado real: el contador de reintentos Lua se copia en el campo MAVLink `confirmation`, que es de 8 bits. Si se superan 255 envíos sin ACK, la codificación puede fallar y detener el script. Limitar ese campo y probar una desconexión prolongada; la prueba física realizada solo cubrió algo más de 40 segundos.
+
+La información anterior a esta sección es historial y puede describir estados ya superados. Ver `src/rra_battery_protection/README.md` para procedimiento y límites detallados.
 
 ## Estado vigente de rover físico y Companion — actualización 2026-11-08
 
@@ -967,6 +978,6 @@ Lectura de parámetros sin escritura: `SCR_ENABLE=0`, `BATT_MONITOR=4`, `BATT_VO
 
 ### Corrección — compatibilidad Lua confirmada en el firmware 4.7.2
 
-La consulta del 2026-11-14 al servidor oficial de firmware confirma que el build reportado por la Matek (ArduRover 4.7.2, commit `fb773567896014da007bca58358704d4a0d8516f`) corresponde a `Rover/stable-4.7.2/MatekH743`. Su `features.txt` incluye `AP_SCRIPTING_ENABLED`, `AP_SDCARD_STORAGE_ENABLED` y `AP_FILESYSTEM_SYS_ENABLED`. La ausencia de `SCR_HEAP_SIZE` con `SCR_ENABLE=0` no significa que scripting no esté compilado; la documentación indica refrescar/reiniciar los parámetros tras habilitarlo. En la continuación SSH funcionó y el servicio quedó `active` con `DRY_RUN=1`; una escucha UART5 leyó 6.569 bytes/8 s y encontró framing MAVLink con origen `1/1` y msgid 0, pero MAVROS permaneció `connected=false`. SSH volvió a agotar el tiempo de espera durante la comprobación. No se cambió `SCR_ENABLE`, no se hizo pull de parámetros y no se cargó Lua. Siguiente: recuperar SSH y resolver por qué MAVROS no acepta el flujo UART5; luego guardar parámetros y habilitar `SCR_ENABLE=1`, sin GPIO ni corte.
+La consulta del 2026-11-14 al servidor oficial de firmware confirma que el build reportado por la Matek (ArduRover 4.7.2, commit `fb773567896014da007bca58358704d4a0d8516f`) corresponde a `Rover/stable-4.7.2/MatekH743`. Su `features.txt` incluye `AP_SCRIPTING_ENABLED`, `AP_SDCARD_STORAGE_ENABLED` y `AP_FILESYSTEM_SYS_ENABLED`. La ausencia de `SCR_HEAP_SIZE` con `SCR_ENABLE=0` no significa que scripting no esté compilado; la documentación indica refrescar/reiniciar los parámetros tras habilitarlo. Actualización 2026-11-15: MAVROS conectó a 57600 por UART5 (`connected=true`, desarmado/HOLD), y el pull de parámetros devolvió `success=true`, 1150 parámetros. SSH se cayó durante la escritura de un snapshot local; no se escribió ningún parámetro ni se cargó Lua. Antes de perder SSH, el servicio seguía activo con `DRY_RUN=1`. Siguiente: recuperar SSH, guardar el snapshot antes de cambios, verificar `SCR_ENABLE`, habilitarlo solo si está 0 y leer `SCR_*`/SD; sin GPIO ni corte.
 
 Actualización de medida simultánea: multímetro 7,89 V y ArduPilot 7,854 V, diferencia 0,036 V (0,46%). A este nivel la calibración actual presenta buena coincidencia; no cambiar `BATT_VOLT_MULT` solo por la diferencia con la referencia de ficha. Falta precisión a otros voltajes y medir sag bajo servo.

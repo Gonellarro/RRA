@@ -1,0 +1,10 @@
+Nov 15 23:10:03 orangepizero2w bash[7028]: [WARN] [1794780603.732615255] [mavros_node.sys]: FCU: RRA: solicitando apagado Companion; 7.10V
+Nov 15 23:10:05 orangepizero2w bash[7028]: [WARN] [1794780605.234433918] [mavros_node.sys]: FCU: RRA: BAT ELECTRONICA BAJA - 7.4V
+Nov 15 23:10:08 orangepizero2w bash[7028]: [ERROR] [1794780608.241927865] [mavros_node.sys]: FCU: RRA: Companion sin ACK; sigue reintentando
+Nov 15 23:10:38 orangepizero2w systemd[1]: Started rra-power-shutdown.service - RRA electronics battery shutdown listener via existing MAVROS router.
+Nov 15 23:10:47 orangepizero2w bash[7408]: [WARN] [1794780647.010349923] [rra_power_shutdown]: DRY_RUN: no se apagará Linux; source=/uas1/mavlink_source; sink=/uas1/mavlink_sink
+Nov 15 23:10:47 orangepizero2w bash[7408]: [ERROR] [1794780647.829514366] [rra_power_shutdown]: Petición válida nonce=12520: filtrada=7.100 V instantánea=7.100 V
+Nov 15 23:10:48 orangepizero2w bash[7408]: [INFO] [1794780648.325419068] [rra_power_shutdown]: Matek confirmó PREPARED_TO_POWER_OFF
+Nov 15 23:10:48 orangepizero2w bash[7028]: [INFO] [1794780648.336838513] [mavros_node.sys]: FCU: RRA: Companion recibio la solicitud de apagado
+Nov 15 23:10:48 orangepizero2w bash[7028]: [INFO] [1794780648.347954063] [mavros_node.sys]: FCU: RRA: Companion listo; no hay corte fisico instalad
+Nov 15 23:10:50 orangepizero2w bash[7408]: [WARN] [1794780650.331393041] [rra_power_shutdown]: DRY_RUN: poweroff simulado nonce=12520

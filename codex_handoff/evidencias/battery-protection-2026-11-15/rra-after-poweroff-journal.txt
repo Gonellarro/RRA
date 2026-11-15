@@ -1,0 +1,5 @@
+Nov 15 23:17:01 orangepizero2w systemd[1]: Started rra-mavros.service - RRA MAVROS link to Matek on UART5.
+Nov 15 23:17:01 orangepizero2w systemd[1]: Started rra-power-shutdown.service - RRA electronics battery shutdown listener via existing MAVROS router.
+Nov 15 23:17:21 orangepizero2w bash[1224]: [INFO] [1794781041.099281760] [mavros_node]: CON: Got HEARTBEAT, connected. FCU: ArduPilot
+Nov 15 23:17:22 orangepizero2w bash[1227]: [WARN] [1794781042.133034593] [rra_power_shutdown]: DRY_RUN: no se apagará Linux; source=/uas1/mavlink_source; sink=/uas1/mavlink_sink
+Nov 15 23:17:22 orangepizero2w bash[1227]: [INFO] [1794781042.149956427] [rra_power_shutdown]: MAVLink raw recibido desde MAVROS; primer msgid=0, origen=1.1

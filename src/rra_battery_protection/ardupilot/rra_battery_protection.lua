@@ -48,6 +48,7 @@ local warning_sent, shutdown_sent, sensor_fault_sent = false, false, false
 local companion_chan, request_nonce = nil, nil
 local request_ack, prepared_ack = false, false
 local request_attempts, last_request_ms = 0, 0
+local no_ack_reported = false
 local missing_companion_reported = false
 local prepared_at_ms = nil
 local state = "NORMAL"
@@ -66,18 +67,9 @@ end
 local function threshold_confirmed(key, value, threshold, duration, now)
     if value <= threshold then
         if timers[key] == nil then timers[key] = now end
-        recovery[key] = nil
-    elseif value > threshold + P("HYST_V") then
-        if timers[key] ~= nil then
-            if recovery[key] == nil then recovery[key] = now end
-            if elapsed(now, recovery[key], 3) then
-                timers[key], recovery[key] = nil, nil
-            end
-        end
     else
-        -- Keep the pending timer inside the hysteresis band, but do not count
-        -- this interval as a continuous recovery.
-        recovery[key] = nil
+        -- Confirmation requires continuous time below the threshold.
+        timers[key] = nil
     end
     return elapsed(now, timers[key], duration)
 end
@@ -89,7 +81,7 @@ local function send_ack(chan, command, target_sysid, target_compid)
         target_system = 0, target_component = target_compid,
     }
     local id, payload = mavlink_msgs.encode("COMMAND_ACK", ack)
-    return mavlink:send_chan(chan, id, payload, target_sysid)
+    return mavlink:send_chan(chan, id, payload)
 end
 
 local function send_shutdown_request(now, filtered_v, instant_v)
@@ -104,6 +96,7 @@ local function send_shutdown_request(now, filtered_v, instant_v)
     end
     missing_companion_reported = false
     request_nonce = (millis() % 16777216):toint()
+    if request_nonce == 0 then request_nonce = 1 end
     local request = {
         param1 = request_nonce,
         param2 = filtered_v,
@@ -114,7 +107,7 @@ local function send_shutdown_request(now, filtered_v, instant_v)
         target_system = 1, target_component = 191, confirmation = 0,
     }
     local id, payload = mavlink_msgs.encode("COMMAND_LONG", request)
-    local sent = mavlink:send_chan(companion_chan, id, payload, 1)
+    local sent = mavlink:send_chan(companion_chan, id, payload)
     if sent then
         shutdown_sent = true
         request_attempts = 1
@@ -138,7 +131,7 @@ local function process_mavlink(now)
         elseif decoded.msgid == HEARTBEAT_ID and decoded.sysid == 1 and decoded.compid == 191 then
             companion_chan = chan
         elseif decoded.msgid == COMMAND_ACK_ID and decoded.sysid == 1 and decoded.compid == 191 then
-            if decoded.command == MAV_CMD_WAYPOINT_USER_1 and decoded.result == MAV_RESULT_ACCEPTED then
+            if shutdown_sent and not request_ack and decoded.command == MAV_CMD_WAYPOINT_USER_1 and decoded.result == MAV_RESULT_ACCEPTED then
                 request_ack = true
                 gcs:send_text(6, "RRA: Companion recibio la solicitud de apagado")
             end
@@ -165,6 +158,7 @@ local function update()
         voltage = battery:voltage(batt_idx)
     end
     if voltage == nil or voltage ~= voltage or voltage < 5.0 or voltage > 9.0 then
+        timers, recovery = {}, {}
         if bad_since == nil then bad_since = now end
         if elapsed(now, bad_since, 3) and not sensor_fault_sent then
             state = "SENSOR_FAULT"
@@ -189,11 +183,17 @@ local function update()
     if not warning_sent and threshold_confirmed("warn", ema, P("WARN_V"), P("WARN_S"), now) then
         warning_sent, state = true, "LOW_VOLTAGE_WARNING"
         gcs:send_text(4, "RRA: BAT ELECTRONICA BAJA - 7.4V")
-    elseif warning_sent and ema > P("WARN_V") + P("HYST_V")
-            and elapsed(now, recovery.warn, 3) then
-        warning_sent = false
-        if not shutdown_sent then state = "NORMAL" end
-        gcs:send_text(6, "RRA: tension recuperada; aviso retirado")
+    elseif warning_sent then
+        if ema > P("WARN_V") + P("HYST_V") then
+            recovery.warn = recovery.warn or now
+            if elapsed(now, recovery.warn, 3) then
+                warning_sent, recovery.warn = false, nil
+                if not shutdown_sent then state = "NORMAL" end
+                gcs:send_text(6, "RRA: tension recuperada; aviso retirado")
+            end
+        else
+            recovery.warn = nil
+        end
     end
 
     if not shutdown_sent and threshold_confirmed("shutdown", ema, P("SHUT_V"), P("SHUT_S"), now) then
@@ -210,7 +210,12 @@ local function update()
     end
     if shutdown_sent then
         state = "SHUTDOWN_REQUESTED"
-        if request_attempts < 5 and not request_ack and now-last_request_ms >= 1000 then
+        local retry_interval = request_attempts < 5 and 1000 or 5000
+        if not request_ack and request_attempts >= 5 and not no_ack_reported then
+            gcs:send_text(3, "RRA: Companion sin ACK; sigue reintentando")
+            no_ack_reported = true
+        end
+        if not request_ack and now-last_request_ms >= retry_interval then
             local retry = {
                 param1=request_nonce, param2=ema, param3=voltage, param4=1,
                 param5=0, param6=0, param7=0,
@@ -218,13 +223,10 @@ local function update()
                 target_system=1, target_component=191, confirmation=request_attempts,
             }
             local id, payload = mavlink_msgs.encode("COMMAND_LONG", retry)
-            if companion_chan ~= nil and mavlink:send_chan(companion_chan, id, payload, 1) then
+            last_request_ms = now
+            if companion_chan ~= nil and mavlink:send_chan(companion_chan, id, payload) then
                 request_attempts = request_attempts + 1
-                last_request_ms = now
             end
-        elseif request_attempts >= 5 and not request_ack then
-            gcs:send_text(3, "RRA: Companion no confirma; no hay corte de alimentacion")
-            request_ack = true -- report once; request remains latched, no retry flood
         end
         -- The READY handshake is retained for later Pololu integration. With
         -- no Pololu fitted, this script never switches a GPIO or cuts power.
@@ -237,4 +239,5 @@ local function update()
     return update, 500
 end
 
+gcs:send_text(6, "RRA: monitor bateria Lua iniciado; sin corte")
 return update()

@@ -12,6 +12,7 @@ from rra_battery_protection.mavlink_codec import (
     decode_command_long,
     has_expected_endpoints,
     make_command_ack,
+    make_command_long,
     pack_command_ack_payload,
     pack_command_long_payload,
     payload_from_ros,
@@ -52,6 +53,7 @@ class MavlinkCodecTests(unittest.TestCase):
             decoded, fcu_system=1, fcu_component=1,
             companion_system=1, companion_component=191))
         self.assertTrue(shutdown_values_valid(decoded))
+        self.assertEqual(decode_command_long(as_ros_message(payload[:-1])), decoded)
         self.assertFalse(has_expected_endpoints(
             decoded, fcu_system=1, fcu_component=1,
             companion_system=1, companion_component=190))
@@ -100,6 +102,24 @@ class MavlinkCodecTests(unittest.TestCase):
         self.assertEqual(payload_from_ros(msg), expected_payload)
         crc_input = bytes((10, 0, 0, 7, 1, 191, 77, 0, 0)) + expected_payload
         self.assertEqual(msg.checksum, x25_checksum(crc_input, 143))
+
+    def test_command_is_trimmed_before_wire_checksum(self):
+        class FakeMavlink:
+            def __init__(self):
+                self.header = SimpleNamespace(stamp=None)
+        msg_pkg = types.ModuleType("mavros_msgs.msg")
+        msg_pkg.Mavlink = FakeMavlink
+        parent = types.ModuleType("mavros_msgs")
+        parent.msg = msg_pkg
+        node = SimpleNamespace(get_clock=lambda: SimpleNamespace(
+            now=lambda: SimpleNamespace(to_msg=lambda: "stamp")))
+        with patch.dict(sys.modules, {"mavros_msgs": parent, "mavros_msgs.msg": msg_pkg}):
+            msg = make_command_long(node, seq=7, command=31001, target_system=1,
+                                    target_component=1, params=(12345., 1., 0., 0., 0., 0., 0.))
+        self.assertEqual(msg.len, 32)
+        wire_payload = payload_from_ros(msg)
+        crc_input = bytes((32, 0, 0, 7, 1, 191, 76, 0, 0)) + wire_payload
+        self.assertEqual(msg.checksum, x25_checksum(crc_input, 152))
 
 
 if __name__ == "__main__":

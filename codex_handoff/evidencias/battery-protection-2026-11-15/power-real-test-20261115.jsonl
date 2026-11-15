@@ -1,0 +1,1 @@
+{"event":"low_voltage_shutdown_requested","utc":"2026-11-15T22:16:52.295504+00:00","nonce":12345,"filtered_voltage_v":7.25,"instant_voltage_v":7.239999771118164,"dry_run":false,"source":"MAVLink COMMAND_LONG 31000 via MAVROS raw topic"}

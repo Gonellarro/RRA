@@ -47,6 +47,7 @@ def main():
                 "event_log", str(Path.home() / ".local/state/rra/battery-protection.jsonl"))
             self.declare_parameter("prepare_ack_timeout_s", 3.0)
             self.declare_parameter("poweroff_after_prepare_s", 2.0)
+            self.declare_parameter("raw_stale_restart_s", 120.0)
 
             self.dry_run = os.environ.get("RRA_POWER_SHUTDOWN_DRY_RUN", "1") != "0"
             self.event_log = Path(str(self.get_parameter("event_log").value))
@@ -67,6 +68,7 @@ def main():
             self.completed_nonces = deque(maxlen=32)
             self.raw_rx_frames = 0
             self.raw_rx_reported = False
+            self.last_raw_at = time.monotonic()
             self.timer = self.create_timer(0.1, self.on_tick)
             mode = "DRY_RUN: no se apagará Linux" if self.dry_run else "MODO REAL: apagado ordenado habilitado"
             self.get_logger().warning(
@@ -109,6 +111,9 @@ def main():
         def on_frame(self, msg):
             if int(msg.framing_status) == FRAMING_OK:
                 self.raw_rx_frames += 1
+                if (int(msg.sysid) == int(self.get_parameter("fcu_system_id").value)
+                        and int(msg.compid) == int(self.get_parameter("fcu_component_id").value)):
+                    self.last_raw_at = time.monotonic()
                 if not self.raw_rx_reported:
                     self.raw_rx_reported = True
                     self.get_logger().info(
@@ -176,6 +181,20 @@ def main():
                 self.get_logger().info("Matek confirmó PREPARED_TO_POWER_OFF")
 
         def on_tick(self):
+            # Restart via systemd if the ROS reader stops receiving traffic.
+            # This also retries periodically while the FCU or link is down;
+            # never restart during an in-flight shutdown handshake.
+            stale_s = float(self.get_parameter("raw_stale_restart_s").value)
+            if (self.pending_nonce is None and stale_s > 0
+                    and time.monotonic() - self.last_raw_at >= stale_s):
+                self.get_logger().error(
+                    f"Sin tramas de la Matek durante {stale_s:.0f} s; recuperando enlace")
+                if os.environ.get("RRA_MAVROS_RECOVERY") == "1":
+                    subprocess.run(
+                        ["/usr/bin/sudo", "-n", "/usr/bin/systemctl", "--no-block", "restart", "rra-mavros.service"],
+                        check=True, timeout=5)
+                    return
+                raise RuntimeError("MAVLink raw stream timed out")
             if self.pending_nonce is None:
                 return
             now = time.monotonic()

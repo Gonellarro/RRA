@@ -70,9 +70,9 @@ def decode_command_long(msg) -> CommandLong | None:
     if int(msg.framing_status) != FRAMING_OK or int(msg.msgid) != COMMAND_LONG_ID:
         return None
     payload = payload_from_ros(msg)
-    if len(payload) < 33:
+    if len(payload) < 32:
         return None
-    fields = struct.unpack_from("<7fHBBB", payload)
+    fields = struct.unpack_from("<7fHBBB", payload.ljust(33, b"\0"))
     return CommandLong(int(msg.sysid), int(msg.compid), fields[8], fields[9],
                        fields[7], tuple(fields[:7]))
 
@@ -82,6 +82,10 @@ def _ros_frame(node, msgid: int, payload: bytes, crc_extra: int, seq: int,
     """Create a mavros_msgs/Mavlink v2 frame for publication on mavlink_sink."""
     from mavros_msgs.msg import Mavlink
 
+    # MAVLink 2 omits trailing zero bytes before calculating the checksum.
+    # MAVROS serializes with the same trimming; hashing an untrimmed payload
+    # would leave the wire packet with a mismatched CRC.
+    payload = payload.rstrip(b"\0") or b"\0"
     msg = Mavlink()
     msg.header.stamp = node.get_clock().now().to_msg()
     msg.framing_status = FRAMING_OK

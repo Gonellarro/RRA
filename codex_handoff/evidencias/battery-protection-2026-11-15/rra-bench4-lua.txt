@@ -1,0 +1,5 @@
+[mavros_node-1] [WARN] [1794779543.877125115] [mavros_node.sys]: FCU: RRA: solicitando apagado Companion; 7.10V
+[mavros_node-1] [WARN] [1794779544.376540656] [mavros_node.sys]: FCU: RRA: BAT ELECTRONICA BAJA - 7.4V
+[mavros_node-1] [INFO] [1794779546.384369535] [mavros_node.sys]: FCU: RRA: Companion recibio la solicitud de apagado
+[mavros_node-1] [INFO] [1794779546.393071002] [mavros_node.sys]: FCU: TEST RX cmd=31001 src=1.191 dst=1.1 n=13518
+[mavros_node-1] [INFO] [1794779546.408790433] [mavros_node.sys]: FCU: RRA: Companion listo; no hay corte fisico instalad

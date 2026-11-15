@@ -94,6 +94,8 @@ class Protection:
         self.last_t = now
         valid = healthy and voltage is not None and isfinite(voltage) and self.cfg.min_valid_v <= voltage <= self.cfg.max_valid_v
         if not valid:
+            self.pending_since = {k: None for k in self.pending_since}
+            self.recovery_since = None
             if self.invalid_since is None:
                 self.invalid_since = now
             if now - self.invalid_since >= self.cfg.sensor_fault_s and not self.sensor_fault_latched:
@@ -127,13 +129,9 @@ class Protection:
                 if self.pending_since[key] is None:
                     self.pending_since[key] = now
                 return now - self.pending_since[key] >= duration
-            # Hysteresis band keeps a pending timer alive. Clear only after a
-            # sustained rise above threshold + hysteresis.
-            if filtered > threshold + self.cfg.hysteresis_v:
-                if self.recovery_since is None:
-                    self.recovery_since = now
-                if now - self.recovery_since >= self.cfg.recovery_confirm_s:
-                    self.pending_since[key] = None
+            # Confirmation requires an uninterrupted low filtered voltage.
+            # Hysteresis applies to recovery of a confirmed warning.
+            self.pending_since[key] = None
             return False
 
         if filtered > self.cfg.warning_v + self.cfg.hysteresis_v:

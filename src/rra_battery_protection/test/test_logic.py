@@ -31,6 +31,16 @@ class ProtectionTests(unittest.TestCase):
         self.assertNotIn("shutdown", events)
         self.assertNotIn("power_cutoff", events)
 
+    def test_pending_timer_resets_in_hysteresis_band(self):
+        cfg = Config(ema_tau_s=0.01, warning_confirm_s=3.0)
+        _, events = self.run_values([7.39] * 3 + [7.45] * 10 + [7.39] * 5, cfg)
+        self.assertNotIn("warning", events)
+
+    def test_invalid_sample_interrupts_confirmation(self):
+        cfg = Config(ema_tau_s=0.01, warning_confirm_s=3.0)
+        _, events = self.run_values([7.39] * 5 + [None] + [7.39] * 5, cfg)
+        self.assertNotIn("warning", events)
+
     def test_persistent_bad_sensor_fault_does_not_invent_low_voltage(self):
         p, events = self.run_values([None] * 10)
         self.assertIn("sensor_fault", events)

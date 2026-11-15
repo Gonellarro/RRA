@@ -1,0 +1,18 @@
+[Unit]
+Description=RRA MAVROS link to Matek on UART5
+Wants=rra-power-shutdown.service
+After=dev-ttyS5.device
+
+[Service]
+Type=simple
+User=rra
+Group=rra
+Environment=ROS_DOMAIN_ID=205
+Environment=ROS_AUTOMATIC_DISCOVERY_RANGE=LOCALHOST
+ExecStart=/usr/bin/bash -lc 'source /opt/ros/lyrical/setup.bash && source /home/rra/rra_ws/install/setup.bash && exec ros2 run mavros mavros_node --ros-args -r __node:=mavros_node --params-file /etc/rra/mavros_hardware.yaml -p fcu_url:=serial:///dev/ttyS5:57600'
+Restart=always
+RestartSec=5
+TimeoutStopSec=15
+
+[Install]
+WantedBy=multi-user.target

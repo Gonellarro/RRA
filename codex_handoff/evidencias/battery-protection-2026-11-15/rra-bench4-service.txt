@@ -1,0 +1,9 @@
+Nov 15 22:51:48 orangepizero2w systemd[1]: rra-power-shutdown.service: Deactivated successfully.
+Nov 15 22:51:48 orangepizero2w systemd[1]: Stopped rra-power-shutdown.service - RRA electronics battery shutdown listener via existing MAVROS router.
+Nov 15 22:51:48 orangepizero2w systemd[1]: rra-power-shutdown.service: Consumed 1min 10.156s CPU time over 19min 42.824s wall clock time, 75M memory peak.
+Nov 15 22:51:48 orangepizero2w systemd[1]: Started rra-power-shutdown.service - RRA electronics battery shutdown listener via existing MAVROS router.
+Nov 15 22:51:57 orangepizero2w bash[22482]: [WARN] [1794779517.462643999] [rra_power_shutdown]: DRY_RUN: no se apagará Linux; source=/uas1/mavlink_source; sink=/uas1/mavlink_sink
+Nov 15 22:52:25 orangepizero2w bash[22482]: [INFO] [1794779545.866480770] [rra_power_shutdown]: MAVLink raw recibido desde MAVROS; primer msgid=76, origen=1.1
+Nov 15 22:52:25 orangepizero2w bash[22482]: [ERROR] [1794779545.871706525] [rra_power_shutdown]: Petición válida nonce=13518: filtrada=7.100 V instantánea=7.100 V
+Nov 15 22:52:26 orangepizero2w bash[22482]: [INFO] [1794779546.368087645] [rra_power_shutdown]: Matek confirmó PREPARED_TO_POWER_OFF
+Nov 15 22:52:28 orangepizero2w bash[22482]: [WARN] [1794779548.384841032] [rra_power_shutdown]: DRY_RUN: poweroff simulado nonce=13518
