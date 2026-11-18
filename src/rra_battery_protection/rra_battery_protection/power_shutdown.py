@@ -85,7 +85,9 @@ def main():
                 target_system=target_system, target_component=target_component))
 
         def publish_prepared(self, nonce):
-            params = (float(nonce), 1.0, 0.0, 0.0, 0.0, 0.0, 0.0)
+            # PREPARED reports whether poweroff is real. Lua must never treat
+            # a DRY_RUN listener as ready to lose power.
+            params = (float(nonce), 0.0 if self.dry_run else 1.0, 0.0, 0.0, 0.0, 0.0, 0.0)
             self.publisher.publish(make_command_long(
                 self, seq=self.next_seq(), command=CMD_COMPANION_PREPARED,
                 target_system=int(self.get_parameter("fcu_system_id").value),

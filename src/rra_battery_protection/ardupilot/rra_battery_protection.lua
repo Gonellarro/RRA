@@ -1,9 +1,8 @@
--- RRA electronics battery monitor and Companion orderly-shutdown request.
--- It has NO relay/GPIO/power-cut code. Do not install until the parameter-table
--- key and MAVLink scripting modules have been checked on the exact FCU build.
+-- RRA electronics battery monitor, orderly shutdown and optional Pololu cut.
+-- Physical output is disabled by default; enabling it requires a reboot.
 local TABLE_KEY = 111 -- verify this is unused by every script on the FCU
 local PARAM_PREFIX = "RBP_"
-assert(param:add_table(TABLE_KEY, PARAM_PREFIX, 12), "RBP parameter table unavailable/conflict")
+assert(param:add_table(TABLE_KEY, PARAM_PREFIX, 15), "RBP parameter table unavailable/conflict")
 assert(param:add_param(TABLE_KEY, 1, "WARN_V", 7.4), "RBP WARN_V init failed")
 assert(param:add_param(TABLE_KEY, 2, "SHUT_V", 7.3), "RBP SHUT_V init failed")
 assert(param:add_param(TABLE_KEY, 3, "URGENT_V", 7.2), "RBP URGENT_V init failed")
@@ -16,6 +15,9 @@ assert(param:add_param(TABLE_KEY, 9, "HYST_V", 0.1), "RBP HYST_V init failed")
 assert(param:add_param(TABLE_KEY, 10, "BATT_IDX", 0), "RBP BATT_IDX init failed")
 assert(param:add_param(TABLE_KEY, 11, "DEBUG", 0), "RBP DEBUG init failed")
 assert(param:add_param(TABLE_KEY, 12, "EMERGEN", 0), "RBP EMERGEN init failed")
+assert(param:add_param(TABLE_KEY, 13, "CUT_EN", 0), "RBP CUT_EN init failed")
+assert(param:add_param(TABLE_KEY, 14, "CUT_WAIT", 20), "RBP CUT_WAIT init failed")
+assert(param:add_param(TABLE_KEY, 15, "CUT_GRACE", 5), "RBP CUT_GRACE init failed")
 
 local function P(name) return param:get(PARAM_PREFIX .. name) end
 
@@ -51,7 +53,11 @@ local request_attempts, last_request_ms = 0, 0
 local no_ack_reported = false
 local missing_companion_reported = false
 local prepared_at_ms = nil
+local prepared_real = nil
 local state = "NORMAL"
+local cut_enabled_at_boot = P("CUT_EN") == 1
+local critical_at_ms, cut_pulse_at_ms = nil, nil
+local cut_reported, cut_complete = false, false
 
 local function med5()
     local a = {}
@@ -62,6 +68,48 @@ end
 
 local function elapsed(now, since, seconds)
     return since ~= nil and (now - since) >= seconds * 1000
+end
+
+local function cutoff_update(now)
+    if cut_pulse_at_ms ~= nil and elapsed(now, cut_pulse_at_ms, 1) then
+        relay:off(0)
+        cut_pulse_at_ms = nil
+    end
+    if critical_at_ms == nil or cut_complete then return end
+    if prepared_real == false then
+        if not cut_reported then
+            gcs:send_text(4, "RRA: corte bloqueado; Companion en simulacion")
+            cut_reported = true
+        end
+        return
+    end
+    local ready = prepared_real == true and elapsed(now, prepared_at_ms, math.max(0, P("CUT_GRACE")))
+    local timeout = elapsed(now, critical_at_ms, math.max(1, P("CUT_WAIT")))
+    if not ready and not timeout then return end
+    if not cut_enabled_at_boot then
+        if not cut_reported then
+            gcs:send_text(4, "RRA: corte simulado; salida deshabilitada")
+            cut_reported = true
+        end
+        return
+    end
+    if P("CUT_EN") ~= 1 or param:get("SERVO12_FUNCTION") ~= -1
+            or param:get("RELAY1_FUNCTION") ~= 1 or param:get("RELAY1_PIN") ~= 61
+            or param:get("RELAY1_DEFAULT") ~= 0 or param:get("RELAY1_INVERTED") ~= 0
+            or not relay:enabled(0) then
+        if not cut_reported then
+            gcs:send_text(3, "RRA: corte bloqueado; revisar configuracion")
+            cut_reported = true
+        end
+        return
+    end
+    if timeout and not ready then
+        gcs:send_text(3, "RRA: corte por plazo; espera no completada")
+    else
+        gcs:send_text(4, "RRA: corte por bateria critica")
+    end
+    cut_complete, cut_pulse_at_ms = true, now
+    relay:on(0)
 end
 
 local function threshold_confirmed(key, value, threshold, duration, now)
@@ -140,9 +188,13 @@ local function process_mavlink(now)
                 and decoded.target_system == 1 and decoded.target_component == 1
                 and request_nonce ~= nil and math.floor(decoded.param1 + 0.5) == request_nonce then
             prepared_ack = true
-            prepared_at_ms = now
+            local is_real = decoded.param2 == 1
+            if prepared_at_ms == nil or (prepared_real == false and is_real) then
+                prepared_at_ms = now
+            end
+            prepared_real = is_real
             send_ack(chan, decoded.command, decoded.sysid, decoded.compid)
-            gcs:send_text(6, "RRA: Companion listo; no hay corte fisico instalado")
+            gcs:send_text(6, "RRA: Companion listo para apagado")
         end
     end
 end
@@ -150,6 +202,7 @@ end
 local function update()
     local now = millis():toint()
     process_mavlink(now)
+    cutoff_update(now)
     local dt = last_ms and math.max(1, now-last_ms) or 500
     last_ms = now
     local batt_idx = math.floor(P("BATT_IDX"))
@@ -201,7 +254,10 @@ local function update()
     end
     -- Fast critical path: if 7.2 V persists for 5 s, request Pi shutdown
     -- immediately even when the 7.3 V/10 s timer has not completed.
-    if not shutdown_sent and threshold_confirmed("urgent", ema, P("URGENT_V"), P("URGENT_S"), now) then
+    if critical_at_ms == nil and threshold_confirmed("urgent", ema, P("URGENT_V"), P("URGENT_S"), now) then
+        critical_at_ms = now
+    end
+    if critical_at_ms ~= nil and not shutdown_sent then
         send_shutdown_request(now, ema, voltage)
     end
     if not shutdown_sent and P("EMERGEN") > 0
@@ -225,13 +281,13 @@ local function update()
             local id, payload = mavlink_msgs.encode("COMMAND_LONG", retry)
             last_request_ms = now
             if companion_chan ~= nil and mavlink:send_chan(companion_chan, id, payload) then
-                request_attempts = request_attempts + 1
+                -- COMMAND_LONG.confirmation is uint8; keep retrying at 255
+                -- rather than eventually failing to encode after a long outage.
+                request_attempts = math.min(request_attempts + 1, 255)
             end
         end
-        -- The READY handshake is retained for later Pololu integration. With
-        -- no Pololu fitted, this script never switches a GPIO or cuts power.
         if prepared_ack and prepared_at_ms ~= nil and elapsed(now, prepared_at_ms, 5) then
-            state = "COMPANION_PREPARED_NO_CUTOFF"
+            state = "COMPANION_PREPARED"
         end
     elseif ema <= P("SHUT_V") then
         state = "SHUTDOWN_PENDING"
@@ -239,5 +295,9 @@ local function update()
     return update, 500
 end
 
-gcs:send_text(6, "RRA: monitor bateria Lua iniciado; sin corte")
+if cut_enabled_at_boot then
+    gcs:send_text(4, "RRA: monitor iniciado; corte habilitado")
+else
+    gcs:send_text(6, "RRA: monitor iniciado; corte deshabilitado")
+end
 return update()

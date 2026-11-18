@@ -77,7 +77,7 @@ def main():
             cmd = decode_command_long(msg)
             if (cmd is not None and cmd.command == CMD_COMPANION_PREPARED
                     and cmd.target_system == 1 and cmd.target_component == 1
-                    and round(cmd.params[0]) == nonce):
+                    and round(cmd.params[0]) == nonce and cmd.params[1] == 0.0):
                 self.received_ready = True
 
         def on_fcu_frame(self, msg):
