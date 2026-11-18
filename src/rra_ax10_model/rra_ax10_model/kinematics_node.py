@@ -51,6 +51,7 @@ class Ax10KinematicsNode(Node):
         self.cmd = None
         self.last_command_time = None
         self.pose = (0.0, 0.0, 0.0)
+        self.wheel_angle = 0.0
         self.last_time = self.get_clock().now()
 
         self.odom_pub = self.create_publisher(Odometry, self.odom_topic, 10)
@@ -99,8 +100,11 @@ class Ax10KinematicsNode(Node):
         joints.name = ["front_left_steering_joint", "front_right_steering_joint",
                        "front_left_wheel_joint", "front_right_wheel_joint",
                        "rear_left_wheel_joint", "rear_right_wheel_joint"]
-        wheel_rate = -speed / self.geometry.wheel_radius_m
-        joints.position = [left, right, 0.0, 0.0, 0.0, 0.0]
+        # Para un eje +Y ROS, la rodadura hacia +X tiene giro positivo.
+        # Es una aproximación común a las cuatro ruedas, no una medición.
+        wheel_rate = speed / self.geometry.wheel_radius_m
+        self.wheel_angle = math.remainder(self.wheel_angle + wheel_rate * dt, 2.0 * math.pi)
+        joints.position = [left, right] + [self.wheel_angle] * 4
         joints.velocity = [0.0, 0.0, wheel_rate, wheel_rate, wheel_rate, wheel_rate]
         self.joints_pub.publish(joints)
 

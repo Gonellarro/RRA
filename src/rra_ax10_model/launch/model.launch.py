@@ -24,6 +24,7 @@ def generate_launch_description():
         DeclareLaunchArgument("rear_track_m", default_value="0.203"),
         Node(package="robot_state_publisher", executable="robot_state_publisher",
              name="robot_state_publisher",
+             remappings=[("joint_states", "/rra/model/joint_states")],
              parameters=[{"robot_description": robot_description}]),
         Node(package="rra_ax10_model", executable="ax10_kinematics",
              name="ax10_kinematics",
