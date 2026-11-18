@@ -1,0 +1,4 @@
+Nov 18 20:43:07 orangepizero2w systemd[1]: systemd-poweroff.service: Deactivated successfully.
+Nov 18 20:43:07 orangepizero2w systemd[1]: Finished systemd-poweroff.service - System Power Off.
+Nov 18 20:43:07 orangepizero2w systemd[1]: Reached target poweroff.target - System Power Off.
+Nov 18 20:43:07 orangepizero2w systemd[1]: Shutting down.

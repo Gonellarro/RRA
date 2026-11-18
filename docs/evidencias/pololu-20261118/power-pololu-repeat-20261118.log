@@ -1,0 +1,6 @@
+[WARN] [1795035582.308595175] [rra_power_shutdown]: MODO REAL: apagado ordenado habilitado; source=/uas1/mavlink_source; sink=/uas1/mavlink_sink
+[INFO] [1795035609.760738270] [rra_power_shutdown]: MAVLink raw recibido desde MAVROS; primer msgid=253, origen=1.1
+[ERROR] [1795035619.807257641] [rra_power_shutdown]: Petición válida nonce=25612: filtrada=7.106 V instantánea=7.100 V
+[INFO] [1795035620.283589314] [rra_power_shutdown]: Matek confirmó PREPARED_TO_POWER_OFF
+[FATAL] [1795035622.578332113] [rra_power_shutdown]: Solicitado apagado ordenado Linux nonce=25612
+[ros2run]: Received signal:  Terminated

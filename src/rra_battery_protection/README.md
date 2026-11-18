@@ -2,7 +2,7 @@
 
 Paquete ROS 2 + ArduPilot Lua para alertar de tensión baja, pedir un apagado Linux ordenado y controlar el OFF del Pololu. Los valores predeterminados del código son corte deshabilitado y `DRY_RUN=1`.
 
-**Rover RRA, estado confirmado el 18-11-2026:** Pololu OFF conectado a S12/GPIO61; `RBP_CUT_EN=1`, `RBP_CUT_GRACE=12`, `RBP_CUT_WAIT=25` y servicio permanente de la Pi `RRA_POWER_SHUTDOWN_DRY_RUN=0`. Con tensión simulada se comprobó el apagado de Linux y el corte físico; tras esperar, el usuario encendió el sistema a la primera. No se ha provocado una descarga real. Los umbrales son 7,4 V/10 s (aviso), 7,3 V/10 s (solicitud) y 7,2 V/5 s (crítico). Mantener avisador por celda. Las secciones de ensayos con fechas anteriores son historial y no reflejan necesariamente los parámetros actuales.
+**Rover RRA, estado confirmado el 18-11-2026:** Pololu OFF conectado a S12/GPIO61; `RBP_CUT_EN=1`, `RBP_CUT_GRACE=12`, `RBP_CUT_WAIT=25` y servicio permanente de la Pi `RRA_POWER_SHUTDOWN_DRY_RUN=0`. Con tensión simulada se comprobó el apagado de Linux y el corte físico; tras esperar, el usuario encendió el sistema a la primera. Los [registros seleccionados de la prueba](../../docs/evidencias/pololu-20261118/) se comparten en el repositorio. No se ha provocado una descarga real. Los umbrales son 7,4 V/10 s (aviso), 7,3 V/10 s (solicitud) y 7,2 V/5 s (crítico). Mantener avisador por celda. Las secciones de ensayos con fechas anteriores son historial y no reflejan necesariamente los parámetros actuales.
 
 ## Estado actual
 

@@ -1,19 +1,39 @@
 # Estado comprobado de RRA
 
-Actualizado: 2026-11-15, hora Europe/Madrid. Revalidar lo variable al retomar.
+Actualizado: 2026-11-18, hora Europe/Madrid. Revalidar lo variable al retomar.
 
-## Estado vigente: protección de batería electrónica (2026-11-15)
+## Estado vigente — 18-11-2026
+
+La protección de batería de electrónica quedó activada: Pololu OFF conectado a S12/GPIO61, `RBP_CUT_EN=1`, `RBP_CUT_GRACE=12`, `RBP_CUT_WAIT=25` y servicio Companion `RRA_POWER_SHUTDOWN_DRY_RUN=0`. Una prueba con tensión simulada confirmó solicitud, apagado ordenado Linux y corte físico; tras esperar, el usuario confirmó encendido a la primera. No se ha validado una descarga real ni explicado el segundo corte ocurrido tras el primer ensayo. Ver la entrada final de activación y `src/rra_battery_protection/README.md`.
+
+El modelo AX10 compiló en la Orange Pi; la evitación fue ensayada solo en SITL. Con pérdida del flujo simulado de proximidad se reanudó el movimiento en modos asistidos probados. La caracterización real del sonar y la política ante fallo quedan pendientes. Ver `docs/RESULTADOS_EVITACION_SITL_2026-11-18.md`.
+
+Las secciones siguientes son historia por fecha y pueden contener parámetros o indicaciones ya superados. El estado vigente es el anterior y las actualizaciones posteriores.
+
+## Historial 2026-11-18 — protección de batería
+
+Prueba física posterior del Pololu: el usuario conectó OFF a S12 y autorizó un ensayo de corte real con tensión simulada. Los registros confirman solicitud de la Matek, PREPARED y apagado ordenado de Linux hasta `poweroff.target`; el usuario observó que se apagó toda la electrónica. Al reactivar el Pololu, según el usuario el sistema volvió a apagarse una vez; lo reactivó de nuevo y quedó funcionando. No se conoce aún la causa del segundo corte. El usuario desconectó S12 de OFF para investigar. Se verificaron `SCR_USER1=0` y `RBP_CUT_EN=0`, se restauró en SD el Lua normal CRC `7d2daa60` y se recargó scripting; apareció `corte deshabilitado`. Con OFF desconectado, tras reiniciar la FCU el relé reportó bajo; un pulso de prueba cambió su estado 0→1→0 y quedó bajo. Esto no mide el voltaje físico. MAVROS y receptor se dejaron activos con DRY_RUN=1. No habilitar corte automático hasta entender el segundo corte y validar los arranques con el cableado definitivo.
+
+Actualización posterior: el usuario conectó OFF del Pololu a S12 y lo desconectó temporalmente para medir. S12 corresponde a GPIO61; configurados y confirmados `SERVO12_FUNCTION=-1`, `RELAY1_FUNCTION=1`, `RELAY1_PIN=61`, `RELAY1_DEFAULT=0`, `RELAY1_INVERTED=0`; sonar en GPIO54. Se desplegó la lógica opcional de corte (`RBP_CUT_EN=0`, `CUT_WAIT=20`, `CUT_GRACE=5`, emergencia deshabilitada). Con tensión simulada 7,1 V y Companion en DRY_RUN se completó el protocolo y el Lua bloqueó el corte. Falta medir S12 en bajo y alto con el cable OFF desconectado, verificar cableado físico y probar el Pololu con carga de prueba. No reconectar OFF ni habilitar corte hasta completar las pruebas. Ver `src/rra_battery_protection/README.md`.
+
+El Pololu está instalado en la alimentación de electrónica y el Mini560 alimenta la Orange Pi por separado. El usuario informa que la Pi ya no falla al mover el servo y que midió 5,3 V en la salida del regulador; la estabilidad prolongada y la tensión en la entrada de la Pi siguen pendientes.
+
+Corregido el límite de 255 del campo MAVLink `confirmation`; el Lua real pasó más de 255 reintentos simulados y aceptó un ACK tardío en un entorno local con lupa. Se comprobó la secuencia física Lua→MAVROS→Companion: una tensión simulada de 7,1 V provocó solicitud y confirmaciones reales y apagado ordenado real de Linux. El usuario volvió a encender la Pi. El Lua definitivo con lectura real se restauró en la Matek (CRC `55f6e123`), `SCR_USER1=0`; MAVROS y receptor están habilitados y activos con `DRY_RUN=1`. El Lua no controla GPIO ni el OFF del Pololu. Evidencias en `codex_handoff/evidencias/battery-protection-2026-11-18/`.
+
+Pendiente: prueba de desconexión física prolongada y estabilidad de alimentación; verificar salida GPIO libre, conexiones y tierra común, desarrollar y probar el control OFF del Pololu con carga de prueba, y acordar la activación de los modos reales. El apagado normal y el corte siguen sin activarse para una descarga real.
+
+## Historial: protección de batería electrónica (2026-11-15)
 
 - La H743 ejecuta el monitor Lua de `src/rra_battery_protection`; `SCR_ENABLE=1`. Filtra la tensión y solicita el apagado del Companion. El Lua instalado no controla GPIO ni Pololu. El respaldo previo de parámetros y las evidencias están en `codex_handoff/evidencias/battery-protection-2026-11-15/`.
 - La Orange Pi tiene MAVROS UART5/57600 y el receptor de batería como servicios habilitados. El receptor permanece en **DRY_RUN=1**: una batería baja real todavía no apaga Linux. Se verificó arranque tras reinicio y recuperación de MAVROS; ante 120 s sin tramas válidas de la FCU se intenta reiniciar el enlace. La causa de un arranque con tramas UART anómalas y la estabilidad prolongada siguen pendientes.
 - Con 7,1 V simulados, la petición Lua→Companion, ACK, PREPARED y apagado simulado pasaron. También se comprobó que el Lua reintenta y completa el intercambio cuando el receptor vuelve tras más de 40 s detenido.
 - Por autorización del usuario se probó **apagado Linux real** con petición y PREPARED sintéticos en dominio ROS aislado; el journal confirmó `System Power Off` y el usuario volvió a encender la Pi. Tras el arranque, MAVROS y receptor recuperaron la telemetría real. Esta prueba no fue un apagado real iniciado por el Lua físico; el servicio habitual sigue en simulación.
 - Pendiente: resolver la caída de alimentación de la Orange Pi al mover el servo, valorar BEC separado y comprobar alimentación bajo carga; observar estabilidad y reconexión prolongadas; preparar y obtener autorización para una prueba de apagado real iniciada por el Lua con tensión simulada; instalar y verificar el Pololu primero con carga de prueba y, solo con autorización, implementar y activar el corte GPIO. Comprobar calibración de tensión, umbrales y protección por celda en el montaje final. No se ha validado corte físico ni recuperación ante todas las pérdidas de alimentación.
-- Defecto pendiente antes de habilitar apagado real: el contador de reintentos Lua se copia en el campo MAVLink `confirmation`, que es de 8 bits. Si se superan 255 envíos sin ACK, la codificación puede fallar y detener el script. Limitar ese campo y probar una desconexión prolongada; la prueba física realizada solo cubrió algo más de 40 segundos.
+- Defecto del contador de reintentos detectado el 15 de noviembre: corregido el 18 de noviembre y probado con más de 255 reintentos simulados; falta una desconexión física prolongada.
 
 La información anterior a esta sección es historial y puede describir estados ya superados. Ver `src/rra_battery_protection/README.md` para procedimiento y límites detallados.
 
-## Estado vigente de rover físico y Companion — actualización 2026-11-08
+## Historial de rover físico y Companion — actualización 2026-11-08
 
 Corrección de las descripciones anteriores: el Companion provisional sí se
 conectó físicamente a la H743-WLITE el 2026-11-07. La sesión registró
@@ -921,7 +941,8 @@ Siguiente captura discriminante durante el fallo: comprobar en la lista del hots
 
 ## Reinicio recuperado, sin acceso SSH a la IP actual — 2026-11-08
 
-El usuario informa que después de reinicializar la Orange Pi vuelve el parpadeo del LED verde y el dispositivo reaparece en la lista del hotspot. Esto confirma alimentación y asociación reportadas, pero no diagnostica el incidente previo ni confirma SSH. El portátil sigue en 192.168.2.2; el alias SSH local ra-companion aún apunta a 10.221.18.8, que no responde. No se obtuvieron logs porque la IP DHCP actual de la Pi no está identificada/accesible. No se hicieron cambios remotos.
+El usuario informa que después de reinicializar la Orange Pi vuelve el parpadeo del LED verde y el dispositivo reaparece en la lista del hotspot. Esto confirma alimentación y asociación reportadas, pero no diagnostica el incidente previo ni confirma SSH. El portátil sigue en 192.168.2.2; el alias SSH local
+ra-companion aún apunta a 10.221.18.8, que no responde. No se obtuvieron logs porque la IP DHCP actual de la Pi no está identificada/accesible. No se hicieron cambios remotos.
 
 Para continuar el análisis del arranque y undervoltage hace falta la IP asignada actualmente (detalle del cliente orangepizero2w en el hotspot/router) o acceso local a la Pi. Una vez recuperado SSH: consultar journalctl -b -1 -k y journalctl -b -1, dmesg del boot anterior, vcgencmd/estado thermal disponible en esta plataforma y contadores mmc/ext4 de errores; distinguir errores de undervoltage (si el SoC/PMIC los expone) de simples desconexiones Wi-Fi. Revisar el voltaje Vx bajo carga con multímetro solo si siguen los reinicios/cuelgues. No alterar alimentación, Wi-Fi, kernel ni microSD antes de guardar evidencia.
 
@@ -981,3 +1002,21 @@ Lectura de parámetros sin escritura: `SCR_ENABLE=0`, `BATT_MONITOR=4`, `BATT_VO
 La consulta del 2026-11-14 al servidor oficial de firmware confirma que el build reportado por la Matek (ArduRover 4.7.2, commit `fb773567896014da007bca58358704d4a0d8516f`) corresponde a `Rover/stable-4.7.2/MatekH743`. Su `features.txt` incluye `AP_SCRIPTING_ENABLED`, `AP_SDCARD_STORAGE_ENABLED` y `AP_FILESYSTEM_SYS_ENABLED`. La ausencia de `SCR_HEAP_SIZE` con `SCR_ENABLE=0` no significa que scripting no esté compilado; la documentación indica refrescar/reiniciar los parámetros tras habilitarlo. Actualización 2026-11-15: MAVROS conectó a 57600 por UART5 (`connected=true`, desarmado/HOLD), y el pull de parámetros devolvió `success=true`, 1150 parámetros. SSH se cayó durante la escritura de un snapshot local; no se escribió ningún parámetro ni se cargó Lua. Antes de perder SSH, el servicio seguía activo con `DRY_RUN=1`. Siguiente: recuperar SSH, guardar el snapshot antes de cambios, verificar `SCR_ENABLE`, habilitarlo solo si está 0 y leer `SCR_*`/SD; sin GPIO ni corte.
 
 Actualización de medida simultánea: multímetro 7,89 V y ArduPilot 7,854 V, diferencia 0,036 V (0,46%). A este nivel la calibración actual presenta buena coincidencia; no cambiar `BATT_VOLT_MULT` solo por la diferencia con la referencia de ficha. Falta precisión a otros voltajes y medir sag bajo servo.
+
+## Activación real de protección 2S — 18-11-2026
+
+- Segunda prueba física con tensión simulada de 7,1 V y S12 conectado a OFF: la Matek envió la solicitud, el Companion confirmó PREPARED y systemd alcanzó `poweroff.target` a las 22:00:25; el usuario confirmó que el sistema volvió a encender a la primera tras esperar. Registros `codex_handoff/evidencias/pololu-s12-2026-11-18/power-pololu-repeat-20261118.*`. La tensión inyectada es simulada, no una descarga real.
+- Se restauró el Lua normal por MAVFTP, CRC `7d2daa60`, y `SCR_USER1=0`. `RBP_CUT_EN=1`, `RBP_CUT_GRACE=12`, `RBP_CUT_WAIT=25`, `RBP_EMERGEN=0`; el script confirmó inicio con corte habilitado. Umbrales y confirmaciones leídos: aviso 7,4 V/10 s, apagado 7,3 V/10 s, crítico 7,2 V/5 s. Valor de batería observado antes de habilitar: 7,841 V.
+- Relay: `SERVO12_FUNCTION=-1`, `RELAY1_FUNCTION=1`, `RELAY1_PIN=61`, `RELAY1_DEFAULT=0`, `RELAY1_INVERTED=0`. En la Orange Pi, `/etc/default/rra-power-shutdown` tiene `RRA_POWER_SHUTDOWN_DRY_RUN=0`; `rra-mavros.service` y `rra-power-shutdown.service` quedaron activos y habilitados, con recepción MAVLink real. Copia anterior de configuración: `/etc/default/rra-power-shutdown.before-real-20261118`.
+- El corte sucede tras 12 s de PREPARED real o al cumplirse 25 s desde la confirmación crítica, lo que ocurra antes. PREPARED confirma preparación, no que Linux haya terminado; el límite puede cortar antes de acabar el cierre. Si no existe telemetría válida no se inventa tensión ni se garantiza protección. Solo se mide tensión total: mantener el avisador por celda. No se ha probado un ciclo de descarga real ni el funcionamiento bajo fallo de comunicación en esta activación permanente.
+- En la primera prueba hubo un segundo corte al reencender cuya causa no se investigó a petición del usuario; en la segunda, después de esperar unos 15 s, el usuario confirmó arranque estable a la primera. Queda pendiente caracterizar ese comportamiento si reaparece y validar estabilidad con movimientos del servo y tensión de alimentación.
+
+## Modelo ROS AX10 probado en Orange Pi — 18-11-2026
+
+Compilado en ROS 2 Lyrical, workspace aislado `~/rra_ax10_test_ws`, tras instalar dependencias `ros-lyrical-ackermann-msgs` y `ros-lyrical-xacro`. Se corrigieron el empaquetado de cachés, el descubrimiento de las seis pruebas y el enlace de joint_states a robot_state_publisher; se corrigió el sentido y posición predichos del giro de ruedas. Las seis pruebas unitarias pasaron. Prueba integrada en dominio aislado 206, sin órdenes al vehículo: entrada 0,2 m/s y 0,3 rad produjo 0,193335 rad/s y radio 1,03447 m; estados, TF de dirección y timeout de velocidad a cero comprobados. Script reproducible: `src/rra_ax10_model/scripts/ros_smoke_check.py`. Servicios MAVROS y protección permanecieron activos.
+
+Comparación con datos ya reportados: batalla 0,320 m y dirección virtual 25° predicen 0,686 m de radio en el centro del eje trasero; la ficha registra 0,920 m (predicción 25,4 % menor). Radio 0,920 m equivale a 19,18° de ángulo virtual del modelo, no al ángulo medido individual de las ruedas. Sin método/repeticiones del radio y dado el posible deslizamiento, se conserva el límite provisional de 25°. Próximo paso: repetir círculos izquierda/derecha midiendo el diámetro de la trayectoria del centro del eje trasero y anotar superficie; acordar frames con Martín antes de integrar.
+
+## 2026-11-18 — evitación en SITL y pérdida de sensor
+
+Ejecutado ArduRover SITL 4.7.2 de hash verificado en namespaces aislados con loopback, usando rangefinder MAVLink simulado 10 Hz y sin acceso al rover. En STEERING, ACRO, SIMPLE, GUIDED, AUTO, RTL y SMART_RTL, un obstáculo frontal virtual de 0,4 m produjo parada o reducción casi a cero; al interrumpir el flujo del sensor se reanudó el movimiento con la orden o misión vigente. MANUAL siguió avanzando; HOLD estaba ya detenido; LOITER no resultó concluyente. No confundir pérdida de flujo de un sensor MAVLink simulado con una prueba del HC-SR04 físico. GUIDED con flujo de consignas de velocidad interrumpido se detuvo con aviso tras ~3 s; AUTO continuó la misión al perder el companion simulado, con GCS presente y FS_GCS_ENABLE=0. No se probó pérdida UART física, todos los tipos de consigna, FOLLOW ni todos los modos especiales. Preservar los 30–40 mm de frenada ya medidos por Juan como dato observado con condiciones no registradas; SITL no permite extrapolarlo. Detalle, parámetros solo simulados, limitaciones y registros: `docs/RESULTADOS_EVITACION_SITL_2026-11-18.md`; herramienta `scripts/sitl/evitacion_sitl.py`. Sin cambios en Matek. Siguiente: caracterizar el sensor físico mañana y diseñar una política para falta de datos antes de activar evitación.
